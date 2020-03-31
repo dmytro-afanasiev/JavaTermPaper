@@ -1,4 +1,5 @@
-package com.company;
+package objects.firstMacro;
+
 
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Guitar implements Cloneable{
     }
 
     @Override
-    protected Guitar clone() throws CloneNotSupportedException {
+    public Guitar clone() throws CloneNotSupportedException {
         return (Guitar) super.clone();
     }
 

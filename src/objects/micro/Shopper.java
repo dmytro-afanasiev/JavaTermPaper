@@ -1,8 +1,26 @@
-package com.company;
+package objects.micro;
+
+
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import objects.firstMacro.Guitar;
 
 import java.util.*;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/{
+
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+
+    /*
     private Guitar guitar= null;
     private double money;
     private String name;
@@ -191,14 +209,14 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/{
         return Objects.hash(guitar, money, name, age, skills);
     }
 
-    /*@Override
+    *//*@Override
     public int compareTo(Shopper o) {
         if (o.getAge()>this.getAge())
             return -1;
         else if (o.getAge()<this.getAge())
             return 1;
         return 0;
-    }*/
+    }*//*
     //переписаний метод для сортування по віку з взятий з інтерфейсу compareble
 
 
@@ -227,7 +245,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/{
         public int compare(Shopper o1, Shopper o2) {
             return o1.name.compareTo(o2.name);
         }
-    };
+    };*/
 
 }
 
