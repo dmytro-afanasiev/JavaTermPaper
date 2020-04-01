@@ -24,20 +24,19 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private double xCord, yCord;
     private Ellipse ellipseAct;
-    private ImageView shopperImage;
+    private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
     private Label shopperText;
     private boolean isActive;
+
+    private Instrument instrument;
 
     private double money;
     private String name;
 
-    private Instrument instrument;
 
 
-    public Shopper(Image shopperImage, Instrument instrument, boolean isActive) {
+    public Shopper(Instrument instrument, boolean isActive) {
         this.isActive = isActive;
-
-        this.shopperImage = new ImageView(shopperImage);
         this.shopperImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
 
@@ -46,7 +45,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.shopperText = new Label("TEXT");
 
         this.ellipseAct = new Ellipse(50, 5);
-        this.ellipseAct.setFill(Color.RED);
+        this.ellipseAct.setFill(Color.GREEN);
 
 
     }
@@ -75,29 +74,14 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     }
 
-    public ImageView getShopperImage() {
-        return shopperImage;
+    public Group getShopperPicture(){
+        return new Group(shopperImage,instrument.getInstrumentImage(),shopperText,ellipseAct);
     }
-
-    public ImageView getInstrumentImage() {
-        return instrument.getInstrumentImage();
-    }
-
-    public Label getShopperText() {
-        return shopperText;
-    }
-
-    public Ellipse getEllipseAct() {
-        return ellipseAct;
-    }
-
 
 
     public double getXCord() {
         return xCord;
     }
-
-
 
     public double getYCord() {
         return yCord;

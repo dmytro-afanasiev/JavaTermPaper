@@ -16,9 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import objects.firstMacro.Guitar;
-import objects.firstMacro.Instrument;
-import objects.firstMacro.Violin;
+import objects.firstMacro.*;
 import objects.micro.Shopper;
 import sample.window.CreateShopperWindow;
 
@@ -31,26 +29,27 @@ public class Main extends Application {
 
     public static ArrayList<Shopper> shoppers;
     private Random random = new Random(new Date().getTime());
-
+    private Pane root = new Pane();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
-        Pane root = new Pane();
+
         Scene scene = new Scene(root, 1000, 900);
 
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Guitar(), false));
-        shoppers.add(new Shopper(new Image("assets/shopper.png"),new Violin(), false));
-        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Violin(), false));
+        shoppers.add(new Shopper( new Violin(), false));
+        shoppers.add(new Shopper(new Tremb(), false));
+        shoppers.add(new Shopper(new Piano(), false));
+        shoppers.add(new Shopper(new Guitar(), false));
 
         for (Shopper s: shoppers){
             s.setXYCords(random.nextInt((int)scene.getWidth()-100),random.nextInt((int)scene.getHeight()-100));
             s.setShopperInCoords();
-            root.getChildren().addAll(s.getShopperImage(), s.getInstrumentImage(),s.getShopperText(),s.getEllipseAct());
+            root.getChildren().add(s.getShopperPicture());
         }
 
 
@@ -106,6 +105,19 @@ public class Main extends Application {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+            if (event.getCode().equals(KeyCode.DELETE))
+            {
+               for (int i = 0 ; i<shoppers.size();i++)
+               {
+                   Shopper s = shoppers.get(i);
+                   if (s.isActive()){
+                       root.getChildren().remove(s.getShopperPicture());
+                       s= null;
+                       shoppers.remove(i--);
+                   }
+
+               }
             }
             if (event.getCode().equals(KeyCode.UP)) {
                 for (Shopper s: shoppers){

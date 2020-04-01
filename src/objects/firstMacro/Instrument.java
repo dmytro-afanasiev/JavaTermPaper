@@ -1,10 +1,8 @@
 package objects.firstMacro;
 
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.util.Objects;
+import javafx.scene.image.ImageView;
 
 public abstract class Instrument implements Cloneable{
      protected String name;
@@ -12,10 +10,7 @@ public abstract class Instrument implements Cloneable{
      protected ImageView instrumentImage = null;
      protected String type = "-abstract-";
 
-    @Override
-    public Instrument clone() throws CloneNotSupportedException {
-        return (Instrument) super.clone();
-    }
+
 
     public ImageView getInstrumentImage() {
         return instrumentImage;
@@ -27,5 +22,10 @@ public abstract class Instrument implements Cloneable{
 
     public abstract void update(double x, double y);
 
+
+    @Override
+    public Instrument clone() throws CloneNotSupportedException {
+        return (Instrument) super.clone();
+    }
 
 }
