@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="351.0" prefWidth="600.0" style="-fx-background-color: e5dcb8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.window.CreateShopperWindow">
+   <children>
+      <Label alignment="CENTER" layoutX="124.0" prefHeight="91.0" prefWidth="350.0" text="Створення нового покупця:" textFill="#611d1d">
+         <font>
+            <Font name="Segoe UI Black Italic" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldName" layoutX="33.0" layoutY="78.0" prefHeight="34.0" prefWidth="191.0" promptText="Ім'я" />
+      <TextField layoutX="33.0" layoutY="123.0" prefHeight="34.0" prefWidth="191.0" promptText="Кількість грошей" />
+      <Button fx:id="yesButton" layoutX="242.0" layoutY="290.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" text="Створити" textAlignment="CENTER" textFill="#611d1d">
+         <font>
+            <Font name="Segoe UI Black" size="14.0" />
+         </font>
+      </Button>
+      <TextField layoutX="33.0" layoutY="168.0" prefHeight="34.0" prefWidth="191.0" promptText="Вік" />
+   </children>
+</AnchorPane>

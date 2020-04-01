@@ -1,26 +1,75 @@
 package objects.micro;
 
 
+import javafx.geometry.Point2D;
+import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import objects.firstMacro.Guitar;
+
 
 import java.util.*;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/{
 
+
+    private ImageView shopperImage;
+    private ImageView instrumentImage;
+    private Label shopperText;
     private boolean isActive;
 
-    public boolean isActive() {
-        return isActive;
+
+    public Shopper(Image shopperImage,Image instrumentImage,boolean isActive) {
+        this.isActive = isActive;
+
+        this.shopperImage = new ImageView(shopperImage);
+        this.instrumentImage = new ImageView(instrumentImage);
+        this.shopperImage.setPreserveRatio(true);
+        this.instrumentImage.setPreserveRatio(true);
+        this.shopperImage.setFitHeight(190);
+        this.instrumentImage.setFitHeight(80);
+
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setShopperCoords(double x, double y){
+        this.shopperImage.setX(x);
+        this.shopperImage.setY(y);
+        this.instrumentImage.setX(x+10);
+        this.instrumentImage.setY(y+70);
+        this.shopperText = new Label("TEXT");
+        this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
+        this.shopperText.setLayoutX(x);
+        this.shopperText.setLayoutY(y+190);
+
+    }
+
+    public ImageView getShopperImage() {
+        return shopperImage;
+    }
+
+    public ImageView getInstrumentImage() {
+        return instrumentImage;
+    }
+
+    public Label getShopperText() {
+        return shopperText;
+    }
+    public void mouseClick(double x, double y){
+        Point2D point2D = new Point2D(x,y);
+        if (this.shopperImage.getBoundsInParent().contains(point2D)){
+            System.out.println("click");
+        }
     }
 
 
-    /*
+
+/*
     private Guitar guitar= null;
     private double money;
     private String name;
