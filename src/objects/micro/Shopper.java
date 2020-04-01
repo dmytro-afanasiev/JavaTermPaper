@@ -15,7 +15,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import objects.firstMacro.Guitar;
+import objects.firstMacro.Instrument;
 
 
 import java.util.*;
@@ -25,21 +25,25 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     private double xCord, yCord;
     private Ellipse ellipseAct;
     private ImageView shopperImage;
-    private ImageView instrumentImage;
     private Label shopperText;
     private boolean isActive;
 
+    private double money;
+    private String name;
 
-    public Shopper(Image shopperImage, Image instrumentImage, boolean isActive) {
+    private Instrument instrument;
+
+
+    public Shopper(Image shopperImage, Instrument instrument, boolean isActive) {
         this.isActive = isActive;
 
         this.shopperImage = new ImageView(shopperImage);
-        this.instrumentImage = new ImageView(instrumentImage);
-        this.shopperText = new Label("TEXT");
         this.shopperImage.setPreserveRatio(true);
-        this.instrumentImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
-        this.instrumentImage.setFitHeight(80);
+
+        this.instrument = instrument;
+
+        this.shopperText = new Label("TEXT");
 
         this.ellipseAct = new Ellipse(50, 5);
         this.ellipseAct.setFill(Color.RED);
@@ -52,8 +56,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         double y = yCord;
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
-        this.instrumentImage.setX(x + 10);
-        this.instrumentImage.setY(y + 70);
+
+        this.instrument.update(x,y);
+
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shopperText.setLayoutX(x);
         this.shopperText.setLayoutY(y - 10);
@@ -75,7 +80,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
     public ImageView getInstrumentImage() {
-        return instrumentImage;
+        return instrument.getInstrumentImage();
     }
 
     public Label getShopperText() {
@@ -86,8 +91,16 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         return ellipseAct;
     }
 
+
+
     public double getXCord() {
         return xCord;
+    }
+
+
+
+    public double getYCord() {
+        return yCord;
     }
 
     public void setXYCords(double xCord, double yCord) {
@@ -95,10 +108,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.yCord = yCord;
     }
 
-    public double getYCord() {
-        return yCord;
+    public boolean isActive(){
+        return this.isActive;
     }
-
 
     public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
@@ -133,10 +145,10 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
 
 
-/*
-    private Guitar guitar= null;
-    private double money;
-    private String name;
+
+
+
+
     private int age;
     private ArrayList<String> skills;
     private static int numberOfShoppers = 0;
@@ -191,13 +203,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
 
-    public Guitar getGuitar() {
-        return guitar;
-    }
 
-    public void setGuitar(Guitar guitar) {
-        this.guitar = guitar;
-    }
 
     public Shopper(double money, String name, int age, ArrayList<String> skills) {
         System.out.println("_________________________________________");
@@ -261,7 +267,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         }
     }
 
-    public void earnMoney() {
+   /* public void earnMoney() {
         if (this.skills.contains("Guitar") && (guitar!=null)) {
             Date d = new Date();
             Random r = new Random(d.getTime());
@@ -281,7 +287,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             System.out.println("Ви успішно придбали гітару.");
         }
             else System.out.println("Недостатньо коштів, щоб придбати гітару.");
-    }
+    }*/
 
 
     @Override
@@ -294,7 +300,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
                 '}';
     }
 
-    @Override
+   /* @Override
     protected Shopper clone() throws CloneNotSupportedException {
         Shopper shopper = (Shopper)super.clone();
         if (guitar !=null)
@@ -304,32 +310,20 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         shopper.skills = new ArrayList<String>(skills);
         return shopper;
     }
+*/
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Shopper shopper = (Shopper) o;
-        return Double.compare(shopper.money, money) == 0 &&
-                age == shopper.age &&
-                Objects.equals(guitar, shopper.guitar) &&
-                Objects.equals(name, shopper.name) &&
-                Objects.equals(skills, shopper.skills);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(guitar, money, name, age, skills);
-    }
 
-    *//*@Override
+
+
+    /*@Override
     public int compareTo(Shopper o) {
         if (o.getAge()>this.getAge())
             return -1;
         else if (o.getAge()<this.getAge())
             return 1;
         return 0;
-    }*//*
+    }*/
     //переписаний метод для сортування по віку з взятий з інтерфейсу compareble
 
 
@@ -358,7 +352,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         public int compare(Shopper o1, Shopper o2) {
             return o1.name.compareTo(o2.name);
         }
-    };*/
+    };
 
 }
 

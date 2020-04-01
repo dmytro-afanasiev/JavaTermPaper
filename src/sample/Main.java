@@ -16,6 +16,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import objects.firstMacro.Guitar;
+import objects.firstMacro.Instrument;
+import objects.firstMacro.Violin;
 import objects.micro.Shopper;
 import sample.window.CreateShopperWindow;
 
@@ -40,9 +43,9 @@ public class Main extends Application {
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
-        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
-        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
+        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Guitar(), false));
+        shoppers.add(new Shopper(new Image("assets/shopper.png"),new Violin(), false));
+        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Violin(), false));
 
         for (Shopper s: shoppers){
             s.setXYCords(random.nextInt((int)scene.getWidth()-100),random.nextInt((int)scene.getHeight()-100));
