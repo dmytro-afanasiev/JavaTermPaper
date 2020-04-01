@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -22,16 +23,15 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-
+    public static Shopper shopper;
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
+    public void start(Stage primaryStage) throws Exception {
 
 
         Pane root = new Pane();
-        Scene scene = new Scene(root, 800,650);
+        Scene scene = new Scene(root, 800, 650);
 
         primaryStage.setScene(scene);
 
@@ -39,40 +39,59 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
-        Shopper shopper = new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"),true);
-        shopper.setShopperCoords(100,100);
 
-        root.getChildren().addAll(shopper.getShopperImage(),shopper.getInstrumentImage(),shopper.getShopperText());
+        shopper = new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false);
+        shopper.setXYCords(100, 100);
+
+
+        shopper.setShopperInCoords();
+        root.getChildren().addAll(shopper.getShopperImage(), shopper.getInstrumentImage(), shopper.getShopperText(), shopper.getEllipseAct());
+
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                shopper.mouseClick(event.getX(),event.getY());
+                shopper.mouseClick(event.getX(), event.getY());
             }
         });
 
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                shopper.setShopperInCoords();
+
+            }
+        };
+        timer.start();
 
 
         primaryStage.show();
 
     }
 
-    private class KeyPressedHandler implements EventHandler<KeyEvent>{
+    private class KeyPressedHandler implements EventHandler<KeyEvent> {
 
 
         @Override
         public void handle(KeyEvent event) {
-            if (event.getCode().equals(KeyCode.C)){
+            if (event.getCode().equals(KeyCode.C)) {
                 try {
-                   new CreateShopperWindow().display("window");
+                    new CreateShopperWindow().display("window");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+            if (event.getCode().equals(KeyCode.UP)) {
+                shopper.up();
+            } else if (event.getCode().equals(KeyCode.DOWN)) {
+                shopper.down();
+            } else if (event.getCode().equals(KeyCode.RIGHT)) {
+                shopper.right();
+            } else if (event.getCode().equals(KeyCode.LEFT)) {
+                shopper.left();
+            }
         }
     }
-
-
 
 
     public static void main(String[] args) {

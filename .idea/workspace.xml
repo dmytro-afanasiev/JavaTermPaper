@@ -227,30 +227,30 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1585733233043">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1585735421583">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585733233043" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585735421583" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585663272213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585663272213" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1585733993481">
+    <state width="1493" height="153" key="GridCell.Tab.0.bottom" timestamp="1585737505149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585733993481" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1585733993480">
+    <state width="1493" height="153" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585737505149" />
+    <state width="1493" height="153" key="GridCell.Tab.0.center" timestamp="1585737505149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585733993480" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1585733993480">
+    <state width="1493" height="153" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585737505149" />
+    <state width="1493" height="153" key="GridCell.Tab.0.left" timestamp="1585737505149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585733993480" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1585733993480">
+    <state width="1493" height="153" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585737505149" />
+    <state width="1493" height="153" key="GridCell.Tab.0.right" timestamp="1585737505149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585733993480" />
+    <state width="1493" height="153" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585737505149" />
     <state x="618" y="328" key="VCS.ChangelistChooser" timestamp="1585653882413">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
