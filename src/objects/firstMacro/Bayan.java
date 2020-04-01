@@ -3,16 +3,16 @@ package objects.firstMacro;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Tremb extends Instrument {
-    public Tremb(){
-        this.instrumentImage= new ImageView(new Image("assets/tremb.png"));
+public class Bayan extends Instrument {
+    public Bayan(){
+        this.instrumentImage= new ImageView(new Image("assets/bayan.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
-        this.type = "tremb";
+        this.type = "bayan";
     }
     @Override
     public void update(double x, double y) {
-        this.instrumentImage.setX(x+35);
-        this.instrumentImage.setY(y-20);
+        this.instrumentImage.setX(x+10);
+        this.instrumentImage.setY(y+60);
     }
 }

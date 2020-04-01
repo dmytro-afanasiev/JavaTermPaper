@@ -1,30 +1,24 @@
 package objects.micro;
 
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import objects.firstMacro.Instrument;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private double xCord, yCord;
     private Ellipse ellipseAct;
-    private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
+    final private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
     private Label shopperText;
     private boolean isActive;
 
@@ -32,7 +26,6 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private double money;
     private String name;
-
 
 
     public Shopper(Instrument instrument, boolean isActive) {
@@ -56,7 +49,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
 
-        this.instrument.update(x,y);
+        this.instrument.update(x, y);
 
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shopperText.setLayoutX(x);
@@ -74,8 +67,8 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     }
 
-    public Group getShopperPicture(){
-        return new Group(shopperImage,instrument.getInstrumentImage(),shopperText,ellipseAct);
+    public Group getShopperPicture() {
+        return new Group(shopperImage, instrument.getInstrumentImage(), shopperText, ellipseAct);
     }
 
 
@@ -92,7 +85,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.yCord = yCord;
     }
 
-    public boolean isActive(){
+    public boolean isActive() {
         return this.isActive;
     }
 
@@ -106,37 +99,32 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     public void left() {
         if (isActive) {
-            xCord -= 10;
+            xCord -= 15;
         }
     }
 
     public void right() {
         if (isActive) {
-            xCord += 10;
+            xCord += 15;
         }
     }
+
     public void up() {
         if (isActive) {
-            yCord -= 10;
+            yCord -= 15;
         }
     }
+
     public void down() {
         if (isActive) {
-            yCord += 10;
+            yCord += 15;
         }
     }
-
-
-
-
-
-
 
 
     private int age;
     private ArrayList<String> skills;
     private static int numberOfShoppers = 0;
-
 
 
     public static int getNumberOfShoppers() {
@@ -187,8 +175,6 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
 
-
-
     public Shopper(double money, String name, int age, ArrayList<String> skills) {
         System.out.println("_________________________________________");
         System.out.println("Був викликаний конструктор класу Shopper.");
@@ -203,14 +189,13 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
     public Shopper(double money, String name, int age) {
-        this(money,name,age, new ArrayList<String>());
+        this(money, name, age, new ArrayList<String>());
     }
 
     public Shopper() {
 
         this(0, "Name is not specified", 0, new ArrayList<String>());
     }
-
 
 
     public void education(String skill) {
@@ -314,9 +299,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public static Comparator<Shopper> moneyComparator = new Comparator<Shopper>() {
         @Override
         public int compare(Shopper o1, Shopper o2) {
-            if (o1.money<o2.money)
+            if (o1.money < o2.money)
                 return -1;
-            else if (o1.money>o2.money)
+            else if (o1.money > o2.money)
                 return 1;
             return 0;
         }
@@ -324,9 +309,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public static Comparator<Shopper> ageComparator = new Comparator<Shopper>() {
         @Override
         public int compare(Shopper o1, Shopper o2) {
-            if (o1.age<o2.age)
+            if (o1.age < o2.age)
                 return -1;
-            else if (o1.age>o2.age)
+            else if (o1.age > o2.age)
                 return 1;
             return 0;
         }

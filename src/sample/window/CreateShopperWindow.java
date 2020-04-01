@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class CreateShopperWindow {
 
         Parent alert = FXMLLoader.load(getClass().getResource("createShopperWindow.fxml"));
         window.setScene(new Scene(alert));
+        window.getIcons().add(new Image("assets/shopper.png"));
 
 
         window.show();
