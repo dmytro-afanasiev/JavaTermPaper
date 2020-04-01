@@ -20,10 +20,14 @@ import objects.micro.Shopper;
 import sample.window.CreateShopperWindow;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 
 public class Main extends Application {
 
-    public static Shopper shopper;
+    public static ArrayList<Shopper> shoppers;
+    private Random random = new Random(new Date().getTime());
 
 
     @Override
@@ -31,7 +35,23 @@ public class Main extends Application {
 
 
         Pane root = new Pane();
-        Scene scene = new Scene(root, 800, 650);
+        Scene scene = new Scene(root, 1000, 900);
+
+
+
+        shoppers = new ArrayList<>(5);
+        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
+        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
+        shoppers.add(new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false));
+
+        for (Shopper s: shoppers){
+            s.setXYCords(random.nextInt((int)scene.getWidth()-100),random.nextInt((int)scene.getHeight()-100));
+            s.setShopperInCoords();
+            root.getChildren().addAll(s.getShopperImage(), s.getInstrumentImage(),s.getShopperText(),s.getEllipseAct());
+        }
+
+
+
 
         primaryStage.setScene(scene);
 
@@ -40,25 +60,28 @@ public class Main extends Application {
         scene.setOnKeyPressed(new KeyPressedHandler());
 
 
-        shopper = new Shopper(new Image("assets/shopper.png"), new Image("assets/guitar.png"), false);
-        shopper.setXYCords(100, 100);
 
 
-        shopper.setShopperInCoords();
-        root.getChildren().addAll(shopper.getShopperImage(), shopper.getInstrumentImage(), shopper.getShopperText(), shopper.getEllipseAct());
+
 
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                shopper.mouseClick(event.getX(), event.getY());
+                for (Shopper s: shoppers){
+                    s.mouseClick(event.getX(), event.getY());
+                }
+
             }
         });
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                shopper.setShopperInCoords();
+                for (Shopper s: shoppers){
+                    s.setShopperInCoords();
+                }
+
 
             }
         };
@@ -82,13 +105,21 @@ public class Main extends Application {
                 }
             }
             if (event.getCode().equals(KeyCode.UP)) {
-                shopper.up();
+                for (Shopper s: shoppers){
+                    s.up();
+                }
             } else if (event.getCode().equals(KeyCode.DOWN)) {
-                shopper.down();
+                for (Shopper s: shoppers){
+                    s.down();
+                }
             } else if (event.getCode().equals(KeyCode.RIGHT)) {
-                shopper.right();
+                for (Shopper s: shoppers){
+                    s.right();
+                }
             } else if (event.getCode().equals(KeyCode.LEFT)) {
-                shopper.left();
+                for (Shopper s: shoppers){
+                    s.left();
+                }
             }
         }
     }
