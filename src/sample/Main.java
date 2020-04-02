@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -22,21 +23,29 @@ import java.util.Random;
 public class Main extends Application {
 
     public static ArrayList<Shopper> shoppers;
-    private Random random = new Random(new Date().getTime());
-    private Pane root = new Pane();
+    public static Random random = new Random(new Date().getTime());
+    private static Pane root = new Pane();
+    private static Scene scene = new Scene(root, 1000, 900);
+
+    public static Scene getScene() {
+        return scene;
+    }
+
+    public static Pane getRoot() {
+        return root;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
-        Scene scene = new Scene(root, 1000, 900);
+
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(false));
-        shoppers.add(new Shopper(new Tremb(), false));
-        shoppers.add(new Shopper(new Piano(), false));
-        shoppers.add(new Shopper(new Bayan(), false));
+        shoppers.add(new Shopper(new Guitar(), false, "Dima", 500,true));
+
+
 
         for (Shopper s : shoppers) {
             s.setXYCords(random.nextInt((int) scene.getWidth() - 100), random.nextInt((int) scene.getHeight() - 100));
@@ -58,6 +67,7 @@ public class Main extends Application {
                 for (Shopper s : shoppers) {
                     s.mouseClick(event.getX(), event.getY());
                 }
+
 
             }
         });
@@ -98,6 +108,7 @@ public class Main extends Application {
                         root.getChildren().remove(s.getShopperPicture());
                         s = null;
                         shoppers.remove(i--);
+                        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers()-1);
                     }
 
                 }

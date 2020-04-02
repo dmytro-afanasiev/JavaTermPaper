@@ -10,7 +10,7 @@ public class Guitar extends Instrument {
         this.instrumentImage= new ImageView(new Image("assets/guitar.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
-        this.type = "guitar";
+        this.type = "Guitar";
     }
     @Override
     public void update(double x, double y) {

@@ -14,38 +14,47 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import objects.firstMacro.Instrument;
 
-import java.security.Policy;
-import java.util.ArrayList;
+
 import java.util.Comparator;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private double xCord, yCord;
     private Ellipse shadow;
+
     private boolean isActive;
     private Polygon triangleAct;
 
-    final private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
-
+    private ImageView shopperImage;
+    private boolean isMan;
     private Label shopperText;
 
     private Instrument instrument= null;
-
+    private Group shopperPicture;
 
     private double money;
     private String name;
+    private static int numberOfShoppers = 0;
 
 
-    public Shopper(Instrument instrument, boolean isActive) {
+
+    public Shopper(Instrument instrument, boolean isActive, String name, double money ,boolean isMan) {
+        Shopper.numberOfShoppers++;
+        this.name = name;
+        this.money=money;
+
+        if (isMan){
+            this.shopperImage  = new ImageView(new Image("assets/shopper.png"));
+        } else this.shopperImage  = new ImageView(new Image("assets/girlShopper.png"));
+
         this.isActive = isActive;
         this.shopperImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
         this.shopperImage.setEffect(new DropShadow(30,0,0,Color.GRAY));
 
-
         this.instrument = instrument;
 
-        this.shopperText = new Label("TEXT");
+        this.shopperText = new Label(this.name + ", money: "+ this.money);
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
         this.shadow = new Ellipse(75, 20);
@@ -60,14 +69,26 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
                 15.0, 25.0);
         this.triangleAct.setFill(Color.GREEN);
 
-
-
-
-
+        if (this.instrument != null){
+            this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
+        } else {
+            this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
+        }
+    }
+    public Shopper(boolean isActive, String name, double money, boolean isMan) {
+        this(null, isActive, "Name", 0,isMan);
+    }
+    public Shopper( Instrument instrument,boolean isActive) {
+        this(instrument, isActive, "Name", 0,true);
     }
     public Shopper( boolean isActive) {
-        this(null, isActive);
+        this(null, isActive, "Name", 0, true);
     }
+    public Shopper(boolean isActive, String name, double money){
+        this(null, isActive, name, money, true);
+    }
+
+
 
     public void setShopperInCoords() {
         double x = xCord;
@@ -75,10 +96,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
 
-        this.shopperText.setLayoutX(x);
+        this.shopperText.setLayoutX(x-15);
         this.shopperText.setLayoutY(y - 10);
+
         this.shadow.setLayoutX(x -10);
         this.shadow.setLayoutY(y + 170);
+
         this.triangleAct.setLayoutX(x+30);
         this.triangleAct.setLayoutY(y-40);
 
@@ -95,10 +118,8 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     public Group getShopperPicture() {
 
-        return this.instrument != null ? new Group(shopperImage, instrument.getInstrumentImage(), shopperText, shadow, triangleAct) : new Group(shopperImage, shopperText, shadow,triangleAct);
+        return this.shopperPicture;
     }
-
-
     public double getXCord() {
         return xCord;
     }
@@ -107,14 +128,17 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         return yCord;
     }
 
+
     public void setXYCords(double xCord, double yCord) {
         this.xCord = xCord;
         this.yCord = yCord;
     }
 
+
     public boolean isActive() {
         return this.isActive;
     }
+
 
     public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
@@ -123,6 +147,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
         }
     }
+
 
     public void left() {
         if (isActive) {
@@ -147,15 +172,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             yCord += 15;
         }
     }
-
-
-    private int age;
-    private ArrayList<String> skills;
-    private static int numberOfShoppers = 0;
-
-
     public static int getNumberOfShoppers() {
         return numberOfShoppers;
+    }
+
+    public static void setNumberOfShoppers(int numberOfShoppers) {
+        Shopper.numberOfShoppers = numberOfShoppers;
     }
 
     public double getMoney() {
@@ -174,13 +196,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
+    /* private ArrayList<String> skills;
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+
 
     public ArrayList<String> getSkills() {
         for (String s : skills) {
@@ -202,12 +220,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
 
-    public Shopper(double money, String name, int age, ArrayList<String> skills) {
+    public Shopper(double money, String name, ArrayList<String> skills) {
         System.out.println("_________________________________________");
         System.out.println("Був викликаний конструктор класу Shopper.");
         this.money = money;
         this.name = name;
-        this.age = age;
+
         this.skills = skills;
         System.out.println("Був створений об'єкт " + this.name + " класу Shopper.");
         System.out.println("_____________________________________________________");
@@ -215,13 +233,10 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     }
 
-    public Shopper(double money, String name, int age) {
-        this(money, name, age, new ArrayList<String>());
-    }
 
     public Shopper() {
 
-        this(0, "Name is not specified", 0, new ArrayList<String>());
+        this(0, "Name is not specified", new ArrayList<String>());
     }
 
 
@@ -261,7 +276,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
 
         }
-    }
+    }*/
 
    /* public void earnMoney() {
         if (this.skills.contains("Guitar") && (guitar!=null)) {
@@ -286,15 +301,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }*/
 
 
-    @Override
-    public String toString() {
-        return "Shopper{" +
-                "money=" + money +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", skills=" + skills +
-                '}';
-    }
+
 
    /* @Override
     protected Shopper clone() throws CloneNotSupportedException {
@@ -329,16 +336,6 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             if (o1.money < o2.money)
                 return -1;
             else if (o1.money > o2.money)
-                return 1;
-            return 0;
-        }
-    };
-    public static Comparator<Shopper> ageComparator = new Comparator<Shopper>() {
-        @Override
-        public int compare(Shopper o1, Shopper o2) {
-            if (o1.age < o2.age)
-                return -1;
-            else if (o1.age > o2.age)
                 return 1;
             return 0;
         }

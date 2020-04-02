@@ -8,7 +8,7 @@ public class Violin extends Instrument{
         this.instrumentImage= new ImageView(new Image("assets/violin.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(140);
-        this.type="violin";
+        this.type="Violin";
     }
     @Override
     public void update(double x, double y) {

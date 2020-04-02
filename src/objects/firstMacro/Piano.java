@@ -8,7 +8,7 @@ public class Piano extends Instrument{
         this.instrumentImage= new ImageView(new Image("assets/piano.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(170);
-        this.type = "piano";
+        this.type = "Piano";
     }
     @Override
     public void update(double x, double y) {

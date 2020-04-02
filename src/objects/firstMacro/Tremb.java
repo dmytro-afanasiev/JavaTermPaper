@@ -8,7 +8,7 @@ public class Tremb extends Instrument {
         this.instrumentImage= new ImageView(new Image("assets/tremb.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
-        this.type = "tremb";
+        this.type = "Trembita";
     }
     @Override
     public void update(double x, double y) {

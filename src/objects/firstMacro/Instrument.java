@@ -27,5 +27,24 @@ public abstract class Instrument implements Cloneable{
     public Instrument clone() throws CloneNotSupportedException {
         return (Instrument) super.clone();
     }
+    public static Instrument getInstrument(String type){
+        switch (type) {
+            case "Guitar":
+                return new Guitar();
+            case "Drums":
+                return new Drums();
+            case "Bayan":
+                return new Bayan();
+            case "Piano":
+                return new Piano();
+            case "Trembita":
+                return new Tremb();
+            case "Violin":
+                return new Violin();
+            case "Nothing":
+                return null;
+        }
+        return null;
+    }
 
 }
