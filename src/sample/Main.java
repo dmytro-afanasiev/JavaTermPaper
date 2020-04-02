@@ -33,7 +33,7 @@ public class Main extends Application {
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(new Violin(), false));
+        shoppers.add(new Shopper(false));
         shoppers.add(new Shopper(new Tremb(), false));
         shoppers.add(new Shopper(new Piano(), false));
         shoppers.add(new Shopper(new Bayan(), false));

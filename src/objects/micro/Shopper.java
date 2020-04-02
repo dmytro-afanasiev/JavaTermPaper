@@ -4,25 +4,33 @@ package objects.micro;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
+import javafx.scene.transform.Rotate;
 import objects.firstMacro.Instrument;
 
+import java.security.Policy;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private double xCord, yCord;
-    private Ellipse ellipseAct;
-    final private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
-    private Label shopperText;
+    private Ellipse shadow;
     private boolean isActive;
+    private Polygon triangleAct;
 
-    private Instrument instrument;
+    final private ImageView shopperImage = new ImageView(new Image("assets/shopper.png"));
+
+    private Label shopperText;
+
+    private Instrument instrument= null;
+
 
     private double money;
     private String name;
@@ -32,15 +40,33 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.isActive = isActive;
         this.shopperImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
+        this.shopperImage.setEffect(new DropShadow(30,0,0,Color.GRAY));
+
 
         this.instrument = instrument;
 
         this.shopperText = new Label("TEXT");
+        this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
-        this.ellipseAct = new Ellipse(50, 5);
-        this.ellipseAct.setFill(Color.GREEN);
+        this.shadow = new Ellipse(75, 20);
+        this.shadow.setFill(Color.BLACK);
+        this.shadow.setOpacity(0.8);
+        this.shadow.getTransforms().add(new Rotate(15));
+        this.shadow.setEffect(new GaussianBlur(40));
+
+        this.triangleAct = new Polygon();
+        triangleAct.getPoints().addAll(0.0, 0.0,
+                30.0, 0.0,
+                15.0, 25.0);
+        this.triangleAct.setFill(Color.GREEN);
 
 
+
+
+
+    }
+    public Shopper( boolean isActive) {
+        this(null, isActive);
     }
 
     public void setShopperInCoords() {
@@ -49,26 +75,27 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
 
-        this.instrument.update(x, y);
-
-        this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shopperText.setLayoutX(x);
         this.shopperText.setLayoutY(y - 10);
-        this.ellipseAct.setLayoutX(x + 50);
-        this.ellipseAct.setLayoutY(y + 197);
-
+        this.shadow.setLayoutX(x -10);
+        this.shadow.setLayoutY(y + 170);
+        this.triangleAct.setLayoutX(x+30);
+        this.triangleAct.setLayoutY(y-40);
 
         if (this.isActive) {
-            this.ellipseAct.setOpacity(1);
+            this.triangleAct.setOpacity(1);
         } else {
-            this.ellipseAct.setOpacity(0);
+            this.triangleAct.setOpacity(0);
         }
-
+        if (this.instrument != null) {
+            this.instrument.update(x, y);
+        }
 
     }
 
     public Group getShopperPicture() {
-        return new Group(shopperImage, instrument.getInstrumentImage(), shopperText, ellipseAct);
+
+        return this.instrument != null ? new Group(shopperImage, instrument.getInstrumentImage(), shopperText, shadow, triangleAct) : new Group(shopperImage, shopperText, shadow,triangleAct);
     }
 
 
