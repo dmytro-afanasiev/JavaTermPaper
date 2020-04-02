@@ -4,7 +4,6 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -39,13 +38,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-
-
-
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(new Guitar(), false, "Dima", 500,true));
-
-
+        shoppers.add(new Shopper(new Guitar(), false, "Dima", 500, true));
 
         for (Shopper s : shoppers) {
             s.setXYCords(random.nextInt((int) scene.getWidth() - 100), random.nextInt((int) scene.getHeight() - 100));
@@ -53,13 +47,10 @@ public class Main extends Application {
             root.getChildren().add(s.getShopperPicture());
         }
 
-
         primaryStage.setScene(scene);
-
         primaryStage.setTitle("Lab № 4");
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
-
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -67,36 +58,28 @@ public class Main extends Application {
                 for (Shopper s : shoppers) {
                     s.mouseClick(event.getX(), event.getY());
                 }
-
-
             }
         });
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 for (Shopper s : shoppers) {
                     s.setShopperInCoords();
                 }
-
-
             }
         };
         timer.start();
 
-
         primaryStage.show();
-
     }
 
     private class KeyPressedHandler implements EventHandler<KeyEvent> {
-
 
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode().equals(KeyCode.C)) {
                 try {
-                    new CreateShopperWindow().display("window");
+                    new CreateShopperWindow().display("Let's create new Shopper!");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +91,7 @@ public class Main extends Application {
                         root.getChildren().remove(s.getShopperPicture());
                         s = null;
                         shoppers.remove(i--);
-                        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers()-1);
+                        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
                     }
 
                 }
@@ -133,9 +116,7 @@ public class Main extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(args);
-
     }
 }

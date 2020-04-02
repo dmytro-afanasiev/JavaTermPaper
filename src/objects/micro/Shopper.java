@@ -151,25 +151,25 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     public void left() {
         if (isActive) {
-            xCord -= 15;
+            xCord -= 5;
         }
     }
 
     public void right() {
         if (isActive) {
-            xCord += 15;
+            xCord += 5;
         }
     }
 
     public void up() {
         if (isActive) {
-            yCord -= 15;
+            yCord -= 5;
         }
     }
 
     public void down() {
         if (isActive) {
-            yCord += 15;
+            yCord += 5;
         }
     }
     public static int getNumberOfShoppers() {

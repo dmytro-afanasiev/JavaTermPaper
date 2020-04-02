@@ -14,18 +14,13 @@ public class CreateShopperWindow {
 
     public boolean display(String title) throws IOException {
 
-
-
-
         window.setTitle(title);
 
         Parent alert = FXMLLoader.load(getClass().getResource("createShopperWindow.fxml"));
         window.setScene(new Scene(alert));
-        window.getIcons().add(new Image("assets/shopper.png"));
-
+        window.getIcons().add(new Image("assets/windowIcon.png"));
 
         window.show();
-
         return true;
     }
 

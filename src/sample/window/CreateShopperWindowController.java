@@ -71,7 +71,6 @@ public class CreateShopperWindowController {
                 temp.setXYCords(Main.random.nextInt((int) Main.getScene().getWidth() - 100), Main.random.nextInt((int) Main.getScene().getHeight() - 100));
                 temp.setShopperInCoords();
                 Main.getRoot().getChildren().add(temp.getShopperPicture());
-
                 CreateShopperWindow.getWindow().close();
             }
         });
