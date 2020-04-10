@@ -24,7 +24,8 @@ public class Main extends Application {
     public static ArrayList<Shopper> shoppers;
     public static Random random = new Random(new Date().getTime());
     private static Pane root = new Pane();
-    private static Scene scene = new Scene(root, 1000, 900);
+    private static Scene scene = new Scene(root, 400, 400);
+
 
     public static Scene getScene() {
         return scene;
@@ -77,7 +78,7 @@ public class Main extends Application {
 
         @Override
         public void handle(KeyEvent event) {
-            if (event.getCode().equals(KeyCode.C)) {
+            if (event.getCode().equals(KeyCode.M)) {
                 try {
                     new CreateShopperWindow().display("Let's create new Shopper!");
                 } catch (IOException e) {
@@ -94,6 +95,13 @@ public class Main extends Application {
                         Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
                     }
 
+                }
+            }
+            if (event.getCode().equals(KeyCode.ESCAPE)){
+                for(Shopper s: shoppers){
+                    if (s.isActive()) {
+                        s.setActive(false);
+                    }
                 }
             }
             if (event.getCode().equals(KeyCode.UP)) {

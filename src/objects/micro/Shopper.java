@@ -117,7 +117,6 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
     public Group getShopperPicture() {
-
         return this.shopperPicture;
     }
     public double getXCord() {
@@ -134,16 +133,10 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.yCord = yCord;
     }
 
-
-    public boolean isActive() {
-        return this.isActive;
-    }
-
-
     public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
         if (this.shopperImage.getBoundsInParent().contains(point2D)) {
-            this.isActive = !this.isActive;
+            this.setActive(!this.isActive());
 
         }
     }
@@ -172,6 +165,14 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             yCord += 5;
         }
     }
+    public boolean isActive() {
+        return this.isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public static int getNumberOfShoppers() {
         return numberOfShoppers;
     }
@@ -196,6 +197,8 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.name = name;
     }
 
+
+    //ВСЕ, ЩО НИЖЧЕ, ТО З ТРЕТЬОЇ ЛАБОРАТОРНОЇ РОБОТИ
     /* private ArrayList<String> skills;
 
 

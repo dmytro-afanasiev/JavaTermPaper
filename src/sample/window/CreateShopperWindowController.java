@@ -4,8 +4,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.firstMacro.Instrument;
@@ -35,7 +33,7 @@ public class CreateShopperWindowController {
     private RadioButton radioWoman;
 
     @FXML
-    private ListView<String> instumentsList;
+    private ListView<String> instrumentsList;
 
     @FXML
     void initialize() {
@@ -43,21 +41,17 @@ public class CreateShopperWindowController {
         ToggleGroup toggleGroup = new ToggleGroup();
         radioMan.setToggleGroup(toggleGroup);
         radioWoman.setToggleGroup(toggleGroup);
-        radioMan.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                isMan= true;
-            }
-        });
-        radioWoman.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                isMan = false;
-            }
-        });
+        radioMan.setOnAction((event -> {
+            isMan = true;
+        }));
+
+        radioWoman.setOnAction((event -> {
+            isMan = false;
+        }));
+
         ObservableList<String> instruments = FXCollections.observableArrayList("Nothing","Guitar","Drums","Bayan","Piano","Violin", "Trembita" );
-        instumentsList.getItems().addAll(instruments);
-        instumentsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        instrumentsList.getItems().addAll(instruments);
+        instrumentsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 typeOfInstrument = newValue;
