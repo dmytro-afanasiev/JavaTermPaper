@@ -3,6 +3,8 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -24,8 +26,7 @@ public class Main extends Application {
     public static ArrayList<Shopper> shoppers;
     public static Random random = new Random(new Date().getTime());
     private static Pane root = new Pane();
-    private static Scene scene = new Scene(root, 400, 400);
-
+    private static Scene scene = new Scene(root, 1580, 900);
 
     public static Scene getScene() {
         return scene;
@@ -40,7 +41,7 @@ public class Main extends Application {
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(new Guitar(), false, "Dima", 500, true));
+        shoppers.add(new Shopper( false, "Dima", 500, true));
 
         for (Shopper s : shoppers) {
             s.setXYCords(random.nextInt((int) scene.getWidth() - 100), random.nextInt((int) scene.getHeight() - 100));
@@ -48,17 +49,17 @@ public class Main extends Application {
             root.getChildren().add(s.getShopperPicture());
         }
 
+        Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        root.getChildren().add(parent);
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Lab № 4");
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                for (Shopper s : shoppers) {
-                    s.mouseClick(event.getX(), event.getY());
-                }
+        scene.setOnMousePressed(event -> {
+            for (Shopper s : shoppers) {
+                s.mouseClick(event.getX(), event.getY());
             }
         });
         AnimationTimer timer = new AnimationTimer() {

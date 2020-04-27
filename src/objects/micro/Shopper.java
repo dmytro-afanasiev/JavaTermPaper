@@ -75,6 +75,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
         }
     }
+
     public Shopper(boolean isActive, String name, double money, boolean isMan) {
         this(null, isActive, "Name", 0,isMan);
     }
@@ -119,6 +120,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public Group getShopperPicture() {
         return this.shopperPicture;
     }
+
     public double getXCord() {
         return xCord;
     }
