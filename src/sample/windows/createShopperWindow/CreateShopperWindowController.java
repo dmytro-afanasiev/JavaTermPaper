@@ -1,4 +1,4 @@
-package sample.window;
+package sample.windows.createShopperWindow;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.firstMacro.*;
 import objects.micro.Shopper;
-import sample.window.CreateShopperWindow;
+import sample.windows.createShopperWindow.CreateShopperWindow;
 
 import java.io.IOException;
 import java.util.ArrayList;

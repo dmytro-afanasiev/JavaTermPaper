@@ -7,7 +7,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import objects.micro.Shopper;
-import sample.window.CreateShopperWindow;
+import sample.windows.aboutWindow.AboutWindow;
+import sample.windows.createShopperWindow.CreateShopperWindow;
+import sample.windows.preferencesWindow.PreferencesWindow;
 
 import java.io.IOException;
 
@@ -77,7 +79,11 @@ public class Controller {
                         }
                     }
                 } else if (buttonName.equals("Налаштування")){
-                    System.out.println("prop");
+                    try {
+                        new PreferencesWindow().display();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else if (buttonName.equals("Створення нового персонажа")){
                     try {
                         new CreateShopperWindow().display("Let's create new Shopper!");
@@ -85,9 +91,17 @@ public class Controller {
                         e.printStackTrace();
                     }
                 } else if (buttonName.equals("Вікно налаштувань")){
-                    System.out.printf("prop");
+                    try {
+                        new PreferencesWindow().display();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else if (buttonName.equals("Про програму")){
-                    System.out.println("about");
+                    try {
+                        new AboutWindow().display();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };

@@ -1,4 +1,4 @@
-package sample.window;
+package sample.windows.createShopperWindow;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +25,7 @@ public class CreateShopperWindow {
         Parent alert = FXMLLoader.load(CreateShopperWindow.class.getResource("createShopperWindow.fxml"));
         Scene scene = new Scene(alert);
         window.setScene(scene);
-        window.getIcons().add(new Image("assets/windowIcon.png"));
+        window.getIcons().add(new Image("assets/createIcon.png"));
         window.show();
 
         return true;

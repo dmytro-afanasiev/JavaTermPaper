@@ -3,19 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/objects/micro/Shopper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/assets/windowIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/Main$KeyPressedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/Main$KeyPressedHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab4/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/micro/Shopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/micro/Shopper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/window/CreateShopperWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/window/CreateShopperWindowController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/window/CreateShopperWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab4/sample/window/createShopperWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowIcon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/window/CreateShopperWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/window/CreateShopperWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/window/CreateShopperWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/window/CreateShopperWindowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/window/createShopperWindow.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,10 +119,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/windows/preferencesWindow" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ООП\Lab4\src\sample\windows\preferencesWindow" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ООП\Lab4\src\sample\window" />
       <recent name="E:\ООП\Lab4\src\sample" />
@@ -238,7 +246,9 @@
       <workItem from="1587989413235" duration="486000" />
       <workItem from="1588274205952" duration="285000" />
       <workItem from="1588497512680" duration="9307000" />
-      <workItem from="1588512351120" duration="1377000" />
+      <workItem from="1588512351120" duration="1569000" />
+      <workItem from="1588514073381" duration="25000" />
+      <workItem from="1588514122097" duration="2476000" />
     </task>
     <servers />
   </component>
@@ -275,46 +285,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1585740039773" />
-    <state width="1493" height="191" key="GridCell.Tab.0.bottom" timestamp="1588513731616">
+    <state width="1493" height="101" key="GridCell.Tab.0.bottom" timestamp="1588523267237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588513731616" />
-    <state width="1493" height="191" key="GridCell.Tab.0.center" timestamp="1588513731616">
+    <state width="1493" height="101" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588523267237" />
+    <state width="1493" height="101" key="GridCell.Tab.0.center" timestamp="1588523267237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588513731616" />
-    <state width="1493" height="191" key="GridCell.Tab.0.left" timestamp="1588513731616">
+    <state width="1493" height="101" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588523267237" />
+    <state width="1493" height="101" key="GridCell.Tab.0.left" timestamp="1588523267237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588513731616" />
-    <state width="1493" height="191" key="GridCell.Tab.0.right" timestamp="1588513731616">
+    <state width="1493" height="101" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588523267237" />
+    <state width="1493" height="101" key="GridCell.Tab.0.right" timestamp="1588523267237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588513731616" />
-    <state width="1493" height="128" key="GridCell.Tab.1.bottom" timestamp="1588512553175">
+    <state width="1493" height="101" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588523267237" />
+    <state width="1493" height="128" key="GridCell.Tab.1.bottom" timestamp="1588513921108">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588512553175" />
-    <state width="1493" height="128" key="GridCell.Tab.1.center" timestamp="1588512553173">
+    <state width="1493" height="128" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588513921108" />
+    <state width="1493" height="128" key="GridCell.Tab.1.center" timestamp="1588513921107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588512553173" />
-    <state width="1493" height="128" key="GridCell.Tab.1.left" timestamp="1588512553172">
+    <state width="1493" height="128" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588513921107" />
+    <state width="1493" height="128" key="GridCell.Tab.1.left" timestamp="1588513921107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588512553172" />
-    <state width="1493" height="128" key="GridCell.Tab.1.right" timestamp="1588512553174">
+    <state width="1493" height="128" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588513921107" />
+    <state width="1493" height="128" key="GridCell.Tab.1.right" timestamp="1588513921108">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588512553174" />
+    <state width="1493" height="128" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588513921108" />
+    <state x="277" y="0" key="SettingsEditor" timestamp="1588514238818">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588514238818" />
     <state x="618" y="328" key="VCS.ChangelistChooser" timestamp="1585653882413">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="328" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1585653882413" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1588497565901">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1588514131029">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588497565901" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588514131029" />
     <state x="511" y="31" key="refactoring.ChangeSignatureDialog" timestamp="1585748466955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
