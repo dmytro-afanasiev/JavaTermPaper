@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -24,6 +25,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     private boolean isActive;
     private Polygon triangleAct;
+
 
     private ImageView shopperImage;
     private boolean isMan;
@@ -67,7 +69,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         triangleAct.getPoints().addAll(0.0, 0.0,
                 30.0, 0.0,
                 15.0, 25.0);
-        this.triangleAct.setFill(Color.GREEN);
+        this.triangleAct.setFill(Color.BLACK);
 
         if (this.instrument != null){
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
@@ -135,11 +137,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.yCord = yCord;
     }
 
-    public void mouseClick(double x, double y) {
+    public void mouseClick(double x, double y, MouseButton mouseButton) {
         Point2D point2D = new Point2D(x, y);
-        if (this.shopperImage.getBoundsInParent().contains(point2D)) {
+        if (this.shopperImage.getBoundsInParent().contains(point2D) && mouseButton.equals(MouseButton.PRIMARY ) && !this.isActive()) {
             this.setActive(!this.isActive());
-
+        } else if (this.shopperImage.getBoundsInParent().contains(point2D) && mouseButton.equals(MouseButton.SECONDARY ) && this.isActive()) {
+            this.setActive(!this.isActive());
         }
     }
 

@@ -5,24 +5,34 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1580.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="menuFileOpen" mnemonicParsing="false" text="Відкрити" />
+                  <MenuItem fx:id="menuFileClose" mnemonicParsing="false" text="Зберегти" />
+              <MenuItem fx:id="menuFileExit" mnemonicParsing="false" text="Вийти" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Редагувати">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem fx:id="menuEditCreate" mnemonicParsing="false" text="Створити персонажа" />
+                  <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Видалити персонажей" />
+              <MenuItem fx:id="menuEditCancel" mnemonicParsing="false" text="Відмінити вибір" />
+                  <MenuItem fx:id="menuEditProperties" mnemonicParsing="false" text="Налаштування" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Вікна">
+              <items>
+                  <MenuItem fx:id="menuWindowsCreate" mnemonicParsing="false" text="Створення нового персонажа" />
+                  <MenuItem fx:id="menuWindowsProperties" mnemonicParsing="false" text="Вікно налаштувань" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Більше">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuMoreAbout" mnemonicParsing="false" text="Про програму" />
             </items>
           </Menu>
         </menus>

@@ -68,8 +68,5 @@ public class CreateShopperWindowController {
                 CreateShopperWindow.getWindow().close();
             }
         });
-
-
-
     }
 }

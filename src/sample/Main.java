@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -53,13 +54,13 @@ public class Main extends Application {
         root.getChildren().add(parent);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Lab № 4");
+        primaryStage.setTitle("Let's play this instrument!");
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
         scene.setOnMousePressed(event -> {
             for (Shopper s : shoppers) {
-                s.mouseClick(event.getX(), event.getY());
+                s.mouseClick(event.getX(), event.getY(), event.getButton());
             }
         });
         AnimationTimer timer = new AnimationTimer() {
@@ -97,6 +98,8 @@ public class Main extends Application {
                     }
 
                 }
+                System.out.println(Shopper.getNumberOfShoppers()+"----");
+                System.out.println(shoppers.size());
             }
             if (event.getCode().equals(KeyCode.ESCAPE)){
                 for(Shopper s: shoppers){
