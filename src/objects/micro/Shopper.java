@@ -14,13 +14,18 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import objects.firstMacro.Instrument;
+import sample.Main;
 
 
 import java.util.Comparator;
 
 public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
-    private double xCord, yCord;
+
+    private double speed;
+    private double xChord, yChord;
+    public byte startDirection;
+
     private Ellipse shadow;
 
     private boolean isActive;
@@ -40,10 +45,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
 
 
-    public Shopper(Instrument instrument, boolean isActive, String name, double money ,boolean isMan) {
+    public Shopper(Instrument instrument, boolean isActive, String name, double money , boolean isMan) {
         Shopper.numberOfShoppers++;
         this.name = name;
         this.money=money;
+        this.speed = 5;
+        this.startDirection = (byte)Main.random.nextInt(8);
 
         if (isMan){
             this.shopperImage  = new ImageView(new Image("assets/shopper.png"));
@@ -79,7 +86,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
     public Shopper(boolean isActive, String name, double money, boolean isMan) {
-        this(null, isActive, "Name", 0,isMan);
+        this(null, isActive, name, money,isMan);
     }
     public Shopper( Instrument instrument,boolean isActive) {
         this(instrument, isActive, "Name", 0,true);
@@ -93,9 +100,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
 
 
-    public void setShopperInCoords() {
-        double x = xCord;
-        double y = yCord;
+    public void updateShopperChords() {
+        double x = this.xChord;
+        double y = this.yChord;
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
 
@@ -119,22 +126,71 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
     }
 
+    public void freeRun(){
+        if (!this.isActive()) {
+            switch (this.startDirection) {
+                case 0:
+                    this.yChord -= 1;
+                    break;
+                case 1:
+                    this.yChord -= 1;
+                    this.xChord += 1;
+                    break;
+                case 2:
+                    this.xChord += 1;
+                    break;
+                case 3:
+                    this.xChord += 1;
+                    this.yChord += 1;
+
+                    break;
+                case 4:
+                    this.yChord += 1;
+                    break;
+                case 5:
+                    this.yChord += 1;
+                    this.xChord -= 1;
+                    break;
+                case 6:
+                    this.xChord -= 1;
+                    break;
+                case 7:
+                    this.xChord -= 1;
+                    this.yChord -= 1;
+                    break;
+            }
+        }
+        if (this.shopperImage.getX()+100>= Main.getScene().getWidth()){
+                this.startDirection = (byte)(Main.random.nextInt(3)+5);
+        }
+        else if (this.shopperImage.getX()<= 0){
+            this.startDirection = (byte)(Main.random.nextInt(3)+1);
+        }
+         else if (this.shopperImage.getY()<= 0){
+            this.startDirection = (byte)(Main.random.nextInt(3)+3);
+        }
+        else if (this.shopperImage.getY()+ 170>= Main.getScene().getHeight()){
+            this.startDirection = (byte)Main.random.nextInt(2);
+        }
+
+    }
+
     public Group getShopperPicture() {
         return this.shopperPicture;
     }
 
     public double getXCord() {
-        return xCord;
+        return xChord;
     }
 
-    public double getYCord() {
-        return yCord;
+    public double getYChord() {
+        return yChord;
     }
 
 
-    public void setXYCords(double xCord, double yCord) {
-        this.xCord = xCord;
-        this.yCord = yCord;
+    public void setXYCords(double xChord, double yChord) {
+        this.xChord = xChord;
+        this.yChord = yChord;
     }
 
     public void mouseClick(double x, double y, MouseButton mouseButton) {
@@ -147,27 +203,27 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     }
 
 
-    public void left() {
+    public void left(double boost) {
         if (isActive) {
-            xCord -= 5;
+            xChord -= speed* boost;
         }
     }
 
-    public void right() {
+    public void right(double boost) {
         if (isActive) {
-            xCord += 5;
+            xChord += speed* boost;
         }
     }
 
-    public void up() {
+    public void up(double boost) {
         if (isActive) {
-            yCord -= 5;
+            yChord -= speed*boost;
         }
     }
 
-    public void down() {
+    public void down(double boost) {
         if (isActive) {
-            yCord += 5;
+            yChord += speed* boost;
         }
     }
     public boolean isActive() {
@@ -201,6 +257,15 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public void setName(String name) {
         this.name = name;
     }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
 
 
     //ВСЕ, ЩО НИЖЧЕ, ТО З ТРЕТЬОЇ ЛАБОРАТОРНОЇ РОБОТИ

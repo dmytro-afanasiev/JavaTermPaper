@@ -63,7 +63,7 @@ public class CreateShopperWindowController {
                 Shopper temp = new Shopper(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
                 Main.shoppers.add(temp);
                 temp.setXYCords(Main.random.nextInt((int) Main.getScene().getWidth() - 100), Main.random.nextInt((int) Main.getScene().getHeight() - 100));
-                temp.setShopperInCoords();
+                temp.updateShopperChords();
                 Main.getRoot().getChildren().add(temp.getShopperPicture());
                 CreateShopperWindow.getWindow().close();
             }

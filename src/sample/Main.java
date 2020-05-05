@@ -9,11 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.firstMacro.*;
 import objects.micro.Shopper;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 
@@ -42,11 +39,13 @@ public class Main extends Application {
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper( false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 500, true));
 
         for (Shopper s : shoppers) {
             s.setXYCords(random.nextInt((int) scene.getWidth() - 100), random.nextInt((int) scene.getHeight() - 100));
-            s.setShopperInCoords();
+            s.updateShopperChords();
             root.getChildren().add(s.getShopperPicture());
         }
 
@@ -66,9 +65,17 @@ public class Main extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
+
                 for (Shopper s : shoppers) {
-                    s.setShopperInCoords();
+
+                        s.freeRun();
+
+
+                    s.updateShopperChords();
+
                 }
+
             }
         };
         timer.start();
@@ -108,21 +115,37 @@ public class Main extends Application {
                     }
                 }
             }
-            if (event.getCode().equals(KeyCode.UP)) {
+            if (event.getCode().equals(KeyCode.UP) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
-                    s.up();
+                    s.up(1);
                 }
-            } else if (event.getCode().equals(KeyCode.DOWN)) {
+            } else if (event.getCode().equals(KeyCode.DOWN) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
-                    s.down();
+                    s.down(1);
                 }
-            } else if (event.getCode().equals(KeyCode.RIGHT)) {
+            } else if (event.getCode().equals(KeyCode.RIGHT) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
-                    s.right();
+                    s.right(1);
                 }
-            } else if (event.getCode().equals(KeyCode.LEFT)) {
+            } else if (event.getCode().equals(KeyCode.LEFT) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
-                    s.left();
+                    s.left(1);
+                }
+            } else if (event.getCode().equals(KeyCode.UP) && event.isShiftDown()){
+                for (Shopper s : shoppers) {
+                    s.up(2);
+                }
+            } else if (event.getCode().equals(KeyCode.DOWN) && event.isShiftDown()){
+                for (Shopper s : shoppers) {
+                    s.down(2);
+                }
+            } else  if (event.getCode().equals(KeyCode.RIGHT) && event.isShiftDown()){
+                for (Shopper s : shoppers) {
+                    s.right(2);
+                }
+            } else  if (event.getCode().equals(KeyCode.LEFT) && event.isShiftDown()){
+                for (Shopper s : shoppers) {
+                    s.left(2);
                 }
             }
         }
