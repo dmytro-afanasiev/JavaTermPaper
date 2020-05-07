@@ -17,31 +17,29 @@ import objects.firstMacro.Instrument;
 import sample.Main;
 
 
-import java.util.Comparator;
-
-public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
+public class Shopper  {
 
 
-    private double speed;
-    private double xChord, yChord;
-    public byte startDirection;
+    protected double speed;
+    protected double xChord, yChord;
+    protected byte startDirection;
 
-    private Ellipse shadow;
+    protected Ellipse shadow;
 
-    private boolean isActive;
-    private Polygon triangleAct;
+    protected boolean isActive;
+    protected Polygon triangleAct;
 
 
-    private ImageView shopperImage;
-    private boolean isMan;
-    private Label shopperText;
+    protected ImageView shopperImage;
+    protected boolean isMan;
+    protected Label shopperText;
 
-    private Instrument instrument= null;
-    private Group shopperPicture;
+    protected Instrument instrument= null;
+    protected Group shopperPicture;
 
-    private double money;
-    private String name;
-    private static int numberOfShoppers = 0;
+    protected double money;
+    protected String name;
+    protected static int numberOfShoppers = 0;
 
 
 
@@ -49,7 +47,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         Shopper.numberOfShoppers++;
         this.name = name;
         this.money=money;
-        this.speed = 5;
+        this.speed = 10;
         this.startDirection = (byte)Main.random.nextInt(8);
 
         if (isMan){
@@ -88,16 +86,18 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public Shopper(boolean isActive, String name, double money, boolean isMan) {
         this(null, isActive, name, money,isMan);
     }
-    public Shopper( Instrument instrument,boolean isActive) {
-        this(instrument, isActive, "Name", 0,true);
+    public Shopper( Instrument instrument,boolean isActive, String name) {
+        this(instrument, isActive, name, 0,true);
     }
-    public Shopper( boolean isActive) {
-        this(null, isActive, "Name", 0, true);
+    public Shopper( boolean isActive, String name) {
+        this(null, isActive, name, 0, true);
     }
     public Shopper(boolean isActive, String name, double money){
         this(null, isActive, name, money, true);
     }
-
+    public Shopper(String name){
+        this(null, true, name, 0,true);
+    }
 
 
     public void updateShopperChords() {
@@ -108,6 +108,7 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
 
         this.shopperText.setLayoutX(x-15);
         this.shopperText.setLayoutY(y - 10);
+        this.shopperText.setText(this.name + ", money: "+ this.money);
 
         this.shadow.setLayoutX(x -10);
         this.shadow.setLayoutY(y + 170);
@@ -130,33 +131,32 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         if (!this.isActive()) {
             switch (this.startDirection) {
                 case 0:
-                    this.yChord -= 1;
+                    this.yChord -= speed/5;
                     break;
                 case 1:
-                    this.yChord -= 1;
-                    this.xChord += 1;
+                    this.yChord -= speed/5;
+                    this.xChord += speed/5;
                     break;
                 case 2:
-                    this.xChord += 1;
+                    this.xChord += speed/5;
                     break;
                 case 3:
-                    this.xChord += 1;
-                    this.yChord += 1;
-
+                    this.xChord += speed/5;
+                    this.yChord += speed/5;
                     break;
                 case 4:
-                    this.yChord += 1;
+                    this.yChord += speed/5;
                     break;
                 case 5:
-                    this.yChord += 1;
-                    this.xChord -= 1;
+                    this.yChord += speed/5;
+                    this.xChord -= speed/5;
                     break;
                 case 6:
-                    this.xChord -= 1;
+                    this.xChord -= speed/5;
                     break;
                 case 7:
-                    this.xChord -= 1;
-                    this.yChord -= 1;
+                    this.xChord -= speed/5;
+                    this.yChord -= speed/5;
                     break;
             }
         }
@@ -193,15 +193,12 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
         this.yChord = yChord;
     }
 
-    public void mouseClick(double x, double y, MouseButton mouseButton) {
+    public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
-        if (this.shopperImage.getBoundsInParent().contains(point2D) && mouseButton.equals(MouseButton.PRIMARY ) && !this.isActive()) {
-            this.setActive(!this.isActive());
-        } else if (this.shopperImage.getBoundsInParent().contains(point2D) && mouseButton.equals(MouseButton.SECONDARY ) && this.isActive()) {
-            this.setActive(!this.isActive());
+        if (this.shopperImage.getBoundsInParent().contains(point2D)) {
+            this.isActive = !this.isActive;
         }
     }
-
 
     public void left(double boost) {
         if (isActive) {
@@ -226,6 +223,9 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
             yChord += speed* boost;
         }
     }
+
+
+
     public boolean isActive() {
         return this.isActive;
     }
@@ -265,161 +265,6 @@ public class Shopper implements Cloneable /*, Comparable<Shopper>*/ {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
-
-
-    //ВСЕ, ЩО НИЖЧЕ, ТО З ТРЕТЬОЇ ЛАБОРАТОРНОЇ РОБОТИ
-    /* private ArrayList<String> skills;
-
-
-
-    public ArrayList<String> getSkills() {
-        for (String s : skills) {
-            System.out.println(s);
-        }
-        return skills;
-    }
-
-    public void setSkills(ArrayList<String> skills) {
-        this.skills = skills;
-    }
-
-    public void addSkill(String skill) {
-        this.skills.add(skill);
-    }
-
-    public void removeSkill(String skill) {
-        this.skills.remove(skill);
-    }
-
-
-    public Shopper(double money, String name, ArrayList<String> skills) {
-        System.out.println("_________________________________________");
-        System.out.println("Був викликаний конструктор класу Shopper.");
-        this.money = money;
-        this.name = name;
-
-        this.skills = skills;
-        System.out.println("Був створений об'єкт " + this.name + " класу Shopper.");
-        System.out.println("_____________________________________________________");
-        numberOfShoppers++;
-
-    }
-
-
-    public Shopper() {
-
-        this(0, "Name is not specified", new ArrayList<String>());
-    }
-
-
-    public void education(String skill) {
-        switch (skill) {
-            case "Guitar":
-                if (this.money >= 30) {
-                    System.out.println("Ви навчилися грати на гітарі.");
-                    this.skills.add(skill);
-                    this.money -= 30;
-                } else System.out.println("Недостатньо  коштів, щоб навчитися грати на гітарі.");
-                break;
-            case "Piano":
-                if (this.money >= 60) {
-                    System.out.println("Ви навчилися грати на піаніно.");
-                    this.skills.add(skill);
-                    this.money -= 60;
-                } else System.out.println("Недостатньо  коштів, щоб навчитися грати на піаніно.");
-                break;
-            case "Bayan":
-                if (this.money >= 90) {
-                    System.out.println("Ви навчилися грати на баяні.");
-                    this.skills.add(skill);
-                    this.money -= 90;
-                } else System.out.println("Недостатньо  коштів, щоб навчитися грати на баяні.");
-                break;
-            case "Violin":
-                if (this.money >= 120) {
-                    System.out.println("Ви навчилися грати на скрипці.");
-                    this.skills.add(skill);
-                    this.money -= 120;
-                } else System.out.println("Недостатньо  коштів, щоб навчитися грати на скрипці.");
-                break;
-            default:
-                System.out.println("На даний момент на такому інструменті неможливо навчитися грати.\nВибирайте із даних: \"Guitar\", \"Piano\", \"Bayan\", \"Violin\"");
-                break;
-
-
-        }
-    }*/
-
-   /* public void earnMoney() {
-        if (this.skills.contains("Guitar") && (guitar!=null)) {
-            Date d = new Date();
-            Random r = new Random(d.getTime());
-            int kesh = r.nextInt(50);
-            String s = Integer.toString(kesh);
-            System.out.println("Ви грали цілий день у метро і заробили " + s + " грошей.");
-            this.money += kesh;
-        } else if (!this.skills.contains("Guitar")) System.out.println("Ви не вмієте грати на гітарі");
-        else if (guitar==null) System.out.println("Спочатку придбайте гітару");
-
-    }
-    public void buyGuitar(Guitar guitar)
-    {
-        if (guitar.getCost()<= this.money) {
-            this.guitar = guitar;
-            this.money-=guitar.getCost();
-            System.out.println("Ви успішно придбали гітару.");
-        }
-            else System.out.println("Недостатньо коштів, щоб придбати гітару.");
-    }*/
-
-
-
-
-   /* @Override
-    protected Shopper clone() throws CloneNotSupportedException {
-        Shopper shopper = (Shopper)super.clone();
-        if (guitar !=null)
-            shopper.guitar = guitar.clone();
-
-        shopper.name = name;
-        shopper.skills = new ArrayList<String>(skills);
-        return shopper;
-    }
-*/
-
-
-
-
-
-    /*@Override
-    public int compareTo(Shopper o) {
-        if (o.getAge()>this.getAge())
-            return -1;
-        else if (o.getAge()<this.getAge())
-            return 1;
-        return 0;
-    }*/
-    //переписаний метод для сортування по віку з взятий з інтерфейсу compareble
-
-
-    public static Comparator<Shopper> moneyComparator = new Comparator<Shopper>() {
-        @Override
-        public int compare(Shopper o1, Shopper o2) {
-            if (o1.money < o2.money)
-                return -1;
-            else if (o1.money > o2.money)
-                return 1;
-            return 0;
-        }
-    };
-    public static Comparator<Shopper> nameComparator = new Comparator<Shopper>() {
-        @Override
-        public int compare(Shopper o1, Shopper o2) {
-            return o1.name.compareTo(o2.name);
-        }
-    };
-
 }
 
 

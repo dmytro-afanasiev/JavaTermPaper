@@ -6,7 +6,7 @@ public abstract class Instrument implements Cloneable{
      protected String name;
      protected double prise;
      protected ImageView instrumentImage = null;
-     protected String type = "-abstract-";
+     protected String type = "Nothing";
 
 
 
@@ -15,7 +15,7 @@ public abstract class Instrument implements Cloneable{
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public abstract void update(double x, double y);
@@ -46,4 +46,8 @@ public abstract class Instrument implements Cloneable{
         return (Instrument) super.clone();
     }
 
+    @Override
+    public String toString() {
+        return this.getType();
+    }
 }

@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.firstMacro.Instrument;
+import objects.micro.MusicianMaster;
+import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import sample.Main;
 
@@ -16,6 +18,7 @@ public class CreateShopperWindowController {
 
 
     private boolean isMan ;
+    private String tempChange = "shopper";
     private String typeOfInstrument = "Nothing";
     @FXML
     private TextField fieldName;
@@ -36,7 +39,22 @@ public class CreateShopperWindowController {
     private ListView<String> instrumentsList;
 
     @FXML
+    private RadioButton radioShopper;
+
+    @FXML
+    private RadioButton radioMaster;
+
+    @FXML
+    private RadioButton orchestra;
+
+    @FXML
+    private Label labelUnderInstruments;
+
+
+
+    @FXML
     void initialize() {
+
 
         ToggleGroup toggleGroup = new ToggleGroup();
         radioMan.setToggleGroup(toggleGroup);
@@ -49,6 +67,32 @@ public class CreateShopperWindowController {
             isMan = false;
         }));
 
+        ToggleGroup toggleGroup1 = new ToggleGroup();
+        radioShopper.setToggleGroup(toggleGroup1);
+        radioMaster.setToggleGroup(toggleGroup1);
+        orchestra.setToggleGroup(toggleGroup1);
+        radioShopper.setOnAction((event -> {
+            radioWoman.setLayoutX(93);
+            tempChange = "shopper";
+            instrumentsList.setOpacity(0);
+            labelUnderInstruments.setLayoutX(128);
+        }));
+        radioMaster.setOnAction((event -> {
+            radioWoman.setLayoutX(93);
+            tempChange = "master";
+            instrumentsList.setOpacity(1);
+            labelUnderInstruments.setLayoutX(2000);
+
+
+        }));
+        orchestra.setOnAction((event -> {
+            radioWoman.setLayoutX(2000);
+            instrumentsList.setOpacity(1);
+            labelUnderInstruments.setLayoutX(2000);
+            tempChange = "orchestra";
+        }));
+
+
         ObservableList<String> instruments = FXCollections.observableArrayList("Nothing","Guitar","Drums","Bayan","Piano","Violin", "Trembita" );
         instrumentsList.getItems().addAll(instruments);
         instrumentsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -57,10 +101,21 @@ public class CreateShopperWindowController {
                 typeOfInstrument = newValue;
             }
         });
+
         radioMan.fire();
+        radioShopper.fire();
+
         yesButton.setOnAction(event -> {
             if (!fieldName.getText().isEmpty() && !fieldMoney.getText().isEmpty()){
-                Shopper temp = new Shopper(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
+                Shopper temp = null;
+                if (tempChange.equals("shopper")){
+                    temp = new Shopper(null,true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
+                } else if (tempChange.equals("master")){
+                    temp = new MusicianMaster(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
+                } else if (tempChange.equals("orchestra")){
+                    temp = new OrchestraConductor(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()));
+
+                }
                 Main.shoppers.add(temp);
                 temp.setXYCords(Main.random.nextInt((int) Main.getScene().getWidth() - 100), Main.random.nextInt((int) Main.getScene().getHeight() - 100));
                 temp.updateShopperChords();
