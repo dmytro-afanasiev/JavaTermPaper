@@ -160,16 +160,16 @@ public class Shopper  {
                     break;
             }
         }
-        if (this.shopperImage.getX()+100>= Main.getScene().getWidth()){
+        if (this.shopperImage.getX()+100>= Main.getScene().getWidth()+Main.getScrollX()){
                 this.startDirection = (byte)(Main.random.nextInt(3)+5);
         }
-        else if (this.shopperImage.getX()<= 0){
+        else if (this.shopperImage.getX()<= 0+Main.getScrollX()){
             this.startDirection = (byte)(Main.random.nextInt(3)+1);
         }
-         else if (this.shopperImage.getY()<= 0){
+         else if (this.shopperImage.getY()<= 0+Main.getScrollY()){
             this.startDirection = (byte)(Main.random.nextInt(3)+3);
         }
-        else if (this.shopperImage.getY()+ 170>= Main.getScene().getHeight()){
+        else if (this.shopperImage.getY()+ 170>= Main.getScene().getHeight()+Main.getScrollY()){
             this.startDirection = (byte)Main.random.nextInt(2);
         }
 
@@ -201,25 +201,25 @@ public class Shopper  {
     }
 
     public void left(double boost) {
-        if (isActive) {
+        if (isActive && xChord>= 0) {
             xChord -= speed* boost;
         }
     }
 
     public void right(double boost) {
-        if (isActive) {
+        if (isActive && xChord<= Main.getRoot().getWidth()- 100) {
             xChord += speed* boost;
         }
     }
 
     public void up(double boost) {
-        if (isActive) {
+        if (isActive && yChord>=0) {
             yChord -= speed*boost;
         }
     }
 
     public void down(double boost) {
-        if (isActive) {
+        if (isActive && yChord <= Main.getRoot().getHeight() -200) {
             yChord += speed* boost;
         }
     }

@@ -2,14 +2,20 @@ package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.firstMacro.*;
@@ -27,8 +33,10 @@ public class Main extends Application {
 
     public static ArrayList<Shopper> shoppers;
     public static Random random = new Random(new Date().getTime());
+
     private static Pane root = new Pane();
-    private static Scene scene = new Scene(root, 1580, 900);
+    private static ScrollPane scrollPane = new ScrollPane(root);
+    private static Scene scene = new Scene(scrollPane, 1520, 900);
 
     public static Scene getScene() {
         return scene;
@@ -38,8 +46,57 @@ public class Main extends Application {
         return root;
     }
 
+    public static ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    private static double scrollX;
+    private static double scrollY;
+    public static double getScrollX() {
+        return scrollX;
+    }
+    public static double getScrollY() {
+        return scrollY;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        root.setMinWidth(8000);
+        root.setMinHeight(2500);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+
+        //scrollPane.pannableProperty().set(true);
+       // scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
+
+        Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        root.getChildren().add(parent);
+
+        scrollPane.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds>
+                                        observable, Bounds oldBounds,
+                                Bounds bounds) {
+                double scrollWidth;
+                double scrollHeight;
+                Main.scrollX = -1 * (int) bounds.getMinX();
+                scrollWidth =  -1 * (int) bounds.getMinX() + (int) bounds.getWidth();
+                Main.scrollY = -1 * (int) bounds.getMinY();
+                scrollHeight = -1 * (int) bounds.getMinY() + bounds.getHeight();
+
+                parent.setLayoutX(scrollX);
+                parent.setLayoutY(scrollY);
+
+
+                System.out.println(" X from " + Main.scrollX + " to " +
+                        scrollWidth + "; Y from " + Main.scrollY + " to " +
+                        scrollHeight);
+            }
+        });
 
 
         shoppers = new ArrayList<>(5);
@@ -53,20 +110,19 @@ public class Main extends Application {
         shoppers.add(t);
 
         for (Shopper s : shoppers) {
-            s.setXYCords(random.nextInt((int) scene.getWidth() - 100), random.nextInt((int) scene.getHeight() - 100));
+            s.setXYCords(random.nextInt((int) (scene.getWidth() +scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
             s.updateShopperChords();
             root.getChildren().add(s.getShopperPicture());
         }
 
-        Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        root.getChildren().add(parent);
+
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Let's play this instrument!");
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
-        scene.setOnMousePressed(event -> {
+        root.setOnMousePressed(event -> {
             for (Shopper s : shoppers) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     s.mouseClick(event.getX(), event.getY());
@@ -126,35 +182,35 @@ public class Main extends Application {
                     }
                 }
             }
-            if (event.getCode().equals(KeyCode.UP) && !event.isShiftDown()) {
+            if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.up(1);
                 }
-            } else if (event.getCode().equals(KeyCode.DOWN) && !event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.S) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.down(1);
                 }
-            } else if (event.getCode().equals(KeyCode.RIGHT) && !event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.D) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.right(1);
                 }
-            } else if (event.getCode().equals(KeyCode.LEFT) && !event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.A) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.left(1);
                 }
-            } else if (event.getCode().equals(KeyCode.UP) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.W) && event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.up(2);
                 }
-            } else if (event.getCode().equals(KeyCode.DOWN) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.S) && event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.down(2);
                 }
-            } else if (event.getCode().equals(KeyCode.RIGHT) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.D) && event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.right(2);
                 }
-            } else if (event.getCode().equals(KeyCode.LEFT) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.A) && event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.left(2);
                 }

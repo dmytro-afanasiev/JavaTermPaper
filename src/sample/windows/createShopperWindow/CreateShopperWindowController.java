@@ -117,7 +117,7 @@ public class CreateShopperWindowController {
 
                 }
                 Main.shoppers.add(temp);
-                temp.setXYCords(Main.random.nextInt((int) Main.getScene().getWidth() - 100), Main.random.nextInt((int) Main.getScene().getHeight() - 100));
+                temp.setXYCords(Main.random.nextInt((int) Main.getScene().getWidth())+Main.getScrollX(), Main.random.nextInt((int) Main.getScene().getHeight() - 100)+Main.getScrollY());
                 temp.updateShopperChords();
                 Main.getRoot().getChildren().add(temp.getShopperPicture());
                 CreateShopperWindow.getWindow().close();

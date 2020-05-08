@@ -43,7 +43,7 @@ public class OrchestraConductor extends  MusicianMaster {
         if (instrument != null) {
             this.currentInstrument = instrument.getType();
             this.instruments.put(currentInstrument,instrument);
-        }
+        } else currentInstrument = "Nothing";
         this.shopperText = new Label(this.name + ", money: "+ this.money + "\nNumber of instruments: " +this.instruments.size());
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
