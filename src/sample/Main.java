@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.Transition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +20,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import objects.firstMacro.*;
 import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
@@ -72,8 +75,10 @@ public class Main extends Application {
         //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
-
-        root.getChildren().add(new Factory(150,150).getBuildingPicture());
+        Factory factory = new Factory(150,150);
+        Factory factory2 = new Factory(2000,400);
+        root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture());
+        factory.smoke().play();
 
 
 
@@ -221,6 +226,9 @@ public class Main extends Application {
             }
         }
     }
+
+
+
 
     public static void main(String[] args) {
         launch(args);
