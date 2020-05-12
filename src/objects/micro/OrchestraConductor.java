@@ -89,15 +89,15 @@ public class OrchestraConductor extends  MusicianMaster {
         this.shopperImage.setX(x-40);
         this.shopperImage.setY(y);
 
-        this.shopperText.setLayoutX(x-23);
-        this.shopperText.setLayoutY(y -35);
+        this.shopperText.setLayoutX(x-27);
+        this.shopperText.setLayoutY(y -40);
         this.shopperText.setText(this.name + ", money: "+ this.money + "\nNumber of instruments: " +this.instruments.size());
 
         this.shadow.setLayoutX(x -10);
         this.shadow.setLayoutY(y + 170);
 
         this.triangleAct.setLayoutX(x+20);
-        this.triangleAct.setLayoutY(y-60);
+        this.triangleAct.setLayoutY(y-65);
 
         if (this.isActive) {
             this.triangleAct.setOpacity(1);
@@ -115,7 +115,7 @@ public class OrchestraConductor extends  MusicianMaster {
         if (this.shopperImage.getBoundsInParent().contains(point2D)) {
             try {
 
-                new ChooseAnInstrumentWindow().display("Choose", this);
+                new ChooseAnInstrumentWindow().display("Виберіть", this);
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -22,6 +22,7 @@ import objects.firstMacro.*;
 import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
+import objects.secondMacro.Factory;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class Main extends Application {
 
     private static Pane root = new Pane();
     private static ScrollPane scrollPane = new ScrollPane(root);
-    private static Scene scene = new Scene(scrollPane, 1520, 900);
+    private static Scene scene = new Scene(scrollPane, 1920, 1080);
 
     public static Scene getScene() {
         return scene;
@@ -68,10 +69,32 @@ public class Main extends Application {
         scrollPane.setFitToWidth(true);
 
         //scrollPane.pannableProperty().set(true);
-       // scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
 
-        root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
+        root.getChildren().add(new Factory(150,150).getBuildingPicture());
+
+
+
+
+        shoppers = new ArrayList<>(5);
+        shoppers.add(new Shopper(false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 500, true));
+        OrchestraConductor t = new OrchestraConductor(new Tremb(), false, "master", 1000);
+        t.getInstruments().put(new Guitar().getType(), new Guitar());
+        t.getInstruments().put(new Piano().getType(), new Piano());
+        t.getInstruments().put(new Drums().getType(), new Drums());
+        shoppers.add(t);
+
+        for (Shopper s : shoppers) {
+            s.setXYCords(random.nextInt((int) (scene.getWidth() +scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
+            s.updateShopperChords();
+            root.getChildren().add(s.getShopperPicture());
+        }
+
+
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         root.getChildren().add(parent);
@@ -97,25 +120,6 @@ public class Main extends Application {
                         scrollHeight);
             }
         });
-
-
-        shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(false, "Dima", 500, true));
-        shoppers.add(new Shopper(false, "Dima", 500, true));
-        shoppers.add(new Shopper(false, "Dima", 500, true));
-        OrchestraConductor t = new OrchestraConductor(new Tremb(), false, "master", 1000);
-        t.getInstruments().put(new Guitar().getType(), new Guitar());
-        t.getInstruments().put(new Piano().getType(), new Piano());
-        t.getInstruments().put(new Drums().getType(), new Drums());
-        shoppers.add(t);
-
-        for (Shopper s : shoppers) {
-            s.setXYCords(random.nextInt((int) (scene.getWidth() +scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
-            s.updateShopperChords();
-            root.getChildren().add(s.getShopperPicture());
-        }
-
-
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Let's play this instrument!");

@@ -179,7 +179,7 @@ public class Shopper  {
         return this.shopperPicture;
     }
 
-    public double getXCord() {
+    public double getXChord() {
         return xChord;
     }
 
