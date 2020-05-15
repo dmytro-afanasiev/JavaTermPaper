@@ -26,6 +26,8 @@ import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Factory;
+import objects.secondMacro.School;
+import objects.secondMacro.Shop;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 
 import java.io.IOException;
@@ -75,9 +77,13 @@ public class Main extends Application {
         //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
+
+
         Factory factory = new Factory(150,150);
         Factory factory2 = new Factory(2000,400);
-        root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture());
+        Shop shop = new Shop(600, 400);
+        School school = new School(1000, 1000);
+        root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture(), shop.getBuildingPicture(), school.getBuildingPicture());
         factory.smoke().play();
 
 
@@ -193,6 +199,9 @@ public class Main extends Application {
                         s.setActive(false);
                     }
                 }
+            }
+            if (event.getCode().equals(KeyCode.V)){
+
             }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {

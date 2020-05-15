@@ -17,7 +17,7 @@ public abstract class Building {
     protected Group buildingPicture;
     protected static int numberOfBuildings = 0;
 
-    protected String type = "Nothing";
+    protected String buildingType = "Nothing";
 
     public Group getBuildingPicture() {
         return this.buildingPicture;
@@ -45,7 +45,7 @@ public abstract class Building {
     }
 
     public String getType() {
-        return this.type;
+        return this.buildingType;
     }
 
 

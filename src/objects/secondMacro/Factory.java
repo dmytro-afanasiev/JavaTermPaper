@@ -23,7 +23,7 @@ public class Factory extends Building{
         this.xChord = xChord;
         this.yChord = yChord;
         Factory.numberOfBuildings++;
-        this.type = "Factory";
+        this.buildingType = "Factory";
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
