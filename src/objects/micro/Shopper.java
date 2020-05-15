@@ -17,7 +17,7 @@ import objects.firstMacro.Instrument;
 import sample.Main;
 
 
-public class Shopper  {
+public class Shopper implements Cloneable{
 
 
     protected double speed;
@@ -225,6 +225,12 @@ public class Shopper  {
     }
 
 
+    @Override
+    public Shopper clone() throws CloneNotSupportedException {
+        Shopper temp = (Shopper)super.clone();
+        temp.instrument = instrument.clone();
+        return temp;
+    }
 
     public boolean isActive() {
         return this.isActive;

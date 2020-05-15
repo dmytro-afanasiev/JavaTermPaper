@@ -93,6 +93,9 @@ public class Main extends Application {
         t.getInstruments().put(new Drums().getType(), new Drums());
         shoppers.add(t);
 
+
+
+
         for (Shopper s : shoppers) {
             s.setXYCords(random.nextInt((int) (scene.getWidth() +scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
             s.updateShopperChords();

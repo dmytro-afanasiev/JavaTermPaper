@@ -3,7 +3,6 @@ package objects.firstMacro;
 import javafx.scene.image.ImageView;
 
 public abstract class Instrument implements Cloneable{
-     protected String name;
      protected double prise;
      protected ImageView instrumentImage = null;
      protected String type = "Nothing";
@@ -42,12 +41,12 @@ public abstract class Instrument implements Cloneable{
         return null;
     }
     @Override
-    public Instrument clone() throws CloneNotSupportedException {
-        return (Instrument) super.clone();
+    public String toString() {
+        return this.getType();
     }
 
     @Override
-    public String toString() {
-        return this.getType();
+    public Instrument clone() throws CloneNotSupportedException {
+        return (Instrument)super.clone();
     }
 }

@@ -22,7 +22,7 @@ public class Factory extends Building{
     public Factory(double xChord, double yChord){
         this.xChord = xChord;
         this.yChord = yChord;
-        numberOfBuildings++;
+        Factory.numberOfBuildings++;
         this.type = "Factory";
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
         this.buildingImage.setPreserveRatio(true);
@@ -34,7 +34,7 @@ public class Factory extends Building{
         this.shadow.setOpacity(0.8);
         this.shadow.getTransforms().add(new Rotate(10));
         this.shadow.setEffect(new GaussianBlur(40));
-        smokeSprite.setViewport(new Rectangle2D(0,100,100,100)); // це погане рішення для того щоб зробити спрайт диму невидимий, але воно працює!
+        this.smokeSprite.setViewport(new Rectangle2D(0,100,100,100)); // це погане рішення для того щоб зробити спрайт диму невидимий, але воно працює!
         this.smokeSprite.setPreserveRatio(true);
         this.smokeSprite.setFitHeight(60);
         this.animation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 0, 0,100,100 );
@@ -87,7 +87,6 @@ public class Factory extends Building{
 
         @Override
         protected void interpolate(double frac) {
-            System.out.println(frac);
             int index = Math.min((int) Math.floor(frac * count), count -1);
             int x = (index % columns) *width + offsetX;
             int y = (index / columns) * height + offsetY;
