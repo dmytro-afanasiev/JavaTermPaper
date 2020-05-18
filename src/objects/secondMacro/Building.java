@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Ellipse;
+import objects.micro.Shopper;
 
 public abstract class Building {
     protected double xChord;
@@ -48,7 +49,10 @@ public abstract class Building {
         return this.buildingType;
     }
 
-
+    public ImageView getBuildingImage() {
+        return buildingImage;
+    }
 
     public abstract void setBuildingInChords();
+    public abstract void interact(Shopper shopper);
 }

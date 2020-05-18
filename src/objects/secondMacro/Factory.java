@@ -13,6 +13,8 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import objects.micro.Shopper;
+import sample.Main;
 
 public class Factory extends Building{
 
@@ -62,6 +64,17 @@ public class Factory extends Building{
 
     public Animation smoke(){
         return this.animation;
+    }
+    //потребує доробки
+    @Override
+    public void interact(Shopper shopper) {
+        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
+            shopper.getShopperImage().setImage(new Image("assets/shopperWork.png"));
+            shopper.setMoney(shopper.getMoney() + Main.random.nextInt(100));
+            shopper.updateShopperChords();
+            shopper.getShopperImage().setImage(new Image("assets/shopper.png"));
+
+        }
     }
 
     private class Sprite extends Transition {

@@ -25,6 +25,7 @@ import objects.firstMacro.*;
 import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
+import objects.secondMacro.Building;
 import objects.secondMacro.Factory;
 import objects.secondMacro.School;
 import objects.secondMacro.Shop;
@@ -38,6 +39,7 @@ import java.util.Random;
 public class Main extends Application {
 
     public static ArrayList<Shopper> shoppers;
+    public static ArrayList<Building> buildings;
     public static Random random = new Random(new Date().getTime());
 
     private static Pane root = new Pane();
@@ -58,9 +60,11 @@ public class Main extends Application {
 
     private static double scrollX;
     private static double scrollY;
+
     public static double getScrollX() {
         return scrollX;
     }
+
     public static double getScrollY() {
         return scrollY;
     }
@@ -73,20 +77,24 @@ public class Main extends Application {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        //scrollPane.pannableProperty().set(true);
+        scrollPane.pannableProperty().set(true);
         //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
 
 
-        Factory factory = new Factory(150,150);
-        Factory factory2 = new Factory(2000,400);
+        Factory factory = new Factory(150, 150);
+        Factory factory2 = new Factory(2000, 400);
         Shop shop = new Shop(600, 400);
         School school = new School(1000, 1000);
+        buildings = new ArrayList<>(5);
+        buildings.add(factory);
+        buildings.add(factory2);
+        buildings.add(shop);
+        buildings.add(school);
+
         root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture(), shop.getBuildingPicture(), school.getBuildingPicture());
         factory.smoke().play();
-
-
 
 
         shoppers = new ArrayList<>(5);
@@ -100,14 +108,11 @@ public class Main extends Application {
         shoppers.add(t);
 
 
-
-
         for (Shopper s : shoppers) {
-            s.setXYCords(random.nextInt((int) (scene.getWidth() +scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
+            s.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
             s.updateShopperChords();
             root.getChildren().add(s.getShopperPicture());
         }
-
 
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -121,7 +126,7 @@ public class Main extends Application {
                 double scrollWidth;
                 double scrollHeight;
                 Main.scrollX = -1 * (int) bounds.getMinX();
-                scrollWidth =  -1 * (int) bounds.getMinX() + (int) bounds.getWidth();
+                scrollWidth = -1 * (int) bounds.getMinX() + (int) bounds.getWidth();
                 Main.scrollY = -1 * (int) bounds.getMinY();
                 scrollHeight = -1 * (int) bounds.getMinY() + bounds.getHeight();
 
@@ -144,8 +149,8 @@ public class Main extends Application {
             for (Shopper s : shoppers) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     s.mouseClick(event.getX(), event.getY());
-                } else if (event.getButton().equals(MouseButton.SECONDARY)){
-                    if (s instanceof OrchestraConductor){
+                } else if (event.getButton().equals(MouseButton.SECONDARY)) {
+                    if (s instanceof OrchestraConductor) {
                         ((OrchestraConductor) s).chooseAnInstrument(event.getX(), event.getY());
                     }
                 }
@@ -200,9 +205,15 @@ public class Main extends Application {
                     }
                 }
             }
-            if (event.getCode().equals(KeyCode.V)){
-
-            }
+            /*if (event.getCode().equals(KeyCode.J)) {
+                for (Shopper s : shoppers) {
+                    if (s.isActive()) {
+                        for (Building b : buildings) {
+                            b.interact(s);
+                        }
+                    }
+                }
+            }*/
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.up(1);
@@ -238,8 +249,6 @@ public class Main extends Application {
             }
         }
     }
-
-
 
 
     public static void main(String[] args) {

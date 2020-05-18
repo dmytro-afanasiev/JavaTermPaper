@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
+import objects.micro.Shopper;
 
 public class Shop extends Building {
     public Shop(double x, double y){
@@ -31,6 +32,11 @@ public class Shop extends Building {
         this.setBuildingInChords();
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
+    }
+
+    @Override
+    public void interact(Shopper shopper) {
+
     }
 
     @Override

@@ -271,6 +271,10 @@ public class Shopper implements Cloneable{
     public void setSpeed(double speed) {
         this.speed = speed;
     }
+
+    public ImageView getShopperImage() {
+        return shopperImage;
+    }
 }
 
 
