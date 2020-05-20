@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kyrsova/objects/secondMacro/Factory$Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kyrsova/objects/secondMacro/Factory$Sprite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kyrsova/objects/secondMacro/Factory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kyrsova/objects/secondMacro/Factory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/micro/OrchestraConductor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/micro/OrchestraConductor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/micro/Shopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/micro/Shopper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/secondMacro/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/secondMacro/Building.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/secondMacro/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/secondMacro/Factory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/secondMacro/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/secondMacro/School.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/secondMacro/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/secondMacro/Shop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -265,7 +265,10 @@
       <workItem from="1589528471451" duration="1371000" />
       <workItem from="1589563461965" duration="1398000" />
       <workItem from="1589564889872" duration="1891000" />
-      <workItem from="1589813703862" duration="3267000" />
+      <workItem from="1589813703862" duration="3390000" />
+      <workItem from="1589956600903" duration="60000" />
+      <workItem from="1589987800366" duration="3694000" />
+      <workItem from="1589991744172" duration="2684000" />
     </task>
     <servers />
   </component>
@@ -290,54 +293,54 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1589816701857">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1589994592853">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589816701857" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589994592853" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585663272213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585663272213" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588950365046">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1589989624664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588950365046" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1589989624664" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1589388669092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589388669092" />
-    <state width="1493" height="48" key="GridCell.Tab.0.bottom" timestamp="1589817187162">
+    <state width="1493" height="11" key="GridCell.Tab.0.bottom" timestamp="1589994633785">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="48" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589817187162" />
-    <state width="1493" height="48" key="GridCell.Tab.0.center" timestamp="1589817187162">
+    <state width="1493" height="11" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589994633785" />
+    <state width="1493" height="11" key="GridCell.Tab.0.center" timestamp="1589994633784">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="48" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589817187162" />
-    <state width="1493" height="48" key="GridCell.Tab.0.left" timestamp="1589817187162">
+    <state width="1493" height="11" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589994633784" />
+    <state width="1493" height="11" key="GridCell.Tab.0.left" timestamp="1589994633784">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="48" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589817187162" />
-    <state width="1493" height="48" key="GridCell.Tab.0.right" timestamp="1589817187162">
+    <state width="1493" height="11" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589994633784" />
+    <state width="1493" height="11" key="GridCell.Tab.0.right" timestamp="1589994633784">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="48" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589817187162" />
-    <state width="1493" height="128" key="GridCell.Tab.1.bottom" timestamp="1589308798119">
+    <state width="1493" height="11" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589994633784" />
+    <state width="1493" height="11" key="GridCell.Tab.1.bottom" timestamp="1589994633786">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589308798119" />
-    <state width="1493" height="128" key="GridCell.Tab.1.center" timestamp="1589308798119">
+    <state width="1493" height="11" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589994633786" />
+    <state width="1493" height="11" key="GridCell.Tab.1.center" timestamp="1589994633786">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1589308798119" />
-    <state width="1493" height="128" key="GridCell.Tab.1.left" timestamp="1589308798119">
+    <state width="1493" height="11" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1589994633785" />
+    <state width="1493" height="11" key="GridCell.Tab.1.left" timestamp="1589994633785">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1589308798119" />
-    <state width="1493" height="128" key="GridCell.Tab.1.right" timestamp="1589308798119">
+    <state width="1493" height="11" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1589994633785" />
+    <state width="1493" height="11" key="GridCell.Tab.1.right" timestamp="1589994633786">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="128" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1589308798119" />
+    <state width="1493" height="11" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1589994633786" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1588694910912">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -346,10 +349,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="328" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1585653882413" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1589813703096">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1589991743124">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1589813703096" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1589991743124" />
     <state x="209" y="114" key="new project wizard" timestamp="1589388681932">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -366,5 +369,19 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588930665429" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/objects/micro/OrchestraConductor.java</url>
+          <line>113</line>
+          <properties class="objects.micro.OrchestraConductor" method="chooseAnInstrument">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

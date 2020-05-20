@@ -27,6 +27,7 @@ public class Shopper implements Cloneable{
     protected Ellipse shadow;
 
     protected boolean isActive;
+    protected boolean stay;
     protected Polygon triangleAct;
 
 
@@ -55,6 +56,7 @@ public class Shopper implements Cloneable{
         } else this.shopperImage  = new ImageView(new Image("assets/girlShopper.png"));
 
         this.isActive = isActive;
+        this.stay = false;
         this.shopperImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
         this.shopperImage.setEffect(new DropShadow(30,0,0,Color.GRAY));
@@ -107,7 +109,7 @@ public class Shopper implements Cloneable{
         this.shopperImage.setY(y);
 
         this.shopperText.setLayoutX(x-15);
-        this.shopperText.setLayoutY(y - 10);
+        this.shopperText.setLayoutY(y-25);
         this.shopperText.setText(this.name + ", money: "+ this.money);
 
         this.shadow.setLayoutX(x -10);
@@ -128,7 +130,7 @@ public class Shopper implements Cloneable{
     }
 
     public void freeRun(){
-        if (!this.isActive()) {
+        if (!this.isActive() && !this.stay) {
             switch (this.startDirection) {
                 case 0:
                     this.yChord -= speed/5;
@@ -195,7 +197,7 @@ public class Shopper implements Cloneable{
 
     public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
-        if (this.shopperImage.getBoundsInParent().contains(point2D)) {
+        if (this.shopperImage.getBoundsInParent().contains(point2D) && !this.stay) {
             this.isActive = !this.isActive;
         }
     }
@@ -236,6 +238,11 @@ public class Shopper implements Cloneable{
         return this.isActive;
     }
 
+    public void setStay(boolean stay) {
+        this.isActive = false;
+        this.stay = stay;
+    }
+
     public void setActive(boolean active) {
         isActive = active;
     }
@@ -274,6 +281,10 @@ public class Shopper implements Cloneable{
 
     public ImageView getShopperImage() {
         return shopperImage;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
     }
 }
 

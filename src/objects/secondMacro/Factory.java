@@ -1,7 +1,10 @@
 package objects.secondMacro;
 
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -16,10 +19,13 @@ import javafx.util.Duration;
 import objects.micro.Shopper;
 import sample.Main;
 
+import java.util.EventListener;
+
+
 public class Factory extends Building{
 
     private ImageView smokeSprite = new ImageView(new Image("assets/sprite.png"));
-    private Animation animation;
+    private Animation smokeAnimation;
 
     public Factory(double xChord, double yChord){
         this.xChord = xChord;
@@ -39,8 +45,8 @@ public class Factory extends Building{
         this.smokeSprite.setViewport(new Rectangle2D(0,100,100,100)); // це погане рішення для того щоб зробити спрайт диму невидимий, але воно працює!
         this.smokeSprite.setPreserveRatio(true);
         this.smokeSprite.setFitHeight(60);
-        this.animation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 0, 0,100,100 );
-        this.animation.setCycleCount(Animation.INDEFINITE);
+        this.smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 0, 0,100,100 );
+        this.smokeAnimation.setCycleCount(Animation.INDEFINITE);
 
         this.setBuildingInChords();
 
@@ -63,16 +69,41 @@ public class Factory extends Building{
     }
 
     public Animation smoke(){
-        return this.animation;
+        return this.smokeAnimation;
     }
     //потребує доробки
     @Override
     public void interact(Shopper shopper) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
-            shopper.getShopperImage().setImage(new Image("assets/shopperWork.png"));
-            shopper.setMoney(shopper.getMoney() + Main.random.nextInt(100));
-            shopper.updateShopperChords();
-            shopper.getShopperImage().setImage(new Image("assets/shopper.png"));
+
+            shopper.getShopperImage().setOpacity(0);
+
+            ImageView shopperWorkSprite = new ImageView(new Image("assets/shopperWorkSprite.png"));
+            shopperWorkSprite.setX(shopper.getShopperImage().getX());
+            shopperWorkSprite.setY(shopper.getShopperImage().getY());
+            shopperWorkSprite.setPreserveRatio(true);
+            shopperWorkSprite.setFitHeight(shopper.getShopperImage().getFitHeight());
+
+
+            shopper.getShopperPicture().getChildren().add(shopperWorkSprite);
+            shopper.setStay(true);
+            if (shopper.getInstrument() !=null){
+                shopper.getInstrument().getInstrumentImage().setOpacity(0);
+            }
+            Animation workAnimation = new Sprite(shopperWorkSprite ,Duration.millis(1000),2,2,0,0,498,683);
+            workAnimation.setCycleCount(15);//як довго буде працювати
+            workAnimation.play();
+
+            workAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    shopper.setMoney(shopper.getMoney()+ Main.random.nextInt(100));
+                    shopper.getShopperImage().setOpacity(1);
+                    shopper.getShopperPicture().getChildren().remove(shopperWorkSprite);
+                    shopper.setStay(false);
+                    shopper.getInstrument().getInstrumentImage().setOpacity(1);
+                }
+            });
 
         }
     }

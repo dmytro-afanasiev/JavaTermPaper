@@ -59,8 +59,9 @@ public class OrchestraConductor extends  MusicianMaster {
                 15.0, 25.0);
         this.triangleAct.setFill(Color.BLACK);
 
+        this.instrument  =  this.instruments.get(currentInstrument);
         if (currentInstrument != "Nothing"){
-            this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instruments.get(currentInstrument).getInstrumentImage());
+            this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
         } else {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
         }
@@ -127,10 +128,12 @@ public class OrchestraConductor extends  MusicianMaster {
         if (this.instruments.containsKey(currentInstrument)){
             this.shopperPicture.getChildren().remove(this.instruments.get(this.currentInstrument).getInstrumentImage());
             this.currentInstrument= currentInstrument;
-            this.shopperPicture.getChildren().add(this.instruments.get(this.currentInstrument).getInstrumentImage());
+            this.instrument = this.instruments.get(this.currentInstrument);
+            this.shopperPicture.getChildren().add(instrument.getInstrumentImage());
 
         } else if (currentInstrument.equals("Nothing")){
             this.shopperPicture.getChildren().remove(this.instruments.get(this.currentInstrument).getInstrumentImage());
+            this.instrument = null;
         }
     }
 
@@ -142,9 +145,7 @@ public class OrchestraConductor extends  MusicianMaster {
         return currentInstrument;
     }
 
-    public void setCurrentInstrument(String currentInstrument) {
-        this.currentInstrument = currentInstrument;
-    }
+
 
     @Override
     public boolean equals(Object o) {

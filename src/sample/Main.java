@@ -205,7 +205,7 @@ public class Main extends Application {
                     }
                 }
             }
-            /*if (event.getCode().equals(KeyCode.J)) {
+            if (event.getCode().equals(KeyCode.J)) {
                 for (Shopper s : shoppers) {
                     if (s.isActive()) {
                         for (Building b : buildings) {
@@ -213,7 +213,7 @@ public class Main extends Application {
                         }
                     }
                 }
-            }*/
+            }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.up(1);
