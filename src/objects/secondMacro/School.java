@@ -1,6 +1,7 @@
 package objects.secondMacro;
 
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -9,9 +10,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
+import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
+import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
+import sample.windows.chooseAnEducationWindow.ChooseAnEducationWindow;
+import sample.windows.chooseAnInstrumentWindow.ChooseAnInstrumentWindow;
 
-public class School extends Building{
+import java.io.IOException;
+
+public class School extends Building {
     public School(double x, double y) {
         this.xChord = x;
         this.yChord = y;
@@ -35,7 +42,19 @@ public class School extends Building{
 
     @Override
     public void interact(Shopper shopper) {
-
+        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
+            if (!(shopper instanceof OrchestraConductor) && shopper.getInstrument() != null) {
+                try {
+                    new ChooseAnEducationWindow().display("Choose an education", shopper);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Ви уже максимально навчені, якщо ж ні - перевірте наявність інструменту");
+                alert.showAndWait();
+            }
+        }
     }
 
     @Override

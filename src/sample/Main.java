@@ -98,7 +98,7 @@ public class Main extends Application {
 
 
         shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(false, "Dima", 500, true));
+        shoppers.add(new Shopper(false, "Dima", 5000, true));
         shoppers.add(new Shopper(false, "Dima", 500, true));
         shoppers.add(new Shopper(false, "Dima", 500, true));
         OrchestraConductor t = new OrchestraConductor(new Tremb(), false, "master", 1000);

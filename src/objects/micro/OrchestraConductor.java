@@ -153,6 +153,11 @@ public class OrchestraConductor extends  MusicianMaster {
         }
     }
 
+    @Override
+    public Shopper education(boolean first, boolean second, double allPrice) {
+        return this;
+    }
+
     public Map<String, Instrument> getInstruments() {
         return instruments;
     }

@@ -18,7 +18,7 @@ import objects.firstMacro.Instrument;
 import sample.Main;
 
 
-public class Shopper implements Cloneable{
+public class Shopper implements Cloneable {
 
 
     protected double speed;
@@ -36,7 +36,7 @@ public class Shopper implements Cloneable{
     protected boolean isMan;
     protected Label shopperText;
 
-    protected Instrument instrument= null;
+    protected Instrument instrument = null;
     protected Group shopperPicture;
 
     protected double money;
@@ -44,27 +44,27 @@ public class Shopper implements Cloneable{
     protected static int numberOfShoppers = 0;
 
 
-
-    public Shopper(Instrument instrument, boolean isActive, String name, double money , boolean isMan) {
+    public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
         Shopper.numberOfShoppers++;
         this.name = name;
-        this.money=money;
+        this.money = money;
+        this.isMan = isMan;
         this.speed = 10;
-        this.startDirection = (byte)Main.random.nextInt(8);
+        this.startDirection = (byte) Main.random.nextInt(8);
 
-        if (isMan){
-            this.shopperImage  = new ImageView(new Image("assets/shopper.png"));
-        } else this.shopperImage  = new ImageView(new Image("assets/girlShopper.png"));
+        if (isMan) {
+            this.shopperImage = new ImageView(new Image("assets/shopper.png"));
+        } else this.shopperImage = new ImageView(new Image("assets/girlShopper.png"));
 
         this.isActive = isActive;
         this.stay = false;
         this.shopperImage.setPreserveRatio(true);
         this.shopperImage.setFitHeight(190);
-        this.shopperImage.setEffect(new DropShadow(30,0,0,Color.GRAY));
+        this.shopperImage.setEffect(new DropShadow(30, 0, 0, Color.GRAY));
 
         this.instrument = instrument;
 
-        this.shopperText = new Label(this.name + ", money: "+ this.money);
+        this.shopperText = new Label(this.name + ", money: " + this.money);
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
         this.shadow = new Ellipse(75, 20);
@@ -79,7 +79,7 @@ public class Shopper implements Cloneable{
                 15.0, 25.0);
         this.triangleAct.setFill(Color.BLACK);
 
-        if (this.instrument != null){
+        if (this.instrument != null) {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
         } else {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
@@ -87,19 +87,23 @@ public class Shopper implements Cloneable{
     }
 
     public Shopper(boolean isActive, String name, double money, boolean isMan) {
-        this(null, isActive, name, money,isMan);
+        this(null, isActive, name, money, isMan);
     }
-    public Shopper( Instrument instrument,boolean isActive, String name) {
-        this(instrument, isActive, name, 0,true);
+
+    public Shopper(Instrument instrument, boolean isActive, String name) {
+        this(instrument, isActive, name, 0, true);
     }
-    public Shopper( boolean isActive, String name) {
+
+    public Shopper(boolean isActive, String name) {
         this(null, isActive, name, 0, true);
     }
-    public Shopper(boolean isActive, String name, double money){
+
+    public Shopper(boolean isActive, String name, double money) {
         this(null, isActive, name, money, true);
     }
-    public Shopper(String name){
-        this(null, true, name, 0,true);
+
+    public Shopper(String name) {
+        this(null, true, name, 0, true);
     }
 
 
@@ -109,15 +113,15 @@ public class Shopper implements Cloneable{
         this.shopperImage.setX(x);
         this.shopperImage.setY(y);
 
-        this.shopperText.setLayoutX(x-15);
-        this.shopperText.setLayoutY(y-25);
-        this.shopperText.setText(this.name + ", money: "+ this.money);
+        this.shopperText.setLayoutX(x - 15);
+        this.shopperText.setLayoutY(y - 25);
+        this.shopperText.setText(this.name + ", money: " + this.money);
 
-        this.shadow.setLayoutX(x -10);
+        this.shadow.setLayoutX(x - 10);
         this.shadow.setLayoutY(y + 170);
 
-        this.triangleAct.setLayoutX(x+30);
-        this.triangleAct.setLayoutY(y-40);
+        this.triangleAct.setLayoutX(x + 30);
+        this.triangleAct.setLayoutY(y - 40);
 
         if (this.isActive) {
             this.triangleAct.setOpacity(1);
@@ -130,50 +134,47 @@ public class Shopper implements Cloneable{
 
     }
 
-    public void freeRun(){
+    public void freeRun() {
         if (!this.isActive() && !this.stay) {
             switch (this.startDirection) {
                 case 0:
-                    this.yChord -= speed/5;
+                    this.yChord -= speed / 5;
                     break;
                 case 1:
-                    this.yChord -= speed/5;
-                    this.xChord += speed/5;
+                    this.yChord -= speed / 5;
+                    this.xChord += speed / 5;
                     break;
                 case 2:
-                    this.xChord += speed/5;
+                    this.xChord += speed / 5;
                     break;
                 case 3:
-                    this.xChord += speed/5;
-                    this.yChord += speed/5;
+                    this.xChord += speed / 5;
+                    this.yChord += speed / 5;
                     break;
                 case 4:
-                    this.yChord += speed/5;
+                    this.yChord += speed / 5;
                     break;
                 case 5:
-                    this.yChord += speed/5;
-                    this.xChord -= speed/5;
+                    this.yChord += speed / 5;
+                    this.xChord -= speed / 5;
                     break;
                 case 6:
-                    this.xChord -= speed/5;
+                    this.xChord -= speed / 5;
                     break;
                 case 7:
-                    this.xChord -= speed/5;
-                    this.yChord -= speed/5;
+                    this.xChord -= speed / 5;
+                    this.yChord -= speed / 5;
                     break;
             }
         }
-        if (this.shopperImage.getX()+100>= Main.getScene().getWidth()+Main.getScrollX()){
-                this.startDirection = (byte)(Main.random.nextInt(3)+5);
-        }
-        else if (this.shopperImage.getX()<= 0+Main.getScrollX()){
-            this.startDirection = (byte)(Main.random.nextInt(3)+1);
-        }
-         else if (this.shopperImage.getY()<= 0+Main.getScrollY()){
-            this.startDirection = (byte)(Main.random.nextInt(3)+3);
-        }
-        else if (this.shopperImage.getY()+ 170>= Main.getScene().getHeight()+Main.getScrollY()){
-            this.startDirection = (byte)Main.random.nextInt(2);
+        if (this.shopperImage.getX() + 100 >= Main.getScene().getWidth() + Main.getScrollX()) {
+            this.startDirection = (byte) (Main.random.nextInt(3) + 5);
+        } else if (this.shopperImage.getX() <= 0 + Main.getScrollX()) {
+            this.startDirection = (byte) (Main.random.nextInt(3) + 1);
+        } else if (this.shopperImage.getY() <= 0 + Main.getScrollY()) {
+            this.startDirection = (byte) (Main.random.nextInt(3) + 3);
+        } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
+            this.startDirection = (byte) Main.random.nextInt(2);
         }
 
     }
@@ -204,30 +205,28 @@ public class Shopper implements Cloneable{
     }
 
     public void left(double boost) {
-        if (isActive && xChord>= 0) {
-            xChord -= speed* boost;
+        if (isActive && xChord >= 0) {
+            xChord -= speed * boost;
         }
     }
 
     public void right(double boost) {
-        if (isActive && xChord<= Main.getRoot().getWidth()- 100) {
-            xChord += speed* boost;
+        if (isActive && xChord <= Main.getRoot().getWidth() - 100) {
+            xChord += speed * boost;
         }
     }
 
     public void up(double boost) {
-        if (isActive && yChord>=0) {
-            yChord -= speed*boost;
+        if (isActive && yChord >= 0) {
+            yChord -= speed * boost;
         }
     }
 
     public void down(double boost) {
-        if (isActive && yChord <= Main.getRoot().getHeight() -200) {
-            yChord += speed* boost;
+        if (isActive && yChord <= Main.getRoot().getHeight() - 200) {
+            yChord += speed * boost;
         }
     }
-
-
 
 
     public boolean isActive() {
@@ -239,8 +238,8 @@ public class Shopper implements Cloneable{
         this.stay = stay;
     }
 
-    public void buyAnInstrument(String typeOfInstrument){
-        if (this.money>= Instrument.getInstrument(typeOfInstrument).getPrise()){
+    public void buyAnInstrument(String typeOfInstrument) {
+        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrise()) {
             this.instrument = Instrument.getInstrument(typeOfInstrument);
             this.money -= this.instrument.getPrise();
             this.shopperPicture.getChildren().add(this.instrument.getInstrumentImage());
@@ -253,6 +252,28 @@ public class Shopper implements Cloneable{
         }
     }
 
+    public Shopper education(boolean first, boolean second, double allPrice) {
+        if (first && second && this.money >= allPrice) {// провырку на жынку не забути
+            if (this.isMan) {
+                return new OrchestraConductor(Instrument.getInstrument(this.instrument.getType()), true, this.name, this.money-allPrice);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Жінки не можуть бути дирижорами");
+                alert.showAndWait();
+            }
+        } else if (first && !second && this.money >= allPrice) {
+            return new MusicianMaster(Instrument.getInstrument(this.instrument.getType()), true, this.name,this.money- allPrice,this.isMan);
+        } else if (second && !first && this.money>= allPrice) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Спочатку потрібно пройти початкове навчання, а вже потім учитися на дирижора, або ж можна на обох одразу");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Недостаньо коштів");
+            alert.showAndWait();
+        }
+        return this;
+    }
 
     public void setActive(boolean active) {
         isActive = active;
@@ -298,10 +319,13 @@ public class Shopper implements Cloneable{
         return instrument;
     }
 
+    public boolean isMan() {
+        return isMan;
+    }
 
     @Override
     public Shopper clone() throws CloneNotSupportedException {
-        Shopper temp = (Shopper)super.clone();
+        Shopper temp = (Shopper) super.clone();
         temp.instrument = instrument.clone();
         return temp;
     }

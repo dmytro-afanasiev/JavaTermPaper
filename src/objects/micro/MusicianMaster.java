@@ -2,6 +2,7 @@ package objects.micro;
 
 
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -98,6 +99,33 @@ public class MusicianMaster extends Shopper {
             this.instrument.update(x, y);
         }
 
+    }
+
+    @Override
+    public Shopper education(boolean first, boolean second, double allPrice) {
+        if (second && !first && this.money >= allPrice){
+            if (this.isMan){
+                return new OrchestraConductor(Instrument.getInstrument(this.instrument.getType()), true, this.name, this.money-allPrice);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Жінки не можуть бути дирижорами");
+                alert.showAndWait();
+            }
+        } else if (first && !second && this.money >= allPrice)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Ви уже пройшли початкову школу");
+            alert.showAndWait();
+        } else if (first && second && this.money >= allPrice){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Ви уже пройшли початкову школу");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Недостатньо коштів");
+            alert.showAndWait();
+        }
+        return this;
     }
 }
 
