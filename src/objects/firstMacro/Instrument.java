@@ -17,6 +17,10 @@ public abstract class Instrument implements Cloneable{
         return this.type;
     }
 
+    public double getPrise() {
+        return prise;
+    }
+
     public abstract void update(double x, double y);
 
 

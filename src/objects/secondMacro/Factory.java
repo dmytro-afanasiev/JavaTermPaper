@@ -90,7 +90,7 @@ public class Factory extends Building{
             if (shopper.getInstrument() !=null){
                 shopper.getInstrument().getInstrumentImage().setOpacity(0);
             }
-            Animation workAnimation = new Sprite(shopperWorkSprite ,Duration.millis(1000),2,2,0,0,498,683);
+            Animation workAnimation = new Sprite(shopperWorkSprite ,Duration.millis(1500),8,8,0,0,498,684);
             workAnimation.setCycleCount(15);//як довго буде працювати
             workAnimation.play();
 

@@ -9,6 +9,7 @@ public class Radio extends Instrument {
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(50);
         this.type = "radio_!Fun!";
+        this.prise = 10000000;
     }
     @Override
     public void update(double x, double y) {

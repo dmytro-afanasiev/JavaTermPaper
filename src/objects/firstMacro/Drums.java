@@ -9,6 +9,7 @@ public class Drums extends Instrument{
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(180);
         this.type = "Drums";
+        this.prise = 1000;
     }
     @Override
     public void update(double x, double y) {

@@ -9,6 +9,8 @@ public class Tremb extends Instrument {
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
         this.type = "Trembita";
+        this.prise = 17;
+
     }
     @Override
     public void update(double x, double y) {

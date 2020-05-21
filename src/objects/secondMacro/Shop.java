@@ -2,6 +2,7 @@ package objects.secondMacro;
 
 
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -10,10 +11,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
+import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
+import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
+
+import java.io.IOException;
 
 public class Shop extends Building {
-    public Shop(double x, double y){
+    public Shop(double x, double y) {
         this.xChord = x;
         this.yChord = y;
         this.buildingType = "Shop";
@@ -36,7 +41,24 @@ public class Shop extends Building {
 
     @Override
     public void interact(Shopper shopper) {
+        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
+            if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
+                try {
+                    new BuyAnInstrumentWindow().display("Choose an instrument", shopper);
+                } catch (IOException e) {
+                    e.printStackTrace();
 
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setTitle("Увага!");
+                alert.setHeaderText("Повертайтеся пізніше");
+                alert.setContentText("Неможливо купити: даний музикант не може володіти більше, ніж одним інструментом!");
+                alert.showAndWait();
+            }
+
+        }
     }
 
     @Override
@@ -45,9 +67,9 @@ public class Shop extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x+179);
-        this.buildingText.setLayoutY(y+280);
-        this.shadow.setLayoutX(x+90);
-        this.shadow.setLayoutY(y+230);
+        this.buildingText.setLayoutX(x + 179);
+        this.buildingText.setLayoutY(y + 280);
+        this.shadow.setLayoutX(x + 90);
+        this.shadow.setLayoutY(y + 230);
     }
 }

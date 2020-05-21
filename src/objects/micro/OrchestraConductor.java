@@ -2,6 +2,7 @@ package objects.micro;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -134,6 +135,21 @@ public class OrchestraConductor extends  MusicianMaster {
         } else if (currentInstrument.equals("Nothing")){
             this.shopperPicture.getChildren().remove(this.instruments.get(this.currentInstrument).getInstrumentImage());
             this.instrument = null;
+        }
+    }
+
+
+    @Override
+    public void buyAnInstrument(String typeOfInstrument) {
+        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrise() && !this.instruments.containsKey(typeOfInstrument)){
+            this.instruments.put(typeOfInstrument, Instrument.getInstrument(typeOfInstrument));
+            this.money -= Instrument.getInstrument(typeOfInstrument).getPrise();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Увага");
+            alert.setHeaderText("Повертайтеся пізніше");
+            alert.setContentText("Недостатньо коштів для покупки даного інструмента, або ви вже його маєте");
+            alert.showAndWait();
         }
     }
 

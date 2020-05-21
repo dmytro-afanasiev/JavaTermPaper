@@ -3,6 +3,7 @@ package objects.micro;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
@@ -227,12 +228,7 @@ public class Shopper implements Cloneable{
     }
 
 
-    @Override
-    public Shopper clone() throws CloneNotSupportedException {
-        Shopper temp = (Shopper)super.clone();
-        temp.instrument = instrument.clone();
-        return temp;
-    }
+
 
     public boolean isActive() {
         return this.isActive;
@@ -242,6 +238,21 @@ public class Shopper implements Cloneable{
         this.isActive = false;
         this.stay = stay;
     }
+
+    public void buyAnInstrument(String typeOfInstrument){
+        if (this.money>= Instrument.getInstrument(typeOfInstrument).getPrise()){
+            this.instrument = Instrument.getInstrument(typeOfInstrument);
+            this.money -= this.instrument.getPrise();
+            this.shopperPicture.getChildren().add(this.instrument.getInstrumentImage());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Увага!");
+            alert.setHeaderText("Приходьте пізніше)");
+            alert.setContentText("Недостатньо коштів для покупки даного інструмента, прямуйте заробляти");
+            alert.showAndWait();
+        }
+    }
+
 
     public void setActive(boolean active) {
         isActive = active;
@@ -285,6 +296,14 @@ public class Shopper implements Cloneable{
 
     public Instrument getInstrument() {
         return instrument;
+    }
+
+
+    @Override
+    public Shopper clone() throws CloneNotSupportedException {
+        Shopper temp = (Shopper)super.clone();
+        temp.instrument = instrument.clone();
+        return temp;
     }
 }
 
