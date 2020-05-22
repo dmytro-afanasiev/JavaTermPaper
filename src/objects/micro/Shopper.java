@@ -318,6 +318,8 @@ public class Shopper implements Cloneable {
             case "Drums":
                 break;
             case "Piano":
+                musicPath = new String("src/assets/music/terorist.mp3");
+
                 break;
             case "Trembita":
                 musicPath = new String("src/assets/music/trembitaBad.mp3");
