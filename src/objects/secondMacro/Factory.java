@@ -7,10 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
@@ -18,7 +22,9 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import objects.micro.Shopper;
 import sample.Main;
+import sample.Sprite;
 
+import java.nio.file.Paths;
 import java.util.EventListener;
 
 
@@ -75,66 +81,50 @@ public class Factory extends Building{
     @Override
     public void interact(Shopper shopper) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
-
-            shopper.getShopperImage().setOpacity(0);
-
-            ImageView shopperWorkSprite = new ImageView(new Image("assets/shopperWorkSprite.png"));
-            shopperWorkSprite.setX(shopper.getShopperImage().getX());
-            shopperWorkSprite.setY(shopper.getShopperImage().getY());
-            shopperWorkSprite.setPreserveRatio(true);
-            shopperWorkSprite.setFitHeight(shopper.getShopperImage().getFitHeight());
+            if (shopper.isMan()) {
 
 
-            shopper.getShopperPicture().getChildren().add(shopperWorkSprite);
-            shopper.setStay(true);
-            if (shopper.getInstrument() !=null){
-                shopper.getInstrument().getInstrumentImage().setOpacity(0);
-            }
-            Animation workAnimation = new Sprite(shopperWorkSprite ,Duration.millis(1500),8,8,0,0,498,684);
-            workAnimation.setCycleCount(15);//як довго буде працювати
-            workAnimation.play();
+                shopper.getShopperImage().setOpacity(0);
 
-            workAnimation.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    shopper.setMoney(shopper.getMoney()+ Main.random.nextInt(100));
+                ImageView shopperWorkSprite = new ImageView(new Image("assets/shopperWorkSprite.png"));
+                shopperWorkSprite.setX(shopper.getShopperImage().getX());
+                shopperWorkSprite.setY(shopper.getShopperImage().getY());
+                shopperWorkSprite.setPreserveRatio(true);
+                shopperWorkSprite.setFitHeight(shopper.getShopperImage().getFitHeight());
+
+
+                shopper.getShopperPicture().getChildren().add(shopperWorkSprite);
+                shopper.setStay(true);
+                if (shopper.getInstrument() != null) {
+                    shopper.getInstrument().getInstrumentImage().setOpacity(0);
+                }
+                Animation workAnimation = new Sprite(shopperWorkSprite, Duration.millis(1500), 8, 8, 0, 0, 498, 684);
+                workAnimation.setCycleCount(20);//як довго буде працювати
+
+
+                Media hit = new Media(Paths.get("src/assets/music/dyHast.mp3").toUri().toString());
+                AudioClip mediaPlayer = new AudioClip(hit.getSource());
+                mediaPlayer.setVolume(0.02);
+                mediaPlayer.play();
+
+                workAnimation.play();
+
+                workAnimation.setOnFinished(event -> {
+                    shopper.setMoney(shopper.getMoney() + 400 + Main.random.nextInt(600));
                     shopper.getShopperImage().setOpacity(1);
                     shopper.getShopperPicture().getChildren().remove(shopperWorkSprite);
                     shopper.setStay(false);
-                    shopper.getInstrument().getInstrumentImage().setOpacity(1);
-                }
-            });
-
+                    mediaPlayer.stop();
+                    if (shopper.getInstrument() != null) {
+                        shopper.getInstrument().getInstrumentImage().setOpacity(1);
+                    }
+                });
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Жінки не можуть працювати на тяжкій роботі");
+                alert.showAndWait();
+            }
         }
     }
 
-    private class Sprite extends Transition {
-        final private ImageView imageView;
-        final private int count;
-        final private int columns;
-        final private int offsetX;
-        final private int offsetY;
-        final private int width;
-        final private int height;
-
-        public Sprite(ImageView imageView, Duration duration, int count, int columns, int offsetX, int offsetY, int width, int height) {
-            this.imageView = imageView;
-            this.count = count;
-            this.columns = columns;
-            this.offsetX = offsetX;
-            this.offsetY = offsetY;
-            this.width = width;
-            this.height = height;
-            setCycleDuration(duration);
-
-        }
-
-        @Override
-        protected void interpolate(double frac) {
-            int index = Math.min((int) Math.floor(frac * count), count -1);
-            int x = (index % columns) *width + offsetX;
-            int y = (index / columns) * height + offsetY;
-            imageView.setViewport(new Rectangle2D(x, y, width, height));
-        }
-    }
 }

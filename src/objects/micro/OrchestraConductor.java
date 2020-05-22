@@ -1,5 +1,6 @@
 package objects.micro;
 
+import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -8,15 +9,20 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import objects.firstMacro.Instrument;
+import sample.Sprite;
 import sample.windows.chooseAnInstrumentWindow.ChooseAnInstrumentWindow;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -154,8 +160,53 @@ public class OrchestraConductor extends  MusicianMaster {
     }
 
     @Override
-    public Shopper education(boolean first, boolean second, double allPrice) {
-        return this;
+    public void playAnInstrument() {
+        this.getShopperImage().setOpacity(0);
+
+        ImageView orchestraPlaySprite = new ImageView(new Image("assets/orchestraPlaySprite.png"));
+        orchestraPlaySprite.setX(this.getShopperImage().getX());
+        orchestraPlaySprite.setY(this.getShopperImage().getY());
+        orchestraPlaySprite.setPreserveRatio(true);
+        orchestraPlaySprite.setFitHeight(this.getShopperImage().getFitHeight());
+
+
+        this.getShopperPicture().getChildren().add(4 ,orchestraPlaySprite);
+        this.setStay(true);
+
+        Animation workAnimation = new Sprite(orchestraPlaySprite , Duration.millis(2000),4,4,0,0,561,683);
+        workAnimation.setCycleCount(10);//як довго буде грати
+
+        String musicPath = "";
+        switch (this.instrument.getType()){
+            case "Guitar":
+                musicPath = new String("src/assets/music/guitarBad.wav");
+                break;
+            case "Bayan":
+                break;
+            case "Drums":
+                break;
+            case "Piano":
+                break;
+            case "Trembita":
+                musicPath = new String("src/assets/music/trembitaBad.mp3");
+                break;
+            case "Violin":
+                break;
+        }
+        Media hit = new Media(Paths.get(musicPath).toUri().toString());
+        AudioClip mediaPlayer = new AudioClip(hit.getSource());
+        mediaPlayer.setVolume(0.4);
+        workAnimation.play();
+        mediaPlayer.play();
+
+
+
+        workAnimation.setOnFinished(event -> {
+            this.getShopperImage().setOpacity(1);
+            this.getShopperPicture().getChildren().remove(orchestraPlaySprite);
+            this.setStay(false);
+            mediaPlayer.stop();
+        });
     }
 
     public Map<String, Instrument> getInstruments() {

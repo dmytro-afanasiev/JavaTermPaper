@@ -95,6 +95,7 @@ public class Main extends Application {
 
         root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture(), shop.getBuildingPicture(), school.getBuildingPicture());
         factory.smoke().play();
+        factory2.smoke().play();
 
 
         shoppers = new ArrayList<>(5);
@@ -214,6 +215,14 @@ public class Main extends Application {
                     }
                 }
             }
+            if (event.getCode().equals(KeyCode.K)){
+                for (Shopper s : shoppers){
+                    if (s.isActive() && s.getInstrument() != null){
+                        s.playAnInstrument();
+                        break;
+                    }
+                }
+            }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper s : shoppers) {
                     s.up(1);
@@ -230,19 +239,19 @@ public class Main extends Application {
                 for (Shopper s : shoppers) {
                     s.left(1);
                 }
-            } else if (event.getCode().equals(KeyCode.W) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.W)) {
                 for (Shopper s : shoppers) {
                     s.up(2);
                 }
-            } else if (event.getCode().equals(KeyCode.S) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.S)) {
                 for (Shopper s : shoppers) {
                     s.down(2);
                 }
-            } else if (event.getCode().equals(KeyCode.D) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.D)) {
                 for (Shopper s : shoppers) {
                     s.right(2);
                 }
-            } else if (event.getCode().equals(KeyCode.A) && event.isShiftDown()) {
+            } else if (event.getCode().equals(KeyCode.A)) {
                 for (Shopper s : shoppers) {
                     s.left(2);
                 }

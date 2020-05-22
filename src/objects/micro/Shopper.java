@@ -1,6 +1,9 @@
 package objects.micro;
 
 
+import javafx.animation.Animation;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -9,13 +12,19 @@ import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import objects.firstMacro.Instrument;
 import sample.Main;
+import sample.Sprite;
+
+import java.nio.file.Paths;
 
 
 public class Shopper implements Cloneable {
@@ -42,6 +51,7 @@ public class Shopper implements Cloneable {
     protected double money;
     protected String name;
     protected static int numberOfShoppers = 0;
+
 
 
     public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
@@ -274,6 +284,64 @@ public class Shopper implements Cloneable {
         }
         return this;
     }
+
+    public void playAnInstrument(){
+
+        this.getShopperImage().setOpacity(0);
+
+        ImageView shopperWorkSprite;
+        if (this.isMan) {
+            shopperWorkSprite = new ImageView(new Image("assets/shopperPlaySprite.png"));
+        } else {
+            shopperWorkSprite = new ImageView(new Image("assets/girlShopperPlaySprite.png"));
+
+        }
+        shopperWorkSprite.setX(this.getShopperImage().getX());
+        shopperWorkSprite.setY(this.getShopperImage().getY());
+        shopperWorkSprite.setPreserveRatio(true);
+        shopperWorkSprite.setFitHeight(this.getShopperImage().getFitHeight());
+
+
+        this.getShopperPicture().getChildren().add(4 ,shopperWorkSprite);
+        this.setStay(true);
+
+        Animation workAnimation = new Sprite(shopperWorkSprite , Duration.millis(2000),4,4,0,0,431,683);
+        workAnimation.setCycleCount(10);//як довго буде грати
+
+        String musicPath = "";
+        switch (this.instrument.getType()){
+            case "Guitar":
+                musicPath = new String("src/assets/music/guitarBad.wav");
+                break;
+            case "Bayan":
+                break;
+            case "Drums":
+                break;
+            case "Piano":
+                break;
+            case "Trembita":
+                musicPath = new String("src/assets/music/trembitaBad.mp3");
+                break;
+            case "Violin":
+                break;
+        }
+        Media hit = new Media(Paths.get(musicPath).toUri().toString());
+        AudioClip mediaPlayer = new AudioClip(hit.getSource());
+        mediaPlayer.setVolume(0.4);
+        workAnimation.play();
+        mediaPlayer.play();
+
+
+
+        workAnimation.setOnFinished(event -> {
+            this.getShopperImage().setOpacity(1);
+            this.getShopperPicture().getChildren().remove(shopperWorkSprite);
+            this.setStay(false);
+            mediaPlayer.stop();
+        });
+
+    }
+
 
     public void setActive(boolean active) {
         isActive = active;
