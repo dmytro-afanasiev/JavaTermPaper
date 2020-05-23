@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import objects.firstMacro.Instrument;
 import sample.Sprite;
 import sample.windows.chooseAnInstrumentWindow.ChooseAnInstrumentWindow;
+import sample.windows.preferencesWindow.Preferences;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -34,7 +35,6 @@ public class OrchestraConductor extends  MusicianMaster {
     public OrchestraConductor(Instrument instrument, boolean isActive, String name, double money){
         super(isActive,  name,  money ,  true);
         this.type = "Orchestra";
-        this.speed = 4;
 
 
         this.shopperImage  = new ImageView(new Image("assets/orchestra.png"));
@@ -195,7 +195,7 @@ public class OrchestraConductor extends  MusicianMaster {
         }
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
         AudioClip mediaPlayer = new AudioClip(hit.getSource());
-        mediaPlayer.setVolume(0.4);
+        mediaPlayer.setVolume(Preferences.getVOLUME());
         workAnimation.play();
         mediaPlayer.play();
 

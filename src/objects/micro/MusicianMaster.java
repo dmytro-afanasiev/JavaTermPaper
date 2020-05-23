@@ -19,6 +19,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import objects.firstMacro.Instrument;
 import sample.Sprite;
+import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
 
@@ -27,8 +28,6 @@ public class MusicianMaster extends Shopper {
     public MusicianMaster(Instrument instrument, boolean isActive, String name, double money , boolean isMan){
         super(instrument, isActive,  name,  money ,  isMan);
         this.type = "Master";
-        this.speed = 5;
-
         if (isMan){
             this.shopperImage  = new ImageView(new Image("assets/master.png"));
         } else this.shopperImage  = new ImageView(new Image("assets/girlMaster.png"));
@@ -176,7 +175,7 @@ public class MusicianMaster extends Shopper {
         }
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
         AudioClip mediaPlayer = new AudioClip(hit.getSource());
-        mediaPlayer.setVolume(0.4);
+        mediaPlayer.setVolume(Preferences.getVOLUME());
         workAnimation.play();
         mediaPlayer.play();
 

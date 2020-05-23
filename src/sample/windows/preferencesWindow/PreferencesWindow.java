@@ -16,6 +16,8 @@ public class PreferencesWindow {
     public PreferencesWindow(){
         window = new Stage();
         window.initModality(APPLICATION_MODAL);
+        window.setResizable(false);
+
     }
 
 

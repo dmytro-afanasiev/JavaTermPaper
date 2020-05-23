@@ -7,13 +7,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import objects.micro.Shopper;
 import sample.Main;
+import sample.windows.preferencesWindow.Preferences;
 
 public class ChooseAnEducationWindowController {
 
     private boolean firstEd = false;
     private boolean secondEd = false;
-    final public static double FIRST_PRICE = 1000;
-    final public static double SECOND_PRICE = 3000;
+
     private double allPr = 0;
 
     @FXML
@@ -30,6 +30,8 @@ public class ChooseAnEducationWindowController {
 
     @FXML
     void initialize() {
+        double FIRST_PRICE = Preferences.getCOMPLEXITY().getFirstEducationPrice();
+        double SECOND_PRICE = Preferences.getCOMPLEXITY().getSecondEducationPrice();
         allPrice.setText(Double.toString(0));
         firstEducation.setOnAction(event -> {
             firstEd = !firstEd;

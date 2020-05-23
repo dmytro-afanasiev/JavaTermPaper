@@ -24,6 +24,7 @@ import javafx.util.Duration;
 import objects.micro.Shopper;
 import sample.Main;
 import sample.Sprite;
+import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
 import java.util.EventListener;
@@ -56,7 +57,6 @@ public class Factory extends Building{
         this.smokeAnimation.setCycleCount(Animation.INDEFINITE);
 
         this.setBuildingInChords();
-
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
         smokeAnimation.play();
     }
@@ -107,7 +107,7 @@ public class Factory extends Building{
                 try {
                     Media hit = new Media(Paths.get("src/assets/music/dyHast.mp3").toUri().toString());
                     mediaPlayer = new AudioClip(hit.getSource());
-                    mediaPlayer.setVolume(0.02);
+                    mediaPlayer.setVolume(Preferences.getVOLUME()*0.05);
                     mediaPlayer.play();
                 } catch (MediaException m){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -120,7 +120,8 @@ public class Factory extends Building{
                 workAnimation.play();
 
                 workAnimation.setOnFinished(event -> {
-                    shopper.setMoney(shopper.getMoney() + 400 + Main.random.nextInt(600));
+
+                    shopper.setMoney(shopper.getMoney() +Preferences.getCOMPLEXITY().getSalary());
                     shopper.getShopperImage().setOpacity(1);
                     shopper.getShopperPicture().getChildren().remove(shopperWorkSprite);
                     shopper.setStay(false);

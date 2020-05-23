@@ -24,6 +24,7 @@ import javafx.util.Duration;
 import objects.firstMacro.Instrument;
 import sample.Main;
 import sample.Sprite;
+import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -32,7 +33,6 @@ import java.util.Objects;
 public class Shopper implements Cloneable {
 
     protected String type;
-    protected double speed;
     protected double xChord, yChord;
     protected byte startDirection;
 
@@ -62,7 +62,6 @@ public class Shopper implements Cloneable {
         this.name = name;
         this.money = money;
         this.isMan = isMan;
-        this.speed = 10;
         this.startDirection = (byte) Main.random.nextInt(8);
 
         if (isMan) {
@@ -151,32 +150,32 @@ public class Shopper implements Cloneable {
         if (!this.isActive() && !this.stay) {
             switch (this.startDirection) {
                 case 0:
-                    this.yChord -= speed / 5;
+                    this.yChord -= Preferences.getSPEED() / 5;
                     break;
                 case 1:
-                    this.yChord -= speed / 5;
-                    this.xChord += speed / 5;
+                    this.yChord -= Preferences.getSPEED() / 5;
+                    this.xChord += Preferences.getSPEED() / 5;
                     break;
                 case 2:
-                    this.xChord += speed / 5;
+                    this.xChord += Preferences.getSPEED() / 5;
                     break;
                 case 3:
-                    this.xChord += speed / 5;
-                    this.yChord += speed / 5;
+                    this.xChord += Preferences.getSPEED() / 5;
+                    this.yChord += Preferences.getSPEED() / 5;
                     break;
                 case 4:
-                    this.yChord += speed / 5;
+                    this.yChord += Preferences.getSPEED() / 5;
                     break;
                 case 5:
-                    this.yChord += speed / 5;
-                    this.xChord -= speed / 5;
+                    this.yChord += Preferences.getSPEED() / 5;
+                    this.xChord -= Preferences.getSPEED() / 5;
                     break;
                 case 6:
-                    this.xChord -= speed / 5;
+                    this.xChord -= Preferences.getSPEED() / 5;
                     break;
                 case 7:
-                    this.xChord -= speed / 5;
-                    this.yChord -= speed / 5;
+                    this.xChord -= Preferences.getSPEED() / 5;
+                    this.yChord -= Preferences.getSPEED() / 5;
                     break;
             }
         }
@@ -219,25 +218,25 @@ public class Shopper implements Cloneable {
 
     public void left(double boost) {
         if (isActive && xChord >= 0) {
-            xChord -= speed * boost;
+            xChord -= Preferences.getSPEED() * boost;
         }
     }
 
     public void right(double boost) {
         if (isActive && xChord <= Main.getRoot().getWidth() - 100) {
-            xChord += speed * boost;
+            xChord += Preferences.getSPEED() * boost;
         }
     }
 
     public void up(double boost) {
         if (isActive && yChord >= 0) {
-            yChord -= speed * boost;
+            yChord -= Preferences.getSPEED() * boost;
         }
     }
 
     public void down(double boost) {
         if (isActive && yChord <= Main.getRoot().getHeight() - 200) {
-            yChord += speed * boost;
+            yChord += Preferences.getSPEED() * boost;
         }
     }
 
@@ -335,7 +334,7 @@ public class Shopper implements Cloneable {
         try {
             Media hit = new Media(Paths.get(musicPath).toUri().toString());
             mediaPlayer = new AudioClip(hit.getSource());
-            mediaPlayer.setVolume(0.4);
+            mediaPlayer.setVolume(Preferences.getVOLUME());
             mediaPlayer.play();
         } catch (MediaException m){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -385,14 +384,6 @@ public class Shopper implements Cloneable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
     }
 
     public ImageView getShopperImage() {

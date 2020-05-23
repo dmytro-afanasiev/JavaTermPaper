@@ -17,13 +17,14 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
+import sample.windows.preferencesWindow.Preferences;
 
 
 import java.util.HashMap;
 import java.util.Objects;
 
 public class MiniMap {
-    final static private double SCALE = 0.12;
+    final static private double SCALE = 0.1;
     private Pane pane;
     private double xChord;
     private double yChord;
@@ -51,7 +52,7 @@ public class MiniMap {
         mainArea = new Rectangle(0,0,Main.getScene().getWidth()*MiniMap.SCALE, Main.getScene().getHeight()*MiniMap.SCALE - 10);//Цієї "10" не повинно бути, вона виправляє якийсь баг в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
         mainArea.setFill(Color.TRANSPARENT);
         mainArea.setStrokeWidth(2);
-        mainArea.setStroke(Color.GREEN);
+        mainArea.setStroke(Color.YELLOW);
         this.pane.getChildren().addAll(rectangle, border, label, mainArea);
 
         this.pane.setOnMousePressed(event -> {
@@ -149,11 +150,15 @@ public class MiniMap {
     }
 
     public void updateMap() {
-        for (Shopper shopper : Main.shoppers) {
-            ImageView imageView = shoppersMap.get(shopper);
-            imageView.setLayoutX(shopper.getXChord() * MiniMap.SCALE);
-            imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);
-        }
+        if (Preferences.isMAP()){
+            pane.setOpacity(1);
+        } else pane.setOpacity(0);
+            for (Shopper shopper : Main.shoppers) {
+                ImageView imageView = shoppersMap.get(shopper);
+                imageView.setLayoutX(shopper.getXChord() * MiniMap.SCALE);
+                imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);
+            }
+
     }
 
 
