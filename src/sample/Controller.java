@@ -63,10 +63,7 @@ public class Controller {
                     for (int i = 0; i < Main.shoppers.size(); i++) {
                         Shopper s = Main.shoppers.get(i);
                         if (s.isActive()) {
-                            Main.getRoot().getChildren().remove(s.getShopperPicture());
-                            s = null;
-                            Main.shoppers.remove(i--);
-                            Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
+                            Main.deleteAShopper(s);
                         }
 
                     }

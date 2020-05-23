@@ -156,19 +156,5 @@ public class MiniMap {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MiniMap miniMap = (MiniMap) o;
-        return Double.compare(miniMap.xChord, xChord) == 0 &&
-                Double.compare(miniMap.yChord, yChord) == 0 &&
-                Objects.equals(pane, miniMap.pane) &&
-                Objects.equals(shoppersMap, miniMap.shoppersMap);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(pane, xChord, yChord, shoppersMap);
-    }
 }

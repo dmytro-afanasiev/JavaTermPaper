@@ -57,17 +57,9 @@ public class ChooseAnEducationWindowController {
             if (firstEd || secondEd) {
                 Shopper old = ChooseAnEducationWindow.getShopper();
                 Shopper temp = old.education(firstEd, secondEd, allPr);
-                temp.setXYCords(old.getXChord()+20, old.getYChord()+20);
-                temp.updateShopperChords();
-
-                Main.getRoot().getChildren().remove(old.getShopperPicture());
-
-                Main.shoppers.remove(old);
-                old = null;
-                Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
-
-                Main.shoppers.add(temp);
-                Main.getRoot().getChildren().add(temp.getShopperPicture());
+                temp.setXYCords(old.getXChord(), old.getYChord());
+                Main.addNewShopper(temp,false);
+                Main.deleteAShopper(old);
                 ChooseAnEducationWindow.getWindow().close();
             }
         });

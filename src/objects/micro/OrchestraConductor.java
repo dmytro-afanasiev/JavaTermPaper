@@ -217,19 +217,4 @@ public class OrchestraConductor extends  MusicianMaster {
         return currentInstrument;
     }
 
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrchestraConductor that = (OrchestraConductor) o;
-        return Objects.equals(instruments, that.instruments) &&
-                Objects.equals(currentInstrument, that.currentInstrument);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(instruments, currentInstrument);
-    }
 }

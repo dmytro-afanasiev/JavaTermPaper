@@ -188,6 +188,9 @@ public class MusicianMaster extends Shopper {
             this.setStay(false);
             mediaPlayer.stop();
         });
+
     }
+
+
 }
 

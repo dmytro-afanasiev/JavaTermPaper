@@ -116,7 +116,7 @@ public class CreateShopperWindowController {
                     temp = new OrchestraConductor(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()));
 
                 }
-                Main.addNewShopper(temp);
+                Main.addNewShopper(temp, true);
                 CreateShopperWindow.getWindow().close();
             }
         });

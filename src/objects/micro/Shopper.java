@@ -26,6 +26,7 @@ import sample.Main;
 import sample.Sprite;
 
 import java.nio.file.Paths;
+import java.util.Objects;
 
 
 public class Shopper implements Cloneable {
@@ -416,6 +417,8 @@ public class Shopper implements Cloneable {
         temp.instrument = instrument.clone();
         return temp;
     }
+
+
 }
 
 

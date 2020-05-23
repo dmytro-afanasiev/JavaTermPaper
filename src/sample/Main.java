@@ -79,9 +79,10 @@ public class Main extends Application {
     }
 
 
-    public static void addNewShopper(Shopper shopper) {
+    public static void addNewShopper(Shopper shopper, boolean rand) {
         Main.shoppers.add(shopper);
-        shopper.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
+        if (rand)
+            shopper.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
         shopper.updateShopperChords();
         root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
         Main.miniMap.addShopper(shopper);
@@ -129,10 +130,10 @@ public class Main extends Application {
         Main.addNewBuilding(new School(1000, 1000));
 
 
-        Main.addNewShopper(new Shopper(false, "Dima", 5000, true));
-        Main.addNewShopper(new Shopper(false, "Dima", 500, true));
-        Main.addNewShopper(new Shopper(false, "Dima", 500, true));
-        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "master", 1000));
+        Main.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
+        Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "master", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         root.getChildren().add(parent);
