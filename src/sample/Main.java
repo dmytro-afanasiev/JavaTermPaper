@@ -83,7 +83,7 @@ public class Main extends Application {
         Main.shoppers.add(shopper);
         shopper.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
         shopper.updateShopperChords();
-        root.getChildren().add(shopper.getShopperPicture());
+        root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
         Main.miniMap.addShopper(shopper);
     }
 
@@ -96,7 +96,7 @@ public class Main extends Application {
 
     public static void addNewBuilding(Building building) {
         Main.buildings.add(building);
-        root.getChildren().add(building.getBuildingPicture());
+        root.getChildren().add(0,building.getBuildingPicture());
         Main.miniMap.addBuilding(building);
     }
 
@@ -110,15 +110,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        root.setMinWidth(3840);
-        root.setMinHeight(2160);
+        root.setMinWidth(4800);
+        root.setMinHeight(2700);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        scrollPane.pannableProperty().set(true);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.pannableProperty().set(true);
+        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
+
         miniMap = new MiniMap();
 
 
@@ -136,6 +137,7 @@ public class Main extends Application {
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         root.getChildren().add(parent);
         root.getChildren().add(miniMap.getPane());
+
 
         scrollPane.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
             @Override
@@ -155,7 +157,9 @@ public class Main extends Application {
 
                 // постійни здвиг карти при прокручуванні
                 miniMap.getPane().setLayoutX(scrollX + 10);
-                miniMap.getPane().setLayoutY(scrollY + scene.getHeight() - miniMap.getPane().getHeight() - 10);
+                miniMap.getPane().setLayoutY(scrollY + scene.getHeight() - miniMap.getPane().getHeight() - 25);
+                miniMap.getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
+                miniMap.getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
 
                 //просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
@@ -164,6 +168,7 @@ public class Main extends Application {
             }
         });
 
+        primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Let's play this instrument!");
         primaryStage.getIcons().add(new Image("assets/icon.png"));

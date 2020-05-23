@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
@@ -22,19 +23,21 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class MiniMap {
-    final static private double SCALE = 0.13;
+    final static private double SCALE = 0.12;
     private Pane pane;
     private double xChord;
     private double yChord;
     private HashMap<Shopper, ImageView> shoppersMap;
     private HashMap<Building, ImageView> buildingsMap;
-
+    private Rectangle mainArea;
     public MiniMap() {
         this.pane = new Pane();
         this.pane.setMinWidth(Main.getRoot().getMinWidth() * MiniMap.SCALE);
         this.pane.setMinHeight(Main.getRoot().getMinHeight() * MiniMap.SCALE);
         shoppersMap = new HashMap<>();
         buildingsMap = new HashMap<>();
+
+
         Rectangle rectangle = new Rectangle(0, 0, pane.getMinWidth(), pane.getMinHeight());
         rectangle.setFill(Color.LIGHTGREY);
         Rectangle border = new Rectangle(0, 0, pane.getMinWidth(), pane.getMinHeight());
@@ -45,11 +48,36 @@ public class MiniMap {
         label.setFont(new Font("Segoe UI Black Italic", 16));
         label.setLayoutX(pane.getMinWidth()/2.1);
 
-        this.pane.getChildren().addAll(rectangle, border, label);
+        mainArea = new Rectangle(0,0,Main.getScene().getWidth()*MiniMap.SCALE, Main.getScene().getHeight()*MiniMap.SCALE - 10);//Цієї "10" не повинно бути, вона виправляє якийсь баг в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
+        mainArea.setFill(Color.TRANSPARENT);
+        mainArea.setStrokeWidth(2);
+        mainArea.setStroke(Color.GREEN);
+        this.pane.getChildren().addAll(rectangle, border, label, mainArea);
+
+        this.pane.setOnMousePressed(event -> {
+            this.moveTo(event.getX(),event.getY());
+        });
+    }
+    public void moveTo(double x, double y){
+        if (x<mainArea.getWidth()/2){
+            Main.getScrollPane().setHvalue(0);
+        } else if (x>pane.getWidth()-mainArea.getWidth()/2){
+            Main.getScrollPane().setHvalue(1);
+        } else Main.getScrollPane().setHvalue(x/pane.getWidth());
+
+        if (y<mainArea.getHeight()/2){
+            Main.getScrollPane().setVvalue(0);
+        } else if (y>pane.getHeight()-mainArea.getHeight()/2){
+            Main.getScrollPane().setVvalue(1);
+        } else Main.getScrollPane().setVvalue(y/pane.getHeight());
     }
 
     public Pane getPane() {
         return pane;
+    }
+
+    public Rectangle getMainArea() {
+        return mainArea;
     }
 
     public void setXChord(double xChord) {
@@ -58,6 +86,10 @@ public class MiniMap {
 
     public void setYChord(double yChord) {
         this.yChord = yChord;
+    }
+
+    public static double getSCALE() {
+        return SCALE;
     }
 
     public void addShopper(Shopper shopper) {
