@@ -29,7 +29,7 @@ public abstract class Building {
         this.yChord = yChord;
     }
 
-    public double getXCord() {
+    public double getXChord() {
         return xChord;
     }
 

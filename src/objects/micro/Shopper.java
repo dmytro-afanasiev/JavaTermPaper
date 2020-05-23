@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -29,7 +30,7 @@ import java.nio.file.Paths;
 
 public class Shopper implements Cloneable {
 
-
+    protected String type;
     protected double speed;
     protected double xChord, yChord;
     protected byte startDirection;
@@ -56,6 +57,7 @@ public class Shopper implements Cloneable {
 
     public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
         Shopper.numberOfShoppers++;
+        this.type = "Shopper";
         this.name = name;
         this.money = money;
         this.isMan = isMan;
@@ -327,19 +329,30 @@ public class Shopper implements Cloneable {
             case "Violin":
                 break;
         }
-        Media hit = new Media(Paths.get(musicPath).toUri().toString());
-        AudioClip mediaPlayer = new AudioClip(hit.getSource());
-        mediaPlayer.setVolume(0.4);
+
+        AudioClip mediaPlayer = null;
+        try {
+            Media hit = new Media(Paths.get(musicPath).toUri().toString());
+            mediaPlayer = new AudioClip(hit.getSource());
+            mediaPlayer.setVolume(0.4);
+            mediaPlayer.play();
+        } catch (MediaException m){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Помилка загрузки аудіо!!");
+            alert.setContentText(m.toString());
+            alert.show();
+        }
+        AudioClip finalMediaPlayer = mediaPlayer;
+
         workAnimation.play();
-        mediaPlayer.play();
-
-
 
         workAnimation.setOnFinished(event -> {
             this.getShopperImage().setOpacity(1);
             this.getShopperPicture().getChildren().remove(shopperWorkSprite);
             this.setStay(false);
-            mediaPlayer.stop();
+            if (finalMediaPlayer != null) {
+                finalMediaPlayer.stop();
+            }
         });
 
     }
@@ -391,6 +404,10 @@ public class Shopper implements Cloneable {
 
     public boolean isMan() {
         return isMan;
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

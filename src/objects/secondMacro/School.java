@@ -23,7 +23,7 @@ public class School extends Building {
         this.xChord = x;
         this.yChord = y;
         this.buildingType = "School";
-        School.numberOfBuildings++;
+        Building.numberOfBuildings++;
         this.buildingImage = new ImageView(new Image("assets/school.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(360);

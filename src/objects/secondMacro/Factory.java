@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -36,7 +37,7 @@ public class Factory extends Building{
     public Factory(double xChord, double yChord){
         this.xChord = xChord;
         this.yChord = yChord;
-        Factory.numberOfBuildings++;
+        Building.numberOfBuildings++;
         this.buildingType = "Factory";
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
         this.buildingImage.setPreserveRatio(true);
@@ -57,6 +58,7 @@ public class Factory extends Building{
         this.setBuildingInChords();
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
+        smokeAnimation.play();
     }
 
     @Override
@@ -77,7 +79,6 @@ public class Factory extends Building{
     public Animation smoke(){
         return this.smokeAnimation;
     }
-    //потребує доробки
     @Override
     public void interact(Shopper shopper) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
@@ -102,10 +103,19 @@ public class Factory extends Building{
                 workAnimation.setCycleCount(20);//як довго буде працювати
 
 
-                Media hit = new Media(Paths.get("src/assets/music/dyHast.mp3").toUri().toString());
-                AudioClip mediaPlayer = new AudioClip(hit.getSource());
-                mediaPlayer.setVolume(0.02);
-                mediaPlayer.play();
+                AudioClip mediaPlayer = null;
+                try {
+                    Media hit = new Media(Paths.get("src/assets/music/dyHast.mp3").toUri().toString());
+                    mediaPlayer = new AudioClip(hit.getSource());
+                    mediaPlayer.setVolume(0.02);
+                    mediaPlayer.play();
+                } catch (MediaException m){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Помилка загрузки аудіо!!");
+                    alert.setContentText(m.toString());
+                    alert.show();
+                }
+                AudioClip finalMediaPlayer = mediaPlayer;
 
                 workAnimation.play();
 
@@ -114,7 +124,7 @@ public class Factory extends Building{
                     shopper.getShopperImage().setOpacity(1);
                     shopper.getShopperPicture().getChildren().remove(shopperWorkSprite);
                     shopper.setStay(false);
-                    mediaPlayer.stop();
+                    finalMediaPlayer.stop();
                     if (shopper.getInstrument() != null) {
                         shopper.getInstrument().getInstrumentImage().setOpacity(1);
                     }

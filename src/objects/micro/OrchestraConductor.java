@@ -33,7 +33,7 @@ public class OrchestraConductor extends  MusicianMaster {
     private String currentInstrument;
     public OrchestraConductor(Instrument instrument, boolean isActive, String name, double money){
         super(isActive,  name,  money ,  true);
-
+        this.type = "Orchestra";
         this.speed = 4;
 
 

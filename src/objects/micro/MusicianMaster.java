@@ -26,7 +26,7 @@ public class MusicianMaster extends Shopper {
 
     public MusicianMaster(Instrument instrument, boolean isActive, String name, double money , boolean isMan){
         super(instrument, isActive,  name,  money ,  isMan);
-
+        this.type = "Master";
         this.speed = 5;
 
         if (isMan){

@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import objects.firstMacro.*;
@@ -29,22 +31,25 @@ import objects.secondMacro.Building;
 import objects.secondMacro.Factory;
 import objects.secondMacro.School;
 import objects.secondMacro.Shop;
+import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
 public class Main extends Application {
 
-    public static ArrayList<Shopper> shoppers;
-    public static ArrayList<Building> buildings;
+    public static ArrayList<Shopper> shoppers = new ArrayList<>(5);
+    public static ArrayList<Building> buildings = new ArrayList<>(5);
     public static Random random = new Random(new Date().getTime());
 
     private static Pane root = new Pane();
     private static ScrollPane scrollPane = new ScrollPane(root);
     private static Scene scene = new Scene(scrollPane, 1920, 1080);
+    private static MiniMap miniMap;
 
     public static Scene getScene() {
         return scene;
@@ -58,6 +63,10 @@ public class Main extends Application {
         return scrollPane;
     }
 
+    public static MiniMap getMiniMap() {
+        return miniMap;
+    }
+
     private static double scrollX;
     private static double scrollY;
 
@@ -69,55 +78,64 @@ public class Main extends Application {
         return scrollY;
     }
 
+
+    public static void addNewShopper(Shopper shopper) {
+        Main.shoppers.add(shopper);
+        shopper.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
+        shopper.updateShopperChords();
+        root.getChildren().add(shopper.getShopperPicture());
+        Main.miniMap.addShopper(shopper);
+    }
+
+    public static void deleteAShopper(Shopper shopper) {
+        Main.miniMap.deleteAShopper(shopper);
+        root.getChildren().remove(shopper.getShopperPicture());
+        shoppers.remove(shopper);
+        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
+    }
+
+    public static void addNewBuilding(Building building) {
+        Main.buildings.add(building);
+        root.getChildren().add(building.getBuildingPicture());
+        Main.miniMap.addBuilding(building);
+    }
+
+    public static void deleteABuilding(Building building) {
+        Main.miniMap.deleteABuilding(building);
+        root.getChildren().remove(building.getBuildingPicture());
+        buildings.remove(building);
+        Building.setNumberOfBuildings(Building.getNumberOfBuildings() - 1);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        root.setMinWidth(8000);
-        root.setMinHeight(2500);
+        root.setMinWidth(3840);
+        root.setMinHeight(2160);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
         scrollPane.pannableProperty().set(true);
-        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
+        miniMap = new MiniMap();
 
 
-        Factory factory = new Factory(150, 150);
-        Factory factory2 = new Factory(2000, 400);
-        Shop shop = new Shop(600, 400);
-        School school = new School(1000, 1000);
-        buildings = new ArrayList<>(5);
-        buildings.add(factory);
-        buildings.add(factory2);
-        buildings.add(shop);
-        buildings.add(school);
-
-        root.getChildren().addAll(factory.getBuildingPicture(), factory2.getBuildingPicture(), shop.getBuildingPicture(), school.getBuildingPicture());
-        factory.smoke().play();
-        factory2.smoke().play();
+        Main.addNewBuilding(new Factory(2000, 1000));
+        Main.addNewBuilding(new Factory(2000, 400));
+        Main.addNewBuilding(new Shop(600, 400));
+        Main.addNewBuilding(new School(1000, 1000));
 
 
-        shoppers = new ArrayList<>(5);
-        shoppers.add(new Shopper(false, "Dima", 5000, true));
-        shoppers.add(new Shopper(false, "Dima", 500, true));
-        shoppers.add(new Shopper(false, "Dima", 500, true));
-        OrchestraConductor t = new OrchestraConductor(new Tremb(), false, "master", 1000);
-        t.getInstruments().put(new Guitar().getType(), new Guitar());
-        t.getInstruments().put(new Piano().getType(), new Piano());
-        t.getInstruments().put(new Drums().getType(), new Drums());
-        shoppers.add(t);
-
-
-        for (Shopper s : shoppers) {
-            s.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
-            s.updateShopperChords();
-            root.getChildren().add(s.getShopperPicture());
-        }
-
+        Main.addNewShopper(new Shopper(false, "Dima", 5000, true));
+        Main.addNewShopper(new Shopper(false, "Dima", 500, true));
+        Main.addNewShopper(new Shopper(false, "Dima", 500, true));
+        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "master", 1000));
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         root.getChildren().add(parent);
+        root.getChildren().add(miniMap.getPane());
 
         scrollPane.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
             @Override
@@ -131,10 +149,15 @@ public class Main extends Application {
                 Main.scrollY = -1 * (int) bounds.getMinY();
                 scrollHeight = -1 * (int) bounds.getMinY() + bounds.getHeight();
 
+                //постійний здвиг стрічки меню при прокручуванні
                 parent.setLayoutX(scrollX);
                 parent.setLayoutY(scrollY);
 
+                // постійни здвиг карти при прокручуванні
+                miniMap.getPane().setLayoutX(scrollX + 10);
+                miniMap.getPane().setLayoutY(scrollY + scene.getHeight() - miniMap.getPane().getHeight() - 10);
 
+                //просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
                         scrollWidth + "; Y from " + Main.scrollY + " to " +
                         scrollHeight);
@@ -147,12 +170,12 @@ public class Main extends Application {
         scene.setOnKeyPressed(new KeyPressedHandler());
 
         root.setOnMousePressed(event -> {
-            for (Shopper s : shoppers) {
+            for (Shopper shopper : shoppers) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
-                    s.mouseClick(event.getX(), event.getY());
+                    shopper.mouseClick(event.getX(), event.getY());
                 } else if (event.getButton().equals(MouseButton.SECONDARY)) {
-                    if (s instanceof OrchestraConductor) {
-                        ((OrchestraConductor) s).chooseAnInstrument(event.getX(), event.getY());
+                    if (shopper instanceof OrchestraConductor) {
+                        ((OrchestraConductor) shopper).chooseAnInstrument(event.getX(), event.getY());
                     }
                 }
             }
@@ -161,12 +184,11 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
 
-
-                for (Shopper s : shoppers) {
-                    s.freeRun();
-                    s.updateShopperChords();
+                for (Shopper shopper : shoppers) {
+                    shopper.freeRun();
+                    shopper.updateShopperChords();
                 }
-
+                miniMap.updateMap();
             }
         };
         timer.start();
@@ -187,12 +209,9 @@ public class Main extends Application {
             }
             if (event.getCode().equals(KeyCode.DELETE)) {
                 for (int i = 0; i < shoppers.size(); i++) {
-                    Shopper s = shoppers.get(i);
-                    if (s.isActive()) {
-                        root.getChildren().remove(s.getShopperPicture());
-                        s = null;
-                        shoppers.remove(i--);
-                        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
+                    Shopper shopper = shoppers.get(i);
+                    if (shopper.isActive()) {
+                        Main.deleteAShopper(shopper);
                     }
 
                 }
@@ -200,60 +219,60 @@ public class Main extends Application {
                 System.out.println(shoppers.size());
             }
             if (event.getCode().equals(KeyCode.ESCAPE)) {
-                for (Shopper s : shoppers) {
-                    if (s.isActive()) {
-                        s.setActive(false);
+                for (Shopper shopper : shoppers) {
+                    if (shopper.isActive()) {
+                        shopper.setActive(false);
                     }
                 }
             }
             if (event.getCode().equals(KeyCode.J)) {
-                for (Shopper s : shoppers) {
-                    if (s.isActive()) {
+                for (Shopper shopper : shoppers) {
+                    if (shopper.isActive()) {
                         for (Building b : buildings) {
-                            b.interact(s);
+                            b.interact(shopper);
                         }
                     }
                 }
             }
-            if (event.getCode().equals(KeyCode.K)){
-                for (Shopper s : shoppers){
-                    if (s.isActive() && s.getInstrument() != null){
-                        s.playAnInstrument();
+            if (event.getCode().equals(KeyCode.K)) {
+                for (Shopper shopper : shoppers) {
+                    if (shopper.isActive() && shopper.getInstrument() != null) {
+                        shopper.playAnInstrument();
                         break;
                     }
                 }
             }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
-                for (Shopper s : shoppers) {
-                    s.up(1);
+                for (Shopper shopper : shoppers) {
+                    shopper.up(1);
                 }
             } else if (event.getCode().equals(KeyCode.S) && !event.isShiftDown()) {
-                for (Shopper s : shoppers) {
-                    s.down(1);
+                for (Shopper shopper : shoppers) {
+                    shopper.down(1);
                 }
             } else if (event.getCode().equals(KeyCode.D) && !event.isShiftDown()) {
-                for (Shopper s : shoppers) {
-                    s.right(1);
+                for (Shopper shopper : shoppers) {
+                    shopper.right(1);
                 }
             } else if (event.getCode().equals(KeyCode.A) && !event.isShiftDown()) {
-                for (Shopper s : shoppers) {
-                    s.left(1);
+                for (Shopper shopper : shoppers) {
+                    shopper.left(1);
                 }
             } else if (event.getCode().equals(KeyCode.W)) {
-                for (Shopper s : shoppers) {
-                    s.up(2);
+                for (Shopper shopper : shoppers) {
+                    shopper.up(2);
                 }
             } else if (event.getCode().equals(KeyCode.S)) {
-                for (Shopper s : shoppers) {
-                    s.down(2);
+                for (Shopper shopper : shoppers) {
+                    shopper.down(2);
                 }
             } else if (event.getCode().equals(KeyCode.D)) {
-                for (Shopper s : shoppers) {
-                    s.right(2);
+                for (Shopper shopper : shoppers) {
+                    shopper.right(2);
                 }
             } else if (event.getCode().equals(KeyCode.A)) {
-                for (Shopper s : shoppers) {
-                    s.left(2);
+                for (Shopper shopper : shoppers) {
+                    shopper.left(2);
                 }
             }
         }

@@ -22,7 +22,7 @@ public class Shop extends Building {
         this.xChord = x;
         this.yChord = y;
         this.buildingType = "Shop";
-        Shop.numberOfBuildings++;
+        Building.numberOfBuildings++;
         this.buildingImage = new ImageView(new Image("assets/shop.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
