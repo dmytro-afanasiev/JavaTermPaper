@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Ellipse;
 import objects.micro.Shopper;
 
+import java.awt.*;
+
 public abstract class Building {
     protected double xChord;
     protected double yChord;
@@ -54,5 +56,5 @@ public abstract class Building {
     }
 
     public abstract void setBuildingInChords();
-    public abstract void interact(Shopper shopper);
+    public abstract void interact(Shopper shopper, boolean isShiftDown);
 }

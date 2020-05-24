@@ -4,6 +4,7 @@ package objects.micro;
 import javafx.animation.Animation;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -22,6 +23,7 @@ import sample.Sprite;
 import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class MusicianMaster extends Shopper {
 
@@ -132,6 +134,24 @@ public class MusicianMaster extends Shopper {
             alert.showAndWait();
         }
         return this;
+    }
+
+    @Override
+    public void sellAnInstrument() {
+        if (this.instrument != null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Ви дійсно хочете продати поточний інструмент?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK){
+                this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
+                this.money+= this.instrument.getPrise()* 0.5;
+                this.instrument = null;
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("У вас немає що продавати");
+            alert.showAndWait();
+        }
     }
 
     @Override

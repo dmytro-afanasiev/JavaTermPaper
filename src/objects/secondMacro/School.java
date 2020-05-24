@@ -16,6 +16,7 @@ import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
 import sample.windows.chooseAnEducationWindow.ChooseAnEducationWindow;
 import sample.windows.chooseAnInstrumentWindow.ChooseAnInstrumentWindow;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class School extends Building {
@@ -41,7 +42,7 @@ public class School extends Building {
     }
 
     @Override
-    public void interact(Shopper shopper) {
+    public void interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
             if (!(shopper instanceof OrchestraConductor) && shopper.getInstrument() != null) {
                 try {

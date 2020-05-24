@@ -235,7 +235,7 @@ public class Main extends Application {
                 for (Shopper shopper : shoppers) {
                     if (shopper.isActive()) {
                         for (Building b : buildings) {
-                            b.interact(shopper);
+                            b.interact(shopper, event.isShiftDown());
                         }
                     }
                 }

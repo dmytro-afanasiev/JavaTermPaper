@@ -263,6 +263,18 @@ public class Shopper implements Cloneable {
             alert.showAndWait();
         }
     }
+    public void sellAnInstrument(){
+        if (this.getInstrument() != null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Приходьте пізніше");
+            alert.setContentText("Будучи початківцев, продавати ваш єдиний інструмент дуже ризиковано.");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("У вас немає що продавати");
+            alert.showAndWait();
+        }
+    }
 
     public Shopper education(boolean first, boolean second, double allPrice) {
         if (first && second && this.money >= allPrice) {// провырку на жынку не забути

@@ -1,6 +1,7 @@
 package objects.secondMacro;
 
 
+import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -40,24 +41,27 @@ public class Shop extends Building {
     }
 
     @Override
-    public void interact(Shopper shopper) {
+    public void interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
-            if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
-                try {
-                    new BuyAnInstrumentWindow().display("Choose an instrument", shopper);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if (!isShiftDown) {
+                if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
+                    try {
+                        new BuyAnInstrumentWindow().display("Choose an instrument", shopper);
+                    } catch (IOException e) {
+                        e.printStackTrace();
 
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                    alert.setTitle("Увага!");
+                    alert.setHeaderText("Повертайтеся пізніше");
+                    alert.setContentText("Неможливо купити: даний музикант не може володіти більше, ніж одним інструментом!");
+                    alert.showAndWait();
                 }
-            } else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-                alert.setTitle("Увага!");
-                alert.setHeaderText("Повертайтеся пізніше");
-                alert.setContentText("Неможливо купити: даний музикант не може володіти більше, ніж одним інструментом!");
-                alert.showAndWait();
+            } else {
+                shopper.sellAnInstrument();
             }
-
         }
     }
 

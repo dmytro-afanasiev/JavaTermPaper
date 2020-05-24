@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -24,14 +25,12 @@ import sample.windows.preferencesWindow.Preferences;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class OrchestraConductor extends  MusicianMaster {
 
-    private Map<String, Instrument> instruments;
-    private String currentInstrument;
+    private Set<Instrument> instruments;
+
     public OrchestraConductor(Instrument instrument, boolean isActive, String name, double money){
         super(isActive,  name,  money ,  true);
         this.type = "Orchestra";
@@ -45,7 +44,7 @@ public class OrchestraConductor extends  MusicianMaster {
         this.shopperImage.setEffect(new DropShadow(30,0,0, Color.GRAY));
 
 
-        this.instruments = new HashMap<>();
+        this.instruments = new HashSet<>();
 
         if (instrument != null) {
             this.currentInstrument = instrument.getType();
@@ -155,6 +154,26 @@ public class OrchestraConductor extends  MusicianMaster {
             alert.setTitle("Увага");
             alert.setHeaderText("Повертайтеся пізніше");
             alert.setContentText("Недостатньо коштів для покупки даного інструмента, або ви вже його маєте");
+            alert.showAndWait();
+        }
+    }
+
+    @Override
+    public void sellAnInstrument() {
+        if (this.instrument != null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Ви дійсно хочете продати поточний інструмент?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK){
+                this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
+                this.money+= this.instrument.getPrise()* 0.5;
+                this.currentInstrument = "Nothing";
+                this.instruments.remove(instrument);
+                this.instrument = null;
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Візьміть у руки інструмент, який хочете продати");
             alert.showAndWait();
         }
     }

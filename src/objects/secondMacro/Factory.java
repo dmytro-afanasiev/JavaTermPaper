@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -80,7 +81,7 @@ public class Factory extends Building{
         return this.smokeAnimation;
     }
     @Override
-    public void interact(Shopper shopper) {
+    public void interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
             if (shopper.isMan()) {
 
