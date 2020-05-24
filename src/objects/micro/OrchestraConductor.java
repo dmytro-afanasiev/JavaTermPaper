@@ -29,7 +29,7 @@ import java.util.*;
 
 public class OrchestraConductor extends  MusicianMaster {
 
-    private Set<Instrument> instruments;
+    private Map<String,Instrument> instruments;
 
     public OrchestraConductor(Instrument instrument, boolean isActive, String name, double money){
         super(isActive,  name,  money ,  true);
@@ -44,12 +44,13 @@ public class OrchestraConductor extends  MusicianMaster {
         this.shopperImage.setEffect(new DropShadow(30,0,0, Color.GRAY));
 
 
-        this.instruments = new HashSet<>();
+        this.instruments = new HashMap<>();
 
         if (instrument != null) {
-            this.currentInstrument = instrument.getType();
-            this.instruments.put(currentInstrument,instrument);
-        } else currentInstrument = "Nothing";
+            this.instruments.put(instrument.getType(),instrument);
+            this.instrument = instrument;
+        } else this.instrument = null;
+
         this.shopperText = new Label(this.name + ", money: "+ this.money + "\nNumber of instruments: " +this.instruments.size());
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
@@ -65,8 +66,7 @@ public class OrchestraConductor extends  MusicianMaster {
                 15.0, 25.0);
         this.triangleAct.setFill(Color.BLACK);
 
-        this.instrument  =  this.instruments.get(currentInstrument);
-        if (currentInstrument != "Nothing"){
+        if (this.instrument != null){
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
         } else {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
@@ -77,18 +77,17 @@ public class OrchestraConductor extends  MusicianMaster {
 
     }
 
-    public OrchestraConductor(Instrument instrument, String currentInstrument, boolean isActive, String name, double money) {
-        this(instrument, isActive, name, money);
-    }
+
     public OrchestraConductor(boolean isActive, String name) {
-        this(null, "Nothing", isActive, name, 0);
+        this(null,  isActive, name, 0);
     }
     public OrchestraConductor(boolean isActive, String name, double money){
-        this( null, "Nothing",isActive, name, money);
+        this( null, isActive, name, money);
     }
     public OrchestraConductor(String name){
-        this( null,"Nothing", true, name, 0);
+        this( null, true, name, 0);
     }
+
     @Override
     public void updateShopperChords() {
         double x = this.xChord;
@@ -111,8 +110,8 @@ public class OrchestraConductor extends  MusicianMaster {
         } else {
             this.triangleAct.setOpacity(0);
         }
-        if (!this.instruments.isEmpty()) {
-            this.instruments.get(currentInstrument).update(x, y);
+        if (this.instrument != null) {
+            this.instrument.update(x, y);
         }
 
     }
@@ -131,15 +130,15 @@ public class OrchestraConductor extends  MusicianMaster {
     }
     public void changeAnInstrument(String currentInstrument){
 
-        if (this.instruments.containsKey(currentInstrument)){
-            this.shopperPicture.getChildren().remove(this.instruments.get(this.currentInstrument).getInstrumentImage());
-            this.currentInstrument= currentInstrument;
-            this.instrument = this.instruments.get(this.currentInstrument);
+        if (currentInstrument.equals("Nothing")){
+            if (this.instrument != null)
+                this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
+            this.instrument= null;
+        } else {
+            if (this.instrument != null)
+                this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
+            this.instrument = instruments.get(currentInstrument);
             this.shopperPicture.getChildren().add(instrument.getInstrumentImage());
-
-        } else if (currentInstrument.equals("Nothing")){
-            this.shopperPicture.getChildren().remove(this.instruments.get(this.currentInstrument).getInstrumentImage());
-            this.instrument = null;
         }
     }
 
@@ -167,8 +166,7 @@ public class OrchestraConductor extends  MusicianMaster {
             if (option.get() == ButtonType.OK){
                 this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
                 this.money+= this.instrument.getPrise()* 0.5;
-                this.currentInstrument = "Nothing";
-                this.instruments.remove(instrument);
+                this.instruments.remove(this.instrument.getType());
                 this.instrument = null;
             }
         } else {
@@ -232,8 +230,5 @@ public class OrchestraConductor extends  MusicianMaster {
         return instruments;
     }
 
-    public String getCurrentInstrument() {
-        return currentInstrument;
-    }
 
 }
