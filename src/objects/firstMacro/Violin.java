@@ -9,7 +9,7 @@ public class Violin extends Instrument{
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(140);
         this.type="Violin";
-        this.prise = 450;
+        this.price = 450;
     }
     @Override
     public void update(double x, double y) {

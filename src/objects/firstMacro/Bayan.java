@@ -9,7 +9,7 @@ public class Bayan extends Instrument {
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
         this.type = "Bayan";
-        this.prise = 400;
+        this.price = 400;
     }
     @Override
     public void update(double x, double y) {

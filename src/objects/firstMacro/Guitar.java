@@ -11,7 +11,7 @@ public class Guitar extends Instrument {
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
         this.type = "Guitar";
-        this.prise = 100;
+        this.price = 100;
     }
     @Override
     public void update(double x, double y) {

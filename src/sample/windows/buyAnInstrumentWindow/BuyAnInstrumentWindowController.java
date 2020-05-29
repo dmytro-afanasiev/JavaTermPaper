@@ -1,11 +1,5 @@
 package sample.windows.buyAnInstrumentWindow;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.firstMacro.*;
@@ -84,12 +78,12 @@ public class BuyAnInstrumentWindowController {
             typeOfInstrument = "Violin";
         });
         radioGuitar.fire();
-        guitarLabel.setText(new Guitar().getType() + " --" + new Guitar().getPrise());
-        pianoLabel.setText(new Piano().getType() + " --" + new Piano().getPrise());
-        bayanLabel.setText(new Bayan().getType() + " --" + new Bayan().getPrise());
-        violinLabel.setText(new Violin().getType() + " --" + new Violin().getPrise());
-        drumsLabel.setText(new Drums().getType() + " --" + new Drums().getPrise());
-        trembLabel.setText(new Tremb().getType() + " --" + new Tremb().getPrise());
+        guitarLabel.setText(new Guitar().getType() + " --" + new Guitar().getPrice());
+        pianoLabel.setText(new Piano().getType() + " --" + new Piano().getPrice());
+        bayanLabel.setText(new Bayan().getType() + " --" + new Bayan().getPrice());
+        violinLabel.setText(new Violin().getType() + " --" + new Violin().getPrice());
+        drumsLabel.setText(new Drums().getType() + " --" + new Drums().getPrice());
+        trembLabel.setText(new Tremb().getType() + " --" + new Tremb().getPrice());
 
 
         chooseButton.setOnAction(event -> {

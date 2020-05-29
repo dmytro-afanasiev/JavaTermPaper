@@ -144,7 +144,7 @@ public class MusicianMaster extends Shopper {
             Optional<ButtonType> option = alert.showAndWait();
             if (option.get() == ButtonType.OK){
                 this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
-                this.money+= this.instrument.getPrise()* 0.5;
+                this.money+= this.instrument.getPrice()* 0.5;
                 this.instrument = null;
             }
         } else {
@@ -173,8 +173,8 @@ public class MusicianMaster extends Shopper {
         this.getShopperPicture().getChildren().add(4 ,masterPlaySprite);
         this.setStay(true);
 
-        Animation workAnimation = new Sprite(masterPlaySprite , Duration.millis(2000),4,4,0,0,431,683);
-        workAnimation.setCycleCount(10);//як довго буде грати
+        Animation playAnimation = new Sprite(masterPlaySprite , Duration.millis(2000),4,4,0,0,431,683);
+        playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";
         switch (this.instrument.getType()){
@@ -196,12 +196,12 @@ public class MusicianMaster extends Shopper {
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
         AudioClip mediaPlayer = new AudioClip(hit.getSource());
         mediaPlayer.setVolume(Preferences.getVOLUME());
-        workAnimation.play();
+        playAnimation.play();
         mediaPlayer.play();
 
 
 
-        workAnimation.setOnFinished(event -> {
+        playAnimation.setOnFinished(event -> {
             this.getShopperImage().setOpacity(1);
             this.getShopperPicture().getChildren().remove(masterPlaySprite);
             this.setStay(false);

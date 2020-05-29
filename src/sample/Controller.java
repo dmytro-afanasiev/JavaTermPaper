@@ -51,9 +51,12 @@ public class Controller {
             @Override
             public void handle(ActionEvent event) {
                 String buttonName = ((MenuItem)event.getTarget()).getText();
-                if (buttonName.equals("Вийти")){
+                if (buttonName.equals("Зберегти")){
+
+                }
+                else if (buttonName.equals("Вийти")){
                     Platform.exit();
-                } if (buttonName.equals("Створити персонажа")) {
+                } else if (buttonName.equals("Створити персонажа")) {
                     try {
                         new CreateShopperWindow().display("Let's create new Shopper!");
                     } catch (IOException e) {

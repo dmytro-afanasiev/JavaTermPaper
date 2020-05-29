@@ -2,8 +2,6 @@ package objects.micro;
 
 
 import javafx.animation.Animation;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -11,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
@@ -27,7 +24,6 @@ import sample.Sprite;
 import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
-import java.util.Objects;
 
 
 public class Shopper implements Cloneable {
@@ -251,9 +247,9 @@ public class Shopper implements Cloneable {
     }
 
     public void buyAnInstrument(String typeOfInstrument) {
-        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrise()) {
+        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrice()) {
             this.instrument = Instrument.getInstrument(typeOfInstrument);
-            this.money -= this.instrument.getPrise();
+            this.money -= this.instrument.getPrice();
             this.shopperPicture.getChildren().add(this.instrument.getInstrumentImage());
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -303,24 +299,24 @@ public class Shopper implements Cloneable {
 
         this.getShopperImage().setOpacity(0);
 
-        ImageView shopperWorkSprite;
+        ImageView shopperPlaySprite;
         if (this.isMan) {
-            shopperWorkSprite = new ImageView(new Image("assets/shopperPlaySprite.png"));
+            shopperPlaySprite = new ImageView(new Image("assets/shopperPlaySprite.png"));
         } else {
-            shopperWorkSprite = new ImageView(new Image("assets/girlShopperPlaySprite.png"));
+            shopperPlaySprite = new ImageView(new Image("assets/girlShopperPlaySprite.png"));
 
         }
-        shopperWorkSprite.setX(this.getShopperImage().getX());
-        shopperWorkSprite.setY(this.getShopperImage().getY());
-        shopperWorkSprite.setPreserveRatio(true);
-        shopperWorkSprite.setFitHeight(this.getShopperImage().getFitHeight());
+        shopperPlaySprite.setX(this.getShopperImage().getX());
+        shopperPlaySprite.setY(this.getShopperImage().getY());
+        shopperPlaySprite.setPreserveRatio(true);
+        shopperPlaySprite.setFitHeight(this.getShopperImage().getFitHeight());
 
 
-        this.getShopperPicture().getChildren().add(4 ,shopperWorkSprite);
+        this.getShopperPicture().getChildren().add(4 ,shopperPlaySprite);
         this.setStay(true);
 
-        Animation workAnimation = new Sprite(shopperWorkSprite , Duration.millis(2000),4,4,0,0,431,683);
-        workAnimation.setCycleCount(10);//як довго буде грати
+        Animation playAnimation = new Sprite(shopperPlaySprite , Duration.millis(2000),4,4,0,0,431,683);
+        playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";
         switch (this.instrument.getType()){
@@ -356,11 +352,11 @@ public class Shopper implements Cloneable {
         }
         AudioClip finalMediaPlayer = mediaPlayer;
 
-        workAnimation.play();
+        playAnimation.play();
 
-        workAnimation.setOnFinished(event -> {
+        playAnimation.setOnFinished(event -> {
             this.getShopperImage().setOpacity(1);
-            this.getShopperPicture().getChildren().remove(shopperWorkSprite);
+            this.getShopperPicture().getChildren().remove(shopperPlaySprite);
             this.setStay(false);
             if (finalMediaPlayer != null) {
                 finalMediaPlayer.stop();

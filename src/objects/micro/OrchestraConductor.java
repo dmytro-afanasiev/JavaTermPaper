@@ -145,9 +145,9 @@ public class OrchestraConductor extends  MusicianMaster {
 
     @Override
     public void buyAnInstrument(String typeOfInstrument) {
-        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrise() && !this.instruments.containsKey(typeOfInstrument)){
+        if (this.money >= Instrument.getInstrument(typeOfInstrument).getPrice() && !this.instruments.containsKey(typeOfInstrument)){
             this.instruments.put(typeOfInstrument, Instrument.getInstrument(typeOfInstrument));
-            this.money -= Instrument.getInstrument(typeOfInstrument).getPrise();
+            this.money -= Instrument.getInstrument(typeOfInstrument).getPrice();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Увага");
@@ -165,7 +165,7 @@ public class OrchestraConductor extends  MusicianMaster {
             Optional<ButtonType> option = alert.showAndWait();
             if (option.get() == ButtonType.OK){
                 this.shopperPicture.getChildren().remove(this.instrument.getInstrumentImage());
-                this.money+= this.instrument.getPrise()* 0.5;
+                this.money+= this.instrument.getPrice()* 0.5;
                 this.instruments.remove(this.instrument.getType());
                 this.instrument = null;
             }
@@ -190,8 +190,8 @@ public class OrchestraConductor extends  MusicianMaster {
         this.getShopperPicture().getChildren().add(4 ,orchestraPlaySprite);
         this.setStay(true);
 
-        Animation workAnimation = new Sprite(orchestraPlaySprite , Duration.millis(2000),4,4,0,0,561,683);
-        workAnimation.setCycleCount(10);//як довго буде грати
+        Animation playAnimation = new Sprite(orchestraPlaySprite , Duration.millis(2000),4,4,0,0,561,683);
+        playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";
         switch (this.instrument.getType()){
@@ -213,12 +213,12 @@ public class OrchestraConductor extends  MusicianMaster {
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
         AudioClip mediaPlayer = new AudioClip(hit.getSource());
         mediaPlayer.setVolume(Preferences.getVOLUME());
-        workAnimation.play();
+        playAnimation.play();
         mediaPlayer.play();
 
 
 
-        workAnimation.setOnFinished(event -> {
+        playAnimation.setOnFinished(event -> {
             this.getShopperImage().setOpacity(1);
             this.getShopperPicture().getChildren().remove(orchestraPlaySprite);
             this.setStay(false);

@@ -3,7 +3,7 @@ package objects.firstMacro;
 import javafx.scene.image.ImageView;
 
 public abstract class Instrument implements Cloneable{
-     protected double prise;
+     protected double price;
      protected ImageView instrumentImage = null;
      protected String type = "Nothing";
 
@@ -17,8 +17,8 @@ public abstract class Instrument implements Cloneable{
         return this.type;
     }
 
-    public double getPrise() {
-        return prise;
+    public double getPrice() {
+        return price;
     }
 
     public abstract void update(double x, double y);

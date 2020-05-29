@@ -9,7 +9,7 @@ public class Piano extends Instrument{
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(170);
         this.type = "Piano";
-        this.prise = 600;
+        this.price = 600;
     }
     @Override
     public void update(double x, double y) {

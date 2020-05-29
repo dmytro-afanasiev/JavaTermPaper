@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 public class ChooseAnInstrumentWindowController {
-    private String typeOfInstrument;
+    private String typeOfInstrument ;
     @FXML
     private ListView<String> instrumentsListShopper;
 
