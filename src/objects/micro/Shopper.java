@@ -115,7 +115,9 @@ public class Shopper implements Cloneable {
         this(null, true, name, 0, true);
     }
 
-    public Shopper(){ }
+    public Shopper(){
+        this(null, false,null,0,true);
+    }
 
 
     public void updateShopperChords() {
@@ -142,7 +144,6 @@ public class Shopper implements Cloneable {
         if (this.instrument != null) {
             this.instrument.update(x, y);
         }
-
     }
 
     public void freeRun() {
@@ -277,7 +278,7 @@ public class Shopper implements Cloneable {
 
     public void playAnInstrument(){
 
-        this.getShopperImage().setOpacity(0);
+        this.shopperImage.setOpacity(0);
 
         ImageView shopperPlaySprite;
         if (this.isMan) {
@@ -286,10 +287,10 @@ public class Shopper implements Cloneable {
             shopperPlaySprite = new ImageView(new Image("assets/girlShopperPlaySprite.png"));
 
         }
-        shopperPlaySprite.setX(this.getShopperImage().getX());
-        shopperPlaySprite.setY(this.getShopperImage().getY());
+        shopperPlaySprite.setX(this.shopperImage.getX());
+        shopperPlaySprite.setY(this.shopperImage.getY());
         shopperPlaySprite.setPreserveRatio(true);
-        shopperPlaySprite.setFitHeight(this.getShopperImage().getFitHeight());
+        shopperPlaySprite.setFitHeight(this.shopperImage.getFitHeight());
 
 
         this.getShopperPicture().getChildren().add(4 ,shopperPlaySprite);
@@ -335,7 +336,7 @@ public class Shopper implements Cloneable {
         playAnimation.play();
 
         playAnimation.setOnFinished(event -> {
-            this.getShopperImage().setOpacity(1);
+            this.shopperImage.setOpacity(1);
             this.getShopperPicture().getChildren().remove(shopperPlaySprite);
             this.setStay(false);
             if (finalMediaPlayer != null) {
@@ -345,21 +346,8 @@ public class Shopper implements Cloneable {
 
     }
 
-    /*public void fillShopperPicture(){
-        this.shopperPicture.getChildren().clear();
-        if (this.instrument != null) {
-            this.shopperPicture.getChildren().addAll(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
-        } else {
-            this.shopperPicture.getChildren().addAll(shopperImage, shopperText, shadow, triangleAct);
-        }
-    }*/
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public double getXChord() {
@@ -386,14 +374,6 @@ public class Shopper implements Cloneable {
         this.startDirection = startDirection;
     }
 
-    public Ellipse getShadow() {
-        return shadow;
-    }
-
-    public void setShadow(Ellipse shadow) {
-        this.shadow = shadow;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -402,24 +382,8 @@ public class Shopper implements Cloneable {
         isActive = active;
     }
 
-    public boolean isStay() {
-        return stay;
-    }
-
-    public Polygon getTriangleAct() {
-        return triangleAct;
-    }
-
-    public void setTriangleAct(Polygon triangleAct) {
-        this.triangleAct = triangleAct;
-    }
-
     public ImageView getShopperImage() {
         return shopperImage;
-    }
-
-    public void setShopperImage(ImageView shopperImage) {
-        this.shopperImage = shopperImage;
     }
 
     public boolean isMan() {
@@ -428,14 +392,9 @@ public class Shopper implements Cloneable {
 
     public void setMan(boolean man) {
         isMan = man;
-    }
-
-    public Label getShopperText() {
-        return shopperText;
-    }
-
-    public void setShopperText(Label shopperText) {
-        this.shopperText = shopperText;
+        if (man)
+            this.shopperImage.setImage(new Image("assets/shopper.png"));
+        else this.shopperImage.setImage(new Image("assets/girlShopper.png"));
     }
 
     public Instrument getInstrument() {
@@ -444,14 +403,11 @@ public class Shopper implements Cloneable {
 
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
+        this.shopperPicture.getChildren().add(this.instrument.getInstrumentImage());
     }
 
     public Group getShopperPicture() {
         return shopperPicture;
-    }
-
-    public void setShopperPicture(Group shopperPicture) {
-        this.shopperPicture = shopperPicture;
     }
 
     public double getMoney() {

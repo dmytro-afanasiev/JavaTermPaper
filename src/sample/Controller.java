@@ -77,8 +77,6 @@ public class Controller {
                         Shopper shopper = Main.shoppers.get(i--);
                         Main.deleteAShopper(shopper);
                     }
-
-
                     for(Shopper shopper: (ArrayList<Shopper>) decoder.readObject()){
                         Main.addNewShopper(shopper, false);
                     }

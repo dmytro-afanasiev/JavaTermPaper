@@ -76,7 +76,9 @@ public class MusicianMaster extends Shopper {
     public MusicianMaster(String name){
         this(null, true, name, 0,true);
     }
-    public MusicianMaster(){}
+    public MusicianMaster(){
+        this(null, false,null,0,true);
+    }
 
     @Override
     public void updateShopperChords() {
@@ -108,26 +110,23 @@ public class MusicianMaster extends Shopper {
 
     @Override
     public Shopper education(boolean first, boolean second, double allPrice) {
-        if (second && !first && this.money >= allPrice){
-            if (this.isMan){
+        if (second && !first && this.money >= allPrice)
+            if (this.isMan)
                 return new OrchestraConductor(Instrument.getInstrument(this.instrument.getType()), true, this.name, this.money-allPrice);
-            } else {
+            else
+            {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Жінки не можуть бути дирижорами");
                 alert.showAndWait();
             }
-        } else if (first && !second && this.money >= allPrice)
+            else if (second && !first && this.money <= allPrice)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Ви уже пройшли початкову школу");
-            alert.showAndWait();
-        } else if (first && second && this.money >= allPrice){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Ви уже пройшли початкову школу");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Недостатньо коштів");
+            alert.showAndWait();
+        } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Ви уже пройшли цю програму!");
             alert.showAndWait();
         }
         return this;
@@ -154,17 +153,17 @@ public class MusicianMaster extends Shopper {
     @Override
     public void playAnInstrument() {
 
-        this.getShopperImage().setOpacity(0);
+        this.shopperImage.setOpacity(0);
         ImageView masterPlaySprite;
         if (this.isMan) {
              masterPlaySprite = new ImageView(new Image("assets/masterPlaySprite.png"));
         } else {
              masterPlaySprite = new ImageView(new Image("assets/girlMasterPlaySprite.png"));
         }
-        masterPlaySprite.setX(this.getShopperImage().getX());
-        masterPlaySprite.setY(this.getShopperImage().getY());
+        masterPlaySprite.setX(this.shopperImage.getX());
+        masterPlaySprite.setY(this.shopperImage.getY());
         masterPlaySprite.setPreserveRatio(true);
-        masterPlaySprite.setFitHeight(this.getShopperImage().getFitHeight());
+        masterPlaySprite.setFitHeight(this.shopperImage.getFitHeight());
 
 
         this.getShopperPicture().getChildren().add(4 ,masterPlaySprite);
@@ -199,7 +198,7 @@ public class MusicianMaster extends Shopper {
 
 
         playAnimation.setOnFinished(event -> {
-            this.getShopperImage().setOpacity(1);
+            this.shopperImage.setOpacity(1);
             this.getShopperPicture().getChildren().remove(masterPlaySprite);
             this.setStay(false);
             mediaPlayer.stop();
@@ -207,6 +206,12 @@ public class MusicianMaster extends Shopper {
 
     }
 
-
+    @Override
+    public void setMan(boolean man) {
+        isMan = man;
+        if (man)
+            this.shopperImage.setImage(new Image("assets/master.png"));
+        else this.shopperImage.setImage(new Image("assets/girlMaster.png"));
+    }
 }
 

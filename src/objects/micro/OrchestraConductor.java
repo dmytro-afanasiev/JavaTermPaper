@@ -83,7 +83,9 @@ public class OrchestraConductor extends  MusicianMaster {
     public OrchestraConductor(String name){
         this( null, true, name, 0);
     }
-    public OrchestraConductor(){}
+    public OrchestraConductor(){
+        this(null, false,null,0);
+    }
 
     @Override
     public void updateShopperChords() {
@@ -175,13 +177,13 @@ public class OrchestraConductor extends  MusicianMaster {
 
     @Override
     public void playAnInstrument() {
-        this.getShopperImage().setOpacity(0);
+        this.shopperImage.setOpacity(0);
 
         ImageView orchestraPlaySprite = new ImageView(new Image("assets/orchestraPlaySprite.png"));
-        orchestraPlaySprite.setX(this.getShopperImage().getX());
-        orchestraPlaySprite.setY(this.getShopperImage().getY());
+        orchestraPlaySprite.setX(this.shopperImage.getX());
+        orchestraPlaySprite.setY(this.shopperImage.getY());
         orchestraPlaySprite.setPreserveRatio(true);
-        orchestraPlaySprite.setFitHeight(this.getShopperImage().getFitHeight());
+        orchestraPlaySprite.setFitHeight(this.shopperImage.getFitHeight());
 
 
         this.getShopperPicture().getChildren().add(4 ,orchestraPlaySprite);
@@ -216,7 +218,7 @@ public class OrchestraConductor extends  MusicianMaster {
 
 
         playAnimation.setOnFinished(event -> {
-            this.getShopperImage().setOpacity(1);
+            this.shopperImage.setOpacity(1);
             this.getShopperPicture().getChildren().remove(orchestraPlaySprite);
             this.setStay(false);
             mediaPlayer.stop();

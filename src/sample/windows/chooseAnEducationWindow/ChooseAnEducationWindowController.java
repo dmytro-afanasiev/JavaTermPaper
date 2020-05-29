@@ -59,10 +59,13 @@ public class ChooseAnEducationWindowController {
             if (firstEd || secondEd) {
                 Shopper old = ChooseAnEducationWindow.getShopper();
                 Shopper temp = old.education(firstEd, secondEd, allPr);
-                temp.setXChord(old.getXChord());
-                temp.setYChord(old.getYChord());
-                Main.addNewShopper(temp,false);
-                Main.deleteAShopper(old);
+                if (old != temp){
+                    temp.setYChord(old.getYChord());
+                    temp.setXChord(old.getXChord());
+                    Main.deleteAShopper(old);
+                    Main.addNewShopper(temp,false);
+                }
+
                 ChooseAnEducationWindow.getWindow().close();
             }
         });

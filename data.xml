@@ -4,445 +4,182 @@
   <void method="add">
    <object class="objects.micro.Shopper">
     <void property="XChord">
-     <double>161.0</double>
+     <double>110.0</double>
     </void>
     <void property="YChord">
-     <double>695.0</double>
-    </void>
-    <void property="man">
-     <boolean>true</boolean>
+     <double>1032.0</double>
     </void>
     <void property="money">
-     <double>5000.0</double>
+     <double>1315.0</double>
     </void>
     <void property="name">
      <string>Dima</string>
     </void>
-    <void property="shadow">
-     <object class="javafx.scene.shape.Ellipse">
-      <void property="effect">
-       <object class="javafx.scene.effect.GaussianBlur">
-        <void property="radius">
-         <double>40.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="layoutX">
-       <double>151.0</double>
-      </void>
-      <void property="layoutY">
-       <double>865.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.8</double>
-      </void>
-      <void property="radiusX">
-       <double>75.0</double>
-      </void>
-      <void property="radiusY">
-       <double>20.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperImage">
-     <object class="javafx.scene.image.ImageView">
-      <void property="effect">
-       <object class="javafx.scene.effect.DropShadow">
-        <void property="height">
-         <double>61.0</double>
-        </void>
-        <void property="radius">
-         <double>30.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="fitHeight">
-       <double>190.0</double>
-      </void>
-      <void property="preserveRatio">
-       <boolean>true</boolean>
-      </void>
-      <void property="x">
-       <double>161.0</double>
-      </void>
-      <void property="y">
-       <double>695.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperPicture">
-     <object class="javafx.scene.Group"/>
-    </void>
-    <void property="shopperText">
-     <object class="javafx.scene.control.Label">
-      <void property="layoutX">
-       <double>146.0</double>
-      </void>
-      <void property="layoutY">
-       <double>670.0</double>
-      </void>
-      <void property="text">
-       <string>Dima, money: 5000.0</string>
-      </void>
-     </object>
-    </void>
     <void property="startDirection">
-     <byte>5</byte>
-    </void>
-    <void property="triangleAct">
-     <object class="javafx.scene.shape.Polygon">
-      <void property="layoutX">
-       <double>191.0</double>
-      </void>
-      <void property="layoutY">
-       <double>655.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="type">
-     <string>Shopper</string>
+     <byte>6</byte>
     </void>
    </object>
   </void>
   <void method="add">
    <object class="objects.micro.Shopper">
     <void property="XChord">
-     <double>569.0</double>
+     <double>1424.0</double>
     </void>
     <void property="YChord">
-     <double>507.0</double>
-    </void>
-    <void property="man">
-     <boolean>true</boolean>
-    </void>
-    <void property="money">
-     <double>500.0</double>
-    </void>
-    <void property="name">
-     <string>Dima</string>
-    </void>
-    <void property="shadow">
-     <object class="javafx.scene.shape.Ellipse">
-      <void property="effect">
-       <object class="javafx.scene.effect.GaussianBlur">
-        <void property="radius">
-         <double>40.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="layoutX">
-       <double>559.0</double>
-      </void>
-      <void property="layoutY">
-       <double>677.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.8</double>
-      </void>
-      <void property="radiusX">
-       <double>75.0</double>
-      </void>
-      <void property="radiusY">
-       <double>20.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperImage">
-     <object class="javafx.scene.image.ImageView">
-      <void property="effect">
-       <object class="javafx.scene.effect.DropShadow">
-        <void property="height">
-         <double>61.0</double>
-        </void>
-        <void property="radius">
-         <double>30.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="fitHeight">
-       <double>190.0</double>
-      </void>
-      <void property="preserveRatio">
-       <boolean>true</boolean>
-      </void>
-      <void property="x">
-       <double>569.0</double>
-      </void>
-      <void property="y">
-       <double>507.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperPicture">
-     <object class="javafx.scene.Group"/>
-    </void>
-    <void property="shopperText">
-     <object class="javafx.scene.control.Label">
-      <void property="layoutX">
-       <double>554.0</double>
-      </void>
-      <void property="layoutY">
-       <double>482.0</double>
-      </void>
-      <void property="text">
-       <string>Dima, money: 500.0</string>
-      </void>
-     </object>
-    </void>
-    <void property="startDirection">
-     <byte>2</byte>
-    </void>
-    <void property="triangleAct">
-     <object class="javafx.scene.shape.Polygon">
-      <void property="layoutX">
-       <double>599.0</double>
-      </void>
-      <void property="layoutY">
-       <double>467.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="type">
-     <string>Shopper</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="objects.micro.Shopper">
-    <void property="XChord">
-     <double>1627.0</double>
-    </void>
-    <void property="YChord">
-     <double>729.0</double>
-    </void>
-    <void property="man">
-     <boolean>true</boolean>
-    </void>
-    <void property="money">
-     <double>500.0</double>
-    </void>
-    <void property="name">
-     <string>Dima</string>
-    </void>
-    <void property="shadow">
-     <object class="javafx.scene.shape.Ellipse">
-      <void property="effect">
-       <object class="javafx.scene.effect.GaussianBlur">
-        <void property="radius">
-         <double>40.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="layoutX">
-       <double>1617.0</double>
-      </void>
-      <void property="layoutY">
-       <double>899.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.8</double>
-      </void>
-      <void property="radiusX">
-       <double>75.0</double>
-      </void>
-      <void property="radiusY">
-       <double>20.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperImage">
-     <object class="javafx.scene.image.ImageView">
-      <void property="effect">
-       <object class="javafx.scene.effect.DropShadow">
-        <void property="height">
-         <double>61.0</double>
-        </void>
-        <void property="radius">
-         <double>30.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="fitHeight">
-       <double>190.0</double>
-      </void>
-      <void property="preserveRatio">
-       <boolean>true</boolean>
-      </void>
-      <void property="x">
-       <double>1627.0</double>
-      </void>
-      <void property="y">
-       <double>729.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="shopperPicture">
-     <object class="javafx.scene.Group"/>
-    </void>
-    <void property="shopperText">
-     <object class="javafx.scene.control.Label">
-      <void property="layoutX">
-       <double>1612.0</double>
-      </void>
-      <void property="layoutY">
-       <double>704.0</double>
-      </void>
-      <void property="text">
-       <string>Dima, money: 500.0</string>
-      </void>
-     </object>
-    </void>
-    <void property="startDirection">
-     <byte>1</byte>
-    </void>
-    <void property="triangleAct">
-     <object class="javafx.scene.shape.Polygon">
-      <void property="layoutX">
-       <double>1657.0</double>
-      </void>
-      <void property="layoutY">
-       <double>689.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.0</double>
-      </void>
-     </object>
-    </void>
-    <void property="type">
-     <string>Shopper</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="objects.micro.OrchestraConductor">
-    <void property="XChord">
-     <double>544.0</double>
-    </void>
-    <void property="YChord">
-     <double>19.0</double>
+     <double>853.0</double>
     </void>
     <void property="instrument">
-     <object class="objects.firstMacro.Tremb" id="Tremb0">
+     <object class="objects.firstMacro.Violin" id="Violin0">
       <void property="instrumentImage">
        <void property="x">
-        <double>579.0</double>
+        <double>1384.0</double>
        </void>
        <void property="y">
-        <double>-1.0</double>
+        <double>873.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void property="money">
+     <double>50.0</double>
+    </void>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+    <void property="startDirection">
+     <byte>0</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor0">
+    <void property="XChord">
+     <double>1105.0</double>
+    </void>
+    <void property="YChord">
+     <double>817.0</double>
+    </void>
+    <void property="active">
+     <boolean>true</boolean>
+    </void>
+    <void property="instrument">
+     <object class="objects.firstMacro.Piano" id="Piano0">
+      <void property="instrumentImage">
+       <void property="x">
+        <double>1155.0</double>
+       </void>
+       <void property="y">
+        <double>877.0</double>
        </void>
       </void>
      </object>
     </void>
     <void property="instruments">
-     <object class="java.util.HashMap">
-      <void method="put">
-       <string>Trembita</string>
-       <object idref="Tremb0"/>
-      </void>
-     </object>
-    </void>
-    <void property="man">
-     <boolean>true</boolean>
+     <void method="put">
+      <string>Piano</string>
+      <object idref="Piano0"/>
+     </void>
+     <void method="put">
+      <string>Trembita</string>
+      <object class="objects.firstMacro.Tremb" id="Tremb0">
+       <void property="instrumentImage">
+        <void property="x">
+         <double>882.0</double>
+        </void>
+        <void property="y">
+         <double>635.0</double>
+        </void>
+       </void>
+      </object>
+     </void>
     </void>
     <void property="money">
-     <double>1000.0</double>
+     <double>400.0</double>
     </void>
     <void property="name">
      <string>master</string>
     </void>
-    <void property="shadow">
-     <object class="javafx.scene.shape.Ellipse">
-      <void property="effect">
-       <object class="javafx.scene.effect.GaussianBlur">
-        <void property="radius">
-         <double>40.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="layoutX">
-       <double>534.0</double>
-      </void>
-      <void property="layoutY">
-       <double>189.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.9</double>
-      </void>
-      <void property="radiusX">
-       <double>95.0</double>
-      </void>
-      <void property="radiusY">
-       <double>20.0</double>
+    <void property="startDirection">
+     <byte>4</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor1">
+    <void property="XChord">
+     <double>1520.0</double>
+    </void>
+    <void property="YChord">
+     <double>1234.0</double>
+    </void>
+    <void property="instrument">
+     <object class="objects.firstMacro.Guitar" id="Guitar0">
+      <void property="instrumentImage">
+       <void property="x">
+        <double>1530.0</double>
+       </void>
+       <void property="y">
+        <double>1304.0</double>
+       </void>
       </void>
      </object>
     </void>
-    <void property="shopperImage">
-     <object class="javafx.scene.image.ImageView">
-      <void property="effect">
-       <object class="javafx.scene.effect.DropShadow">
-        <void property="height">
-         <double>61.0</double>
-        </void>
-        <void property="radius">
-         <double>30.0</double>
-        </void>
-       </object>
-      </void>
-      <void property="fitHeight">
-       <double>190.0</double>
-      </void>
-      <void property="preserveRatio">
-       <boolean>true</boolean>
-      </void>
-      <void property="x">
-       <double>504.0</double>
-      </void>
-      <void property="y">
-       <double>19.0</double>
-      </void>
-     </object>
+    <void property="instruments">
+     <void method="put">
+      <string>Guitar</string>
+      <object idref="Guitar0"/>
+     </void>
+     <void method="put">
+      <string>Bayan</string>
+      <object class="objects.firstMacro.Bayan"/>
+     </void>
+     <void method="put">
+      <string>Drums</string>
+      <object class="objects.firstMacro.Drums"/>
+     </void>
     </void>
-    <void property="shopperPicture">
-     <object class="javafx.scene.Group"/>
+    <void property="money">
+     <double>1500.0</double>
     </void>
-    <void property="shopperText">
-     <object class="javafx.scene.control.Label">
-      <void property="layoutX">
-       <double>517.0</double>
-      </void>
-      <void property="layoutY">
-       <double>-21.0</double>
-      </void>
-      <void property="text">
-       <string>master, money: 1000.0
-Number of instruments: 1</string>
-      </void>
-     </object>
+    <void property="name">
+     <string>Dima</string>
     </void>
     <void property="startDirection">
-     <byte>5</byte>
+     <byte>1</byte>
     </void>
-    <void property="triangleAct">
-     <object class="javafx.scene.shape.Polygon">
-      <void property="layoutX">
-       <double>564.0</double>
-      </void>
-      <void property="layoutY">
-       <double>-46.0</double>
-      </void>
-      <void property="opacity">
-       <double>0.0</double>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.MusicianMaster">
+    <void property="XChord">
+     <double>1313.0</double>
+    </void>
+    <void property="YChord">
+     <double>1227.0</double>
+    </void>
+    <void property="instrument">
+     <object class="objects.firstMacro.Bayan" id="Bayan0">
+      <void property="instrumentImage">
+       <void property="x">
+        <double>1323.0</double>
+       </void>
+       <void property="y">
+        <double>1287.0</double>
+       </void>
       </void>
      </object>
     </void>
-    <void property="type">
-     <string>Orchestra</string>
+    <void property="man">
+     <boolean>false</boolean>
+    </void>
+    <void property="money">
+     <double>9100.0</double>
+    </void>
+    <void property="name">
+     <string>dasha</string>
+    </void>
+    <void property="startDirection">
+     <byte>1</byte>
     </void>
    </object>
   </void>

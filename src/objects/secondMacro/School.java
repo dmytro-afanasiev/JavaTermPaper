@@ -50,7 +50,8 @@ public class School extends Building {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
+            }
+            else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Ви уже максимально навчені, якщо ж ні - перевірте наявність інструменту");
                 alert.showAndWait();
