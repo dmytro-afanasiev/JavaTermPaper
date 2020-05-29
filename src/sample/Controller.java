@@ -56,30 +56,9 @@ public class Controller {
             public void handle(ActionEvent event) {
                 String buttonName = ((MenuItem)event.getTarget()).getText();
                 if (buttonName.equals("Зберегти")){
-                    XMLEncoder encoder = null;
-                    try {
-                        encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("data.xml")));
-                    }catch (FileNotFoundException e){
-                        System.out.println("Помилка відкриття файлу");
-                    }
-                    encoder.writeObject(Main.shoppers);
-
-                    encoder.close();
+                    Serialization.serializeNow("src/tempSave/data.xml");
                 } else if (buttonName.equals("Відкрити")){
-                    XMLDecoder decoder=null;
-                    try {
-                        decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream("data.xml")));
-                    } catch (FileNotFoundException e) {
-                        System.out.println("Помилка відкриття файлу");
-                    }
-
-                    for (int i = 0 ; i<Main.shoppers.size();i++){
-                        Shopper shopper = Main.shoppers.get(i--);
-                        Main.deleteAShopper(shopper);
-                    }
-                    for(Shopper shopper: (ArrayList<Shopper>) decoder.readObject()){
-                        Main.addNewShopper(shopper, false);
-                    }
+                    Serialization.deserializeNow("src/tempSave/data.xml");
                 }
 
                 else if (buttonName.equals("Вийти")){

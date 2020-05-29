@@ -4,44 +4,13 @@
   <void method="add">
    <object class="objects.micro.Shopper">
     <void property="XChord">
-     <double>110.0</double>
+     <double>1697.0</double>
     </void>
     <void property="YChord">
-     <double>1032.0</double>
+     <double>1160.0</double>
     </void>
     <void property="money">
-     <double>1315.0</double>
-    </void>
-    <void property="name">
-     <string>Dima</string>
-    </void>
-    <void property="startDirection">
-     <byte>6</byte>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="objects.micro.Shopper">
-    <void property="XChord">
-     <double>1424.0</double>
-    </void>
-    <void property="YChord">
-     <double>853.0</double>
-    </void>
-    <void property="instrument">
-     <object class="objects.firstMacro.Violin" id="Violin0">
-      <void property="instrumentImage">
-       <void property="x">
-        <double>1384.0</double>
-       </void>
-       <void property="y">
-        <double>873.0</double>
-       </void>
-      </void>
-     </object>
-    </void>
-    <void property="money">
-     <double>50.0</double>
+     <double>5000.0</double>
     </void>
     <void property="name">
      <string>Dima</string>
@@ -52,42 +21,71 @@
    </object>
   </void>
   <void method="add">
-   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor0">
+   <object class="objects.micro.Shopper">
     <void property="XChord">
-     <double>1105.0</double>
+     <double>2379.0</double>
     </void>
     <void property="YChord">
-     <double>817.0</double>
+     <double>985.0</double>
     </void>
-    <void property="active">
-     <boolean>true</boolean>
+    <void property="money">
+     <double>500.0</double>
     </void>
-    <void property="instrument">
-     <object class="objects.firstMacro.Piano" id="Piano0">
-      <void property="instrumentImage">
-       <void property="x">
-        <double>1155.0</double>
-       </void>
-       <void property="y">
-        <double>877.0</double>
-       </void>
-      </void>
-     </object>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.Shopper">
+    <void property="XChord">
+     <double>1390.0</double>
+    </void>
+    <void property="YChord">
+     <double>1089.0</double>
+    </void>
+    <void property="money">
+     <double>1618.0</double>
+    </void>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+    <void property="startDirection">
+     <byte>6</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor0">
+    <void property="XChord">
+     <double>1267.0</double>
+    </void>
+    <void property="YChord">
+     <double>713.0</double>
     </void>
     <void property="instruments">
      <void method="put">
       <string>Piano</string>
-      <object idref="Piano0"/>
+      <object class="objects.firstMacro.Piano" id="Piano0">
+       <void property="instrumentImage">
+        <void property="x">
+         <double>1003.0</double>
+        </void>
+        <void property="y">
+         <double>867.0</double>
+        </void>
+       </void>
+      </object>
      </void>
      <void method="put">
       <string>Trembita</string>
       <object class="objects.firstMacro.Tremb" id="Tremb0">
        <void property="instrumentImage">
         <void property="x">
-         <double>882.0</double>
+         <double>988.0</double>
         </void>
         <void property="y">
-         <double>635.0</double>
+         <double>577.0</double>
         </void>
        </void>
       </object>
@@ -105,66 +103,52 @@
    </object>
   </void>
   <void method="add">
-   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor1">
+   <object class="objects.micro.MusicianMaster">
     <void property="XChord">
-     <double>1520.0</double>
+     <double>1651.0</double>
     </void>
     <void property="YChord">
-     <double>1234.0</double>
+     <double>1066.0</double>
     </void>
     <void property="instrument">
-     <object class="objects.firstMacro.Guitar" id="Guitar0">
+     <object class="objects.firstMacro.Tremb" id="Tremb1">
       <void property="instrumentImage">
        <void property="x">
-        <double>1530.0</double>
+        <double>1686.0</double>
        </void>
        <void property="y">
-        <double>1304.0</double>
+        <double>1046.0</double>
        </void>
       </void>
      </object>
     </void>
-    <void property="instruments">
-     <void method="put">
-      <string>Guitar</string>
-      <object idref="Guitar0"/>
-     </void>
-     <void method="put">
-      <string>Bayan</string>
-      <object class="objects.firstMacro.Bayan"/>
-     </void>
-     <void method="put">
-      <string>Drums</string>
-      <object class="objects.firstMacro.Drums"/>
-     </void>
-    </void>
     <void property="money">
-     <double>1500.0</double>
+     <double>300.0</double>
     </void>
     <void property="name">
-     <string>Dima</string>
+     <string>pidor</string>
     </void>
     <void property="startDirection">
-     <byte>1</byte>
+     <byte>6</byte>
     </void>
    </object>
   </void>
   <void method="add">
    <object class="objects.micro.MusicianMaster">
     <void property="XChord">
-     <double>1313.0</double>
+     <double>933.0</double>
     </void>
     <void property="YChord">
-     <double>1227.0</double>
+     <double>925.0</double>
     </void>
     <void property="instrument">
-     <object class="objects.firstMacro.Bayan" id="Bayan0">
+     <object class="objects.firstMacro.Drums" id="Drums0">
       <void property="instrumentImage">
        <void property="x">
-        <double>1323.0</double>
+        <double>923.0</double>
        </void>
        <void property="y">
-        <double>1287.0</double>
+        <double>985.0</double>
        </void>
       </void>
      </object>
@@ -173,13 +157,13 @@
      <boolean>false</boolean>
     </void>
     <void property="money">
-     <double>9100.0</double>
+     <double>8500.0</double>
     </void>
     <void property="name">
-     <string>dasha</string>
+     <string>zhinka</string>
     </void>
     <void property="startDirection">
-     <byte>1</byte>
+     <byte>6</byte>
     </void>
    </object>
   </void>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_241" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="objects.micro.Shopper">
+    <void property="XChord">
+     <double>1697.0</double>
+    </void>
+    <void property="YChord">
+     <double>1160.0</double>
+    </void>
+    <void property="money">
+     <double>5000.0</double>
+    </void>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+    <void property="startDirection">
+     <byte>0</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.Shopper">
+    <void property="XChord">
+     <double>2379.0</double>
+    </void>
+    <void property="YChord">
+     <double>985.0</double>
+    </void>
+    <void property="money">
+     <double>500.0</double>
+    </void>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.Shopper">
+    <void property="XChord">
+     <double>1390.0</double>
+    </void>
+    <void property="YChord">
+     <double>1089.0</double>
+    </void>
+    <void property="money">
+     <double>1618.0</double>
+    </void>
+    <void property="name">
+     <string>Dima</string>
+    </void>
+    <void property="startDirection">
+     <byte>6</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.OrchestraConductor" id="OrchestraConductor0">
+    <void property="XChord">
+     <double>1267.0</double>
+    </void>
+    <void property="YChord">
+     <double>713.0</double>
+    </void>
+    <void property="instruments">
+     <void method="put">
+      <string>Piano</string>
+      <object class="objects.firstMacro.Piano" id="Piano0">
+       <void property="instrumentImage">
+        <void property="x">
+         <double>1003.0</double>
+        </void>
+        <void property="y">
+         <double>867.0</double>
+        </void>
+       </void>
+      </object>
+     </void>
+     <void method="put">
+      <string>Trembita</string>
+      <object class="objects.firstMacro.Tremb" id="Tremb0">
+       <void property="instrumentImage">
+        <void property="x">
+         <double>988.0</double>
+        </void>
+        <void property="y">
+         <double>577.0</double>
+        </void>
+       </void>
+      </object>
+     </void>
+    </void>
+    <void property="money">
+     <double>400.0</double>
+    </void>
+    <void property="name">
+     <string>master</string>
+    </void>
+    <void property="startDirection">
+     <byte>4</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.MusicianMaster">
+    <void property="XChord">
+     <double>1651.0</double>
+    </void>
+    <void property="YChord">
+     <double>1066.0</double>
+    </void>
+    <void property="instrument">
+     <object class="objects.firstMacro.Tremb" id="Tremb1">
+      <void property="instrumentImage">
+       <void property="x">
+        <double>1686.0</double>
+       </void>
+       <void property="y">
+        <double>1046.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void property="money">
+     <double>300.0</double>
+    </void>
+    <void property="name">
+     <string>pidor</string>
+    </void>
+    <void property="startDirection">
+     <byte>6</byte>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="objects.micro.MusicianMaster">
+    <void property="XChord">
+     <double>933.0</double>
+    </void>
+    <void property="YChord">
+     <double>925.0</double>
+    </void>
+    <void property="instrument">
+     <object class="objects.firstMacro.Drums" id="Drums0">
+      <void property="instrumentImage">
+       <void property="x">
+        <double>923.0</double>
+       </void>
+       <void property="y">
+        <double>985.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void property="man">
+     <boolean>false</boolean>
+    </void>
+    <void property="money">
+     <double>8500.0</double>
+    </void>
+    <void property="name">
+     <string>zhinka</string>
+    </void>
+    <void property="startDirection">
+     <byte>6</byte>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
