@@ -87,6 +87,7 @@ public class Shopper implements Cloneable {
                 15.0, 25.0);
         this.triangleAct.setFill(Color.BLACK);
 
+
         if (this.instrument != null) {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
         } else {
@@ -113,6 +114,8 @@ public class Shopper implements Cloneable {
     public Shopper(String name) {
         this(null, true, name, 0, true);
     }
+
+    public Shopper(){ }
 
 
     public void updateShopperChords() {
@@ -187,24 +190,6 @@ public class Shopper implements Cloneable {
 
     }
 
-    public Group getShopperPicture() {
-        return this.shopperPicture;
-    }
-
-    public double getXChord() {
-        return xChord;
-    }
-
-    public double getYChord() {
-        return yChord;
-    }
-
-
-    public void setXYCords(double xChord, double yChord) {
-        this.xChord = xChord;
-        this.yChord = yChord;
-    }
-
     public void mouseClick(double x, double y) {
         Point2D point2D = new Point2D(x, y);
         if (this.shopperImage.getBoundsInParent().contains(point2D) && !this.stay) {
@@ -234,11 +219,6 @@ public class Shopper implements Cloneable {
         if (isActive && yChord <= Main.getRoot().getHeight() - 200) {
             yChord += Preferences.getSPEED() * boost;
         }
-    }
-
-
-    public boolean isActive() {
-        return this.isActive;
     }
 
     public void setStay(boolean stay) {
@@ -365,17 +345,113 @@ public class Shopper implements Cloneable {
 
     }
 
+    /*public void fillShopperPicture(){
+        this.shopperPicture.getChildren().clear();
+        if (this.instrument != null) {
+            this.shopperPicture.getChildren().addAll(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
+        } else {
+            this.shopperPicture.getChildren().addAll(shopperImage, shopperText, shadow, triangleAct);
+        }
+    }*/
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getXChord() {
+        return xChord;
+    }
+
+    public void setXChord(double xChord) {
+        this.xChord = xChord;
+    }
+
+    public double getYChord() {
+        return yChord;
+    }
+
+    public void setYChord(double yChord) {
+        this.yChord = yChord;
+    }
+
+    public byte getStartDirection() {
+        return startDirection;
+    }
+
+    public void setStartDirection(byte startDirection) {
+        this.startDirection = startDirection;
+    }
+
+    public Ellipse getShadow() {
+        return shadow;
+    }
+
+    public void setShadow(Ellipse shadow) {
+        this.shadow = shadow;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 
     public void setActive(boolean active) {
         isActive = active;
     }
 
-    public static int getNumberOfShoppers() {
-        return numberOfShoppers;
+    public boolean isStay() {
+        return stay;
     }
 
-    public static void setNumberOfShoppers(int numberOfShoppers) {
-        Shopper.numberOfShoppers = numberOfShoppers;
+    public Polygon getTriangleAct() {
+        return triangleAct;
+    }
+
+    public void setTriangleAct(Polygon triangleAct) {
+        this.triangleAct = triangleAct;
+    }
+
+    public ImageView getShopperImage() {
+        return shopperImage;
+    }
+
+    public void setShopperImage(ImageView shopperImage) {
+        this.shopperImage = shopperImage;
+    }
+
+    public boolean isMan() {
+        return isMan;
+    }
+
+    public void setMan(boolean man) {
+        isMan = man;
+    }
+
+    public Label getShopperText() {
+        return shopperText;
+    }
+
+    public void setShopperText(Label shopperText) {
+        this.shopperText = shopperText;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
+    }
+
+    public Group getShopperPicture() {
+        return shopperPicture;
+    }
+
+    public void setShopperPicture(Group shopperPicture) {
+        this.shopperPicture = shopperPicture;
     }
 
     public double getMoney() {
@@ -394,30 +470,19 @@ public class Shopper implements Cloneable {
         this.name = name;
     }
 
-    public ImageView getShopperImage() {
-        return shopperImage;
+    public static int getNumberOfShoppers() {
+        return numberOfShoppers;
     }
 
-    public Instrument getInstrument() {
-        return instrument;
+    public static void setNumberOfShoppers(int numberOfShoppers) {
+        Shopper.numberOfShoppers = numberOfShoppers;
     }
-
-    public boolean isMan() {
-        return isMan;
-    }
-
-    public String getType() {
-        return type;
-    }
-
     @Override
     public Shopper clone() throws CloneNotSupportedException {
         Shopper temp = (Shopper) super.clone();
         temp.instrument = instrument.clone();
         return temp;
     }
-
-
 }
 
 

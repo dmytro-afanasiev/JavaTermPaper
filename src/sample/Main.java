@@ -78,8 +78,10 @@ public class Main extends Application {
 
     public static void addNewShopper(Shopper shopper, boolean rand) {
         Main.shoppers.add(shopper);
-        if (rand)
-            shopper.setXYCords(random.nextInt((int) (scene.getWidth() + scrollX)), random.nextInt((int) (scene.getHeight() + scrollY)));
+        if (rand) {
+            shopper.setXChord(random.nextInt((int) (scene.getWidth() + scrollX)));
+            shopper.setYChord(random.nextInt((int) (scene.getHeight() + scrollY)));
+        }
         shopper.updateShopperChords();
         root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
         Main.miniMap.addShopper(shopper);
@@ -216,6 +218,7 @@ public class Main extends Application {
                     Shopper shopper = shoppers.get(i);
                     if (shopper.isActive()) {
                         Main.deleteAShopper(shopper);
+                        i--;
                     }
 
                 }

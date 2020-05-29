@@ -60,10 +60,6 @@ public class MusicianMaster extends Shopper {
         } else {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
         }
-
-
-
-
     }
     public MusicianMaster(boolean isActive, String name, double money, boolean isMan) {
         this(null, isActive, name, money,isMan);
@@ -80,6 +76,7 @@ public class MusicianMaster extends Shopper {
     public MusicianMaster(String name){
         this(null, true, name, 0,true);
     }
+    public MusicianMaster(){}
 
     @Override
     public void updateShopperChords() {

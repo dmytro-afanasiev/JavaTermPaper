@@ -59,7 +59,8 @@ public class ChooseAnEducationWindowController {
             if (firstEd || secondEd) {
                 Shopper old = ChooseAnEducationWindow.getShopper();
                 Shopper temp = old.education(firstEd, secondEd, allPr);
-                temp.setXYCords(old.getXChord(), old.getYChord());
+                temp.setXChord(old.getXChord());
+                temp.setYChord(old.getYChord());
                 Main.addNewShopper(temp,false);
                 Main.deleteAShopper(old);
                 ChooseAnEducationWindow.getWindow().close();

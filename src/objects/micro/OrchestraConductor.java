@@ -71,10 +71,6 @@ public class OrchestraConductor extends  MusicianMaster {
         } else {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct);
         }
-
-
-
-
     }
 
 
@@ -87,6 +83,7 @@ public class OrchestraConductor extends  MusicianMaster {
     public OrchestraConductor(String name){
         this( null, true, name, 0);
     }
+    public OrchestraConductor(){}
 
     @Override
     public void updateShopperChords() {
@@ -230,5 +227,7 @@ public class OrchestraConductor extends  MusicianMaster {
         return instruments;
     }
 
-
+    public void setInstruments(Map<String, Instrument> instruments) {
+        this.instruments = instruments;
+    }
 }

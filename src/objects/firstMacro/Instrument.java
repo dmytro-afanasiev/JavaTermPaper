@@ -7,23 +7,7 @@ public abstract class Instrument implements Cloneable{
      protected ImageView instrumentImage = null;
      protected String type = "Nothing";
 
-
-
-    public ImageView getInstrumentImage() {
-        return instrumentImage;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public abstract void update(double x, double y);
-
-
+     public abstract void update(double x, double y);
 
     public static Instrument getInstrument(String type){
         switch (type) {
@@ -44,6 +28,32 @@ public abstract class Instrument implements Cloneable{
         }
         return null;
     }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public ImageView getInstrumentImage() {
+        return instrumentImage;
+    }
+
+    public void setInstrumentImage(ImageView instrumentImage) {
+        this.instrumentImage = instrumentImage;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return this.getType();

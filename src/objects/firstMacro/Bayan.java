@@ -11,6 +11,7 @@ public class Bayan extends Instrument {
         this.type = "Bayan";
         this.price = 400;
     }
+
     @Override
     public void update(double x, double y) {
         this.instrumentImage.setX(x+10);

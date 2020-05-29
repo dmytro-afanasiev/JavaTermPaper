@@ -6,12 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import objects.micro.Shopper;
 import sample.windows.aboutWindow.AboutWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 import sample.windows.preferencesWindow.PreferencesWindow;
 
-import java.io.IOException;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.*;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -52,8 +56,34 @@ public class Controller {
             public void handle(ActionEvent event) {
                 String buttonName = ((MenuItem)event.getTarget()).getText();
                 if (buttonName.equals("Зберегти")){
+                    XMLEncoder encoder = null;
+                    try {
+                        encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("data.xml")));
+                    }catch (FileNotFoundException e){
+                        System.out.println("Помилка відкриття файлу");
+                    }
+                    encoder.writeObject(Main.shoppers);
 
+                    encoder.close();
+                } else if (buttonName.equals("Відкрити")){
+                    XMLDecoder decoder=null;
+                    try {
+                        decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream("data.xml")));
+                    } catch (FileNotFoundException e) {
+                        System.out.println("Помилка відкриття файлу");
+                    }
+
+                    for (int i = 0 ; i<Main.shoppers.size();i++){
+                        Shopper shopper = Main.shoppers.get(i--);
+                        Main.deleteAShopper(shopper);
+                    }
+
+
+                    for(Shopper shopper: (ArrayList<Shopper>) decoder.readObject()){
+                        Main.addNewShopper(shopper, false);
+                    }
                 }
+
                 else if (buttonName.equals("Вийти")){
                     Platform.exit();
                 } else if (buttonName.equals("Створити персонажа")) {
@@ -64,9 +94,10 @@ public class Controller {
                     }
                 } else if (buttonName.equals("Видалити персонажей")){
                     for (int i = 0; i < Main.shoppers.size(); i++) {
-                        Shopper s = Main.shoppers.get(i);
-                        if (s.isActive()) {
-                            Main.deleteAShopper(s);
+                        Shopper shopper = Main.shoppers.get(i);
+                        if (shopper.isActive()) {
+                            Main.deleteAShopper(shopper);
+                            i--;
                         }
 
                     }
