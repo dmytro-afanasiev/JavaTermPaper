@@ -12,7 +12,7 @@
           <Menu mnemonicParsing="false" text="Файл">
             <items>
                   <MenuItem fx:id="menuFileOpen" mnemonicParsing="false" text="Відкрити" />
-                  <MenuItem fx:id="menuFileClose" mnemonicParsing="false" text="Зберегти" />
+                  <MenuItem fx:id="menuFileSave" mnemonicParsing="false" text="Зберегти" />
               <MenuItem fx:id="menuFileExit" mnemonicParsing="false" text="Вийти" />
             </items>
           </Menu>

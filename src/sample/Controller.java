@@ -6,16 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import objects.micro.Shopper;
 import sample.windows.aboutWindow.AboutWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 import sample.windows.preferencesWindow.PreferencesWindow;
-
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.*;
-import java.util.ArrayList;
+
 
 public class Controller {
 
@@ -23,7 +22,7 @@ public class Controller {
     private MenuItem menuFileOpen;
 
     @FXML
-    private MenuItem menuFileClose;
+    private MenuItem menuFileSave;
 
     @FXML
     private MenuItem menuFileExit;
@@ -56,9 +55,18 @@ public class Controller {
             public void handle(ActionEvent event) {
                 String buttonName = ((MenuItem)event.getTarget()).getText();
                 if (buttonName.equals("Зберегти")){
-                    Serialization.serializeNow("src/tempSave/data.xml");
+                    DirectoryChooser directoryChooser = new DirectoryChooser();
+                    directoryChooser.setTitle("Виберіть директорію для збереження");
+                    File file = directoryChooser.showDialog(Main.getScene().getWindow());
+                    //цей момент бажано доробити!
+                    Serialization.serializeNow(file.getAbsolutePath() + "\\data.xml");
                 } else if (buttonName.equals("Відкрити")){
-                    Serialization.deserializeNow("src/tempSave/data.xml");
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Виберіть файл");
+                    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML-збереження", "*.xml"),
+                            new FileChooser.ExtensionFilter("TXT-збереження", "*.txt"));
+                    File file = fileChooser.showOpenDialog(Main.getScene().getWindow());
+                    Serialization.deserializeNow(file);
                 }
 
                 else if (buttonName.equals("Вийти")){
@@ -115,14 +123,24 @@ public class Controller {
         };
 
         menuFileOpen.setOnAction(menuHandler);
-        menuFileClose.setOnAction(menuHandler);
+        menuFileOpen.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
+        menuFileSave.setOnAction(menuHandler);
+        menuFileSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         menuFileExit.setOnAction(menuHandler);
+        menuFileExit.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
         menuEditCreate.setOnAction(menuHandler);
+        menuEditCreate.setAccelerator(KeyCombination.keyCombination("f12"));
         menuEditDelete.setOnAction(menuHandler);
+        menuEditDelete.setAccelerator(KeyCombination.keyCombination("Delete"));
         menuEditCancel.setOnAction(menuHandler);
+        menuEditCancel.setAccelerator(KeyCombination.keyCombination("Esc"));
         menuEditProperties.setOnAction(menuHandler);
+        menuEditProperties.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+S"));
         menuWindowsCreate.setOnAction(menuHandler);
+        menuWindowsCreate.setAccelerator(KeyCombination.keyCombination("f12"));
         menuWindowsProperties.setOnAction(menuHandler);
+        menuWindowsProperties.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+S"));
         menuMoreAbout.setOnAction(menuHandler);
+        menuMoreAbout.setAccelerator(KeyCombination.keyCombination("f1"));
     }
 }

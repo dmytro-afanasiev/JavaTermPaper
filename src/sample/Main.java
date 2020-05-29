@@ -202,7 +202,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private class KeyPressedHandler implements EventHandler<KeyEvent> {
+    private class KeyPressedHandler implements EventHandler<KeyEvent> { // тут лишній код, за питаннями до мене
 
         @Override
         public void handle(KeyEvent event) {

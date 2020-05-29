@@ -19,10 +19,10 @@ public class Serialization {
             System.out.println("Помилка відкриття файлу");
         }
     }
-    public static void deserializeNow(String path){
+    public static void deserializeNow(File file){
         XMLDecoder decoder=null;
         try {
-            decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(path)));
+            decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(file)));
             for (int i = 0 ; i<Main.shoppers.size();i++){
                 Shopper shopper = Main.shoppers.get(i--);
                 Main.deleteAShopper(shopper);
