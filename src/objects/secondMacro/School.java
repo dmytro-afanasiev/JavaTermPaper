@@ -28,7 +28,7 @@ public class School extends Building {
         this.buildingImage = new ImageView(new Image("assets/school.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(360);
-        this.buildingText = new Label("School");
+        this.buildingText = new Label("Музична школа");
         this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);

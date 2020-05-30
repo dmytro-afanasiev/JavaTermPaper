@@ -44,7 +44,7 @@ public class Factory extends Building{
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
-        this.buildingText = new Label("Factory");
+        this.buildingText = new Label("Фабрика");
         this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);

@@ -27,7 +27,7 @@ public class Shop extends Building {
         this.buildingImage = new ImageView(new Image("assets/shop.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
-        this.buildingText = new Label("Shop");
+        this.buildingText = new Label("Магазин ");
         this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);

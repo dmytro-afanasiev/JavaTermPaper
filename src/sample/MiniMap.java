@@ -128,17 +128,22 @@ public class MiniMap {
             case "Factory":
                 imageView = new ImageView(new Image("assets/factory.png"));
                 imageView.setPreserveRatio(true);
-                imageView.setFitHeight(270 * MiniMap.SCALE);
+                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
                 break;
             case "Shop":
                 imageView = new ImageView(new Image("assets/shop.png"));
                 imageView.setPreserveRatio(true);
-                imageView.setFitHeight(270 * MiniMap.SCALE);
+                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
+                break;
+            case "Underpass":
+                imageView = new ImageView(new Image("assets/underpass.png"));
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
                 break;
             default:
                 imageView = new ImageView(new Image("assets/school.png"));
                 imageView.setPreserveRatio(true);
-                imageView.setFitHeight(360 * MiniMap.SCALE);
+                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
                 break;
         }
         imageView.setLayoutX(building.getXChord() * MiniMap.SCALE);
@@ -163,6 +168,4 @@ public class MiniMap {
             imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);
         }
     }
-
-
 }

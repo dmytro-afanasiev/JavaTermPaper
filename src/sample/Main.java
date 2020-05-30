@@ -24,10 +24,7 @@ import objects.firstMacro.*;
 import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
-import objects.secondMacro.Building;
-import objects.secondMacro.Factory;
-import objects.secondMacro.School;
-import objects.secondMacro.Shop;
+import objects.secondMacro.*;
 import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 
@@ -127,7 +124,7 @@ public class Main extends Application {
         Main.addNewBuilding(new Factory(2000, 400));
         Main.addNewBuilding(new Shop(600, 400));
         Main.addNewBuilding(new School(1000, 1000));
-
+        Main.addNewBuilding(new Underpass(100,100));
 
         Main.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
         Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
@@ -203,6 +200,7 @@ public class Main extends Application {
     }
 
     private class KeyPressedHandler implements EventHandler<KeyEvent> {
+
         //З ПИТАННЯМИ, ЧОМУ ТУТ ПОЛОВИНА КОДУ ВИКЛЮЧЕНА, ЗВЕРТАТИСЯ ДО МЕНЕ!!!
 
         @Override
