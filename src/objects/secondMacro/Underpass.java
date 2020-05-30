@@ -51,7 +51,7 @@ public class Underpass extends Building {
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
         this.buildingText.setLayoutX(x + 130);
-        this.buildingText.setLayoutY(y + 280);
+        this.buildingText.setLayoutY(y + 28d);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 250);
     }
