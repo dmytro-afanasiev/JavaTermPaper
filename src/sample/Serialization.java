@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class Serialization {
 
-    public static void serializeNow(String path) {
+    public static void serializeNow(File file) {
         XMLEncoder encoder = null;
         try {
-            encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(path)));
+            encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)));
             encoder.writeObject(Main.shoppers);
             encoder.close();
         } catch (FileNotFoundException e) {

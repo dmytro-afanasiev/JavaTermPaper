@@ -18,6 +18,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Редагувати">
             <items>
+                  <MenuItem fx:id="menuEditInteract" mnemonicParsing="false" text="Взаємодіяти з будівлею" />
+                  <MenuItem fx:id="menuEditSell" mnemonicParsing="false" text="Продати (тільки магазин)" />
+                  <MenuItem fx:id="menuEditPlay" mnemonicParsing="false" text="Грати на інструменті" />
                   <MenuItem fx:id="menuEditCreate" mnemonicParsing="false" text="Створити персонажа" />
                   <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Видалити персонажей" />
               <MenuItem fx:id="menuEditCancel" mnemonicParsing="false" text="Відмінити вибір" />

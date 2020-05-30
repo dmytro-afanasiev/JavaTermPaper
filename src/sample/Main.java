@@ -202,11 +202,12 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private class KeyPressedHandler implements EventHandler<KeyEvent> { // тут лишній код, за питаннями до мене
+    private class KeyPressedHandler implements EventHandler<KeyEvent> {
+        //З ПИТАННЯМИ, ЧОМУ ТУТ ПОЛОВИНА КОДУ ВИКЛЮЧЕНА, ЗВЕРТАТИСЯ ДО МЕНЕ!!!
 
         @Override
         public void handle(KeyEvent event) {
-            if (event.getCode().equals(KeyCode.M)) {
+            /*if (event.getCode().equals(KeyCode.M)) {
                 try {
                     new CreateShopperWindow().display("Let's create new Shopper!");
                 } catch (IOException e) {
@@ -248,7 +249,7 @@ public class Main extends Application {
                         break;
                     }
                 }
-            }
+            }*/
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper shopper : shoppers) {
                     shopper.up(1);
