@@ -62,13 +62,19 @@ public class Underpass extends Building {
             this.buildingImage.setOpacity(0);
             ImageView underpassSprite = new ImageView(new Image("assets/underpassSprite.png"));
             underpassSprite.setPreserveRatio(true);
-            underpassSprite.setFitHeight(this.buildingImage.getFitHeight()+30);
-            underpassSprite.setX(this.buildingImage.getX());
-            underpassSprite.setY(this.buildingImage.getY());
+            underpassSprite.setFitHeight(this.buildingImage.getFitHeight()+60);
+            underpassSprite.setX(this.buildingImage.getX()-40);
+            underpassSprite.setY(this.buildingImage.getY()-50);
             this.buildingPicture.getChildren().add(underpassSprite);
-            Animation dance = new Sprite(underpassSprite, Duration.millis(700), 16, 16, 0, 0, 1457, 977);
+            Animation dance = new Sprite(underpassSprite, Duration.millis(700), 13, 13, 0, 0, 485, 326);
             dance.setCycleCount(20);
             dance.play();
+
+            dance.setOnFinished(event -> {
+                this.buildingPicture.getChildren().remove(underpassSprite);
+                this.buildingImage.setOpacity(1);
+
+            });
         }
     }
 }
