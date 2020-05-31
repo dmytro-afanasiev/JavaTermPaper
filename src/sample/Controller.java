@@ -5,16 +5,20 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
+import objects.secondMacro.Underpass;
 import sample.windows.aboutWindow.AboutWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 import sample.windows.preferencesWindow.PreferencesWindow;
 import java.io.*;
+import java.util.Optional;
 
 
 public class Controller {
@@ -74,14 +78,21 @@ public class Controller {
                     if (file != null)
                         Serialization.serializeNow(file);
                 } else if (buttonName.equals("Відкрити")){
-                    FileChooser fileChooser = new FileChooser();
-                    fileChooser.setTitle("Виберіть файл");
-                    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML-збереження", "*.xml"),
-                            new FileChooser.ExtensionFilter("TXT-збереження", "*.txt"),
-                            new FileChooser.ExtensionFilter("Усі файли","*.*"));
-                    File file = fileChooser.showOpenDialog(Main.getScene().getWindow());
-                    if (file != null)
-                        Serialization.deserializeNow(file);
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Ви дійсно хочете це зробити?");
+                    alert.setContentText("Переконайтеся, що поточна гра збережена");
+                    Optional<ButtonType> option = alert.showAndWait();
+                    if (option.get() == ButtonType.OK) {
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.setTitle("Виберіть файл");
+                        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML-збереження", "*.xml"),
+                                new FileChooser.ExtensionFilter("TXT-збереження", "*.txt"),
+                                new FileChooser.ExtensionFilter("Усі файли", "*.*"));
+                        File file = fileChooser.showOpenDialog(Main.getScene().getWindow());
+                        if (file != null)
+                            Serialization.deserializeNow(file);
+                    }
                 }
 
                 else if (buttonName.equals("Вийти")){

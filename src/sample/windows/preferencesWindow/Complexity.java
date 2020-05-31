@@ -13,6 +13,10 @@ public enum Complexity {
         public int getSecondEducationPrice(){
             return 1500;
         }
+
+        public int getUnderpassSalary(){
+            return 300;
+        }
     },
     MEDIUM{
         public int getSalary(){
@@ -23,6 +27,10 @@ public enum Complexity {
         }
         public int getSecondEducationPrice(){
             return 5000;
+        }
+
+        public int getUnderpassSalary(){
+            return 200;
         }
     },
     HARD{
@@ -35,8 +43,13 @@ public enum Complexity {
         public int getSecondEducationPrice(){
             return 14000;
         }
+
+        public int getUnderpassSalary(){
+            return 30;
+        }
     };
     public abstract int getSalary();
     public abstract int getFirstEducationPrice();
     public abstract int getSecondEducationPrice();
+    public abstract int getUnderpassSalary();
 }

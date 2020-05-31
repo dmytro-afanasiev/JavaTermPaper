@@ -33,7 +33,7 @@ import java.util.EventListener;
 
 public class Factory extends Building{
 
-    private ImageView smokeSprite = new ImageView(new Image("assets/sprite.png"));
+    private ImageView smokeSprite = new ImageView(new Image("assets/smokeSprite.png"));
     private Animation smokeAnimation;
 
     public Factory(double xChord, double yChord){
@@ -57,11 +57,12 @@ public class Factory extends Building{
         this.smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 0, 0,100,100 );
         this.smokeAnimation.setCycleCount(Animation.INDEFINITE);
 
-        this.setBuildingInChords();
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
         smokeAnimation.play();
     }
-
+    public Factory(){
+        this(0,0);
+    }
     @Override
     public void setBuildingInChords() {
         double x = this.xChord;
@@ -77,9 +78,7 @@ public class Factory extends Building{
         this.smokeSprite.setY(y-70);
     }
 
-    public Animation smoke(){
-        return this.smokeAnimation;
-    }
+
     @Override
     public void interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {

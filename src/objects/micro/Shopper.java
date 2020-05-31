@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 
 public class Shopper implements Cloneable {
 
+    protected double playVariable;
     protected String type;
     protected double xChord, yChord;
     protected byte startDirection;
@@ -46,6 +47,7 @@ public class Shopper implements Cloneable {
     protected Instrument instrument = null;
     protected Group shopperPicture;
 
+
     protected double money;
     protected String name;
     protected static int numberOfShoppers = 0;
@@ -55,6 +57,7 @@ public class Shopper implements Cloneable {
     public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
         Shopper.numberOfShoppers++;
         this.type = "Shopper";
+        this.playVariable = 0.1;
         this.name = name;
         this.money = money;
         this.isMan = isMan;
@@ -346,6 +349,10 @@ public class Shopper implements Cloneable {
 
     }
 
+    public double getPlayVariable() {
+        return playVariable;
+    }
+
     public String getType() {
         return type;
     }
@@ -438,6 +445,28 @@ public class Shopper implements Cloneable {
         Shopper temp = (Shopper) super.clone();
         temp.instrument = instrument.clone();
         return temp;
+    }
+
+    @Override
+    public String toString() {
+        return "Shopper{" +
+                "playVariable=" + playVariable +
+                ", type='" + type + '\'' +
+                ", xChord=" + xChord +
+                ", yChord=" + yChord +
+                ", startDirection=" + startDirection +
+                ", shadow=" + shadow +
+                ", isActive=" + isActive +
+                ", stay=" + stay +
+                ", triangleAct=" + triangleAct +
+                ", shopperImage=" + shopperImage +
+                ", isMan=" + isMan +
+                ", shopperText=" + shopperText +
+                ", instrument=" + instrument +
+                ", shopperPicture=" + shopperPicture +
+                ", money=" + money +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
 

@@ -35,11 +35,12 @@ public class Shop extends Building {
         this.shadow.getTransforms().add(new Rotate(10));
         this.shadow.setEffect(new GaussianBlur(40));
 
-        this.setBuildingInChords();
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
     }
-
+    public Shop(){
+        this(0,0);
+    }
     @Override
     public void interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {

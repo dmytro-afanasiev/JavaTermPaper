@@ -30,6 +30,8 @@ public class MusicianMaster extends Shopper {
     public MusicianMaster(Instrument instrument, boolean isActive, String name, double money , boolean isMan){
         super(instrument, isActive,  name,  money ,  isMan);
         this.type = "Master";
+        this.playVariable = 1;
+
         if (isMan){
             this.shopperImage  = new ImageView(new Image("assets/master.png"));
         } else this.shopperImage  = new ImageView(new Image("assets/girlMaster.png"));

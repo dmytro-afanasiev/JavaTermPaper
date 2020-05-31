@@ -34,6 +34,7 @@ public class OrchestraConductor extends  MusicianMaster {
     public OrchestraConductor(Instrument instrument, boolean isActive, String name, double money){
         super(isActive,  name,  money ,  true);
         this.type = "Orchestra";
+        this.playVariable = 2;
 
 
         this.shopperImage  = new ImageView(new Image("assets/orchestra.png"));
@@ -231,5 +232,28 @@ public class OrchestraConductor extends  MusicianMaster {
 
     public void setInstruments(Map<String, Instrument> instruments) {
         this.instruments = instruments;
+    }
+
+    @Override
+    public String toString() {
+        return "OrchestraConductor{" +
+                "instruments=" + instruments +
+                ", playVariable=" + playVariable +
+                ", type='" + type + '\'' +
+                ", xChord=" + xChord +
+                ", yChord=" + yChord +
+                ", startDirection=" + startDirection +
+                ", shadow=" + shadow +
+                ", isActive=" + isActive +
+                ", stay=" + stay +
+                ", triangleAct=" + triangleAct +
+                ", shopperImage=" + shopperImage +
+                ", isMan=" + isMan +
+                ", shopperText=" + shopperText +
+                ", instrument=" + instrument +
+                ", shopperPicture=" + shopperPicture +
+                ", money=" + money +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

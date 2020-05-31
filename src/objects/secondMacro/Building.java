@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Ellipse;
 import objects.micro.Shopper;
 
-import java.awt.*;
+
 
 public abstract class Building {
     protected double xChord;
@@ -26,8 +26,11 @@ public abstract class Building {
         return this.buildingPicture;
     }
 
-    public void setXYCords(double xChord, double yChord) {
+    public void setXChord(double xChord) {
         this.xChord = xChord;
+    }
+
+    public void setYChord(double yChord) {
         this.yChord = yChord;
     }
 

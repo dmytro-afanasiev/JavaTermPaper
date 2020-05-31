@@ -93,6 +93,7 @@ public class Main extends Application {
 
     public static void addNewBuilding(Building building) {
         Main.buildings.add(building);
+        building.setBuildingInChords();
         root.getChildren().add(0,building.getBuildingPicture());
         Main.miniMap.addBuilding(building);
     }
@@ -120,16 +121,16 @@ public class Main extends Application {
         miniMap = new MiniMap();
 
 
-        Main.addNewBuilding(new Factory(2000, 1000));
-        Main.addNewBuilding(new Factory(2000, 400));
-        Main.addNewBuilding(new Shop(600, 400));
-        Main.addNewBuilding(new School(1000, 1000));
-        Main.addNewBuilding(new Underpass(100,100));
+        Main.addNewBuilding(new Factory(Main.random.nextInt(4000), Main.random.nextInt(2000)));
+        Main.addNewBuilding(new Factory(Main.random.nextInt(4000), Main.random.nextInt(2000)));
+        Main.addNewBuilding(new Shop(Main.random.nextInt(4000), Main.random.nextInt(2000)));
+        Main.addNewBuilding(new School(Main.random.nextInt(4000), Main.random.nextInt(2000)));
+        Main.addNewBuilding(new Underpass(Main.random.nextInt(4000), Main.random.nextInt(2000)));
 
         Main.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
         Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
         Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "master", 1000),true);
+        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "Вася", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         root.getChildren().add(parent);
