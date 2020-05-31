@@ -67,7 +67,7 @@ public class School extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x + 179);
+        this.buildingText.setLayoutX(x + 140);
         this.buildingText.setLayoutY(y + 330);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 270);

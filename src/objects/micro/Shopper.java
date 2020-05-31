@@ -124,20 +124,18 @@ public class Shopper implements Cloneable {
 
 
     public void updateShopperChords() {
-        double x = this.xChord;
-        double y = this.yChord;
-        this.shopperImage.setX(x);
-        this.shopperImage.setY(y);
+        this.shopperImage.setX(this.xChord);
+        this.shopperImage.setY(this.yChord);
 
-        this.shopperText.setLayoutX(x - 15);
-        this.shopperText.setLayoutY(y - 25);
+        this.shopperText.setLayoutX(this.xChord - 15);
+        this.shopperText.setLayoutY(this.yChord - 25);
         this.shopperText.setText(this.name + ", money: " + this.money);
 
-        this.shadow.setLayoutX(x - 10);
-        this.shadow.setLayoutY(y + 170);
+        this.shadow.setLayoutX(this.xChord - 10);
+        this.shadow.setLayoutY(this.yChord + 170);
 
-        this.triangleAct.setLayoutX(x + 30);
-        this.triangleAct.setLayoutY(y - 40);
+        this.triangleAct.setLayoutX(this.xChord + 30);
+        this.triangleAct.setLayoutY(this.yChord - 40);
 
         if (this.isActive) {
             this.triangleAct.setOpacity(1);
@@ -145,7 +143,7 @@ public class Shopper implements Cloneable {
             this.triangleAct.setOpacity(0);
         }
         if (this.instrument != null) {
-            this.instrument.update(x, y);
+            this.instrument.update(this.xChord, this.yChord);
         }
     }
 
@@ -445,28 +443,6 @@ public class Shopper implements Cloneable {
         Shopper temp = (Shopper) super.clone();
         temp.instrument = instrument.clone();
         return temp;
-    }
-
-    @Override
-    public String toString() {
-        return "Shopper{" +
-                "playVariable=" + playVariable +
-                ", type='" + type + '\'' +
-                ", xChord=" + xChord +
-                ", yChord=" + yChord +
-                ", startDirection=" + startDirection +
-                ", shadow=" + shadow +
-                ", isActive=" + isActive +
-                ", stay=" + stay +
-                ", triangleAct=" + triangleAct +
-                ", shopperImage=" + shopperImage +
-                ", isMan=" + isMan +
-                ", shopperText=" + shopperText +
-                ", instrument=" + instrument +
-                ", shopperPicture=" + shopperPicture +
-                ", money=" + money +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
 

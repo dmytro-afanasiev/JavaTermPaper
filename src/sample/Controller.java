@@ -82,6 +82,7 @@ public class Controller {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setHeaderText("Ви дійсно хочете це зробити?");
                     alert.setContentText("Переконайтеся, що поточна гра збережена");
+
                     Optional<ButtonType> option = alert.showAndWait();
                     if (option.get() == ButtonType.OK) {
                         FileChooser fileChooser = new FileChooser();
@@ -115,9 +116,16 @@ public class Controller {
                     }
                 } else if (buttonName.equals("Грати на інструменті")){
                     for (Shopper shopper : Main.shoppers) {
-                        if (shopper.isActive() && shopper.getInstrument() != null) {
-                            shopper.playAnInstrument();
-                            break;
+                        if (shopper.isActive()) {
+                            if (shopper.getInstrument() != null) {
+                                shopper.playAnInstrument();
+                                break;
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText("УВАГА");
+                                alert.setContentText("Переконайтеся у наявності інструменту");
+                                alert.showAndWait();
+                            }
                         }
                     }
                 }

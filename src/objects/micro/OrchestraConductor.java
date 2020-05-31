@@ -36,7 +36,6 @@ public class OrchestraConductor extends  MusicianMaster {
         this.type = "Orchestra";
         this.playVariable = 2;
 
-
         this.shopperImage  = new ImageView(new Image("assets/orchestra.png"));
 
 
@@ -74,7 +73,6 @@ public class OrchestraConductor extends  MusicianMaster {
         }
     }
 
-
     public OrchestraConductor(boolean isActive, String name) {
         this(null,  isActive, name, 0);
     }
@@ -90,20 +88,18 @@ public class OrchestraConductor extends  MusicianMaster {
 
     @Override
     public void updateShopperChords() {
-        double x = this.xChord;
-        double y = this.yChord;
-        this.shopperImage.setX(x-40);
-        this.shopperImage.setY(y);
+        this.shopperImage.setX(this.xChord-40);
+        this.shopperImage.setY(this.yChord);
 
-        this.shopperText.setLayoutX(x-27);
-        this.shopperText.setLayoutY(y -40);
+        this.shopperText.setLayoutX(this.xChord-27);
+        this.shopperText.setLayoutY(this.yChord -40);
         this.shopperText.setText(this.name + ", money: "+ this.money + "\nNumber of instruments: " +this.instruments.size());
 
-        this.shadow.setLayoutX(x -10);
-        this.shadow.setLayoutY(y + 170);
+        this.shadow.setLayoutX(this.xChord -10);
+        this.shadow.setLayoutY(this.yChord + 170);
 
-        this.triangleAct.setLayoutX(x+20);
-        this.triangleAct.setLayoutY(y-65);
+        this.triangleAct.setLayoutX(this.xChord+20);
+        this.triangleAct.setLayoutY(this.yChord-65);
 
         if (this.isActive) {
             this.triangleAct.setOpacity(1);
@@ -111,7 +107,7 @@ public class OrchestraConductor extends  MusicianMaster {
             this.triangleAct.setOpacity(0);
         }
         if (this.instrument != null) {
-            this.instrument.update(x, y);
+            this.instrument.update(this.xChord, this.yChord);
         }
 
     }
@@ -233,27 +229,5 @@ public class OrchestraConductor extends  MusicianMaster {
     public void setInstruments(Map<String, Instrument> instruments) {
         this.instruments = instruments;
     }
-
-    @Override
-    public String toString() {
-        return "OrchestraConductor{" +
-                "instruments=" + instruments +
-                ", playVariable=" + playVariable +
-                ", type='" + type + '\'' +
-                ", xChord=" + xChord +
-                ", yChord=" + yChord +
-                ", startDirection=" + startDirection +
-                ", shadow=" + shadow +
-                ", isActive=" + isActive +
-                ", stay=" + stay +
-                ", triangleAct=" + triangleAct +
-                ", shopperImage=" + shopperImage +
-                ", isMan=" + isMan +
-                ", shopperText=" + shopperText +
-                ", instrument=" + instrument +
-                ", shopperPicture=" + shopperPicture +
-                ", money=" + money +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    
 }

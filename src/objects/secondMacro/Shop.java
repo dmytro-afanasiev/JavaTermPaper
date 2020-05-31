@@ -72,7 +72,7 @@ public class Shop extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x + 179);
+        this.buildingText.setLayoutX(x + 140);
         this.buildingText.setLayoutY(y + 280);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 230);

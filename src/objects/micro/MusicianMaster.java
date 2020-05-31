@@ -84,20 +84,20 @@ public class MusicianMaster extends Shopper {
 
     @Override
     public void updateShopperChords() {
-        double x = this.xChord;
-        double y = this.yChord;
-        this.shopperImage.setX(x);
-        this.shopperImage.setY(y);
 
-        this.shopperText.setLayoutX(x-15);
-        this.shopperText.setLayoutY(y -17);
+        this.shopperImage.setX(this.xChord);
+        this.shopperImage.setY(this.yChord);
+
+        this.shopperText.setLayoutX(this.xChord-15);
+        this.shopperText.setLayoutY(this.yChord -17);
         this.shopperText.setText(this.name + ", money: "+ this.money);
 
-        this.shadow.setLayoutX(x -10);
-        this.shadow.setLayoutY(y + 170);
 
-        this.triangleAct.setLayoutX(x+30);
-        this.triangleAct.setLayoutY(y-40);
+        this.shadow.setLayoutX(this.xChord -10);
+        this.shadow.setLayoutY(this.yChord + 170);
+
+        this.triangleAct.setLayoutX(this.xChord+30);
+        this.triangleAct.setLayoutY(this.yChord-40);
 
         if (this.isActive) {
             this.triangleAct.setOpacity(1);
@@ -105,7 +105,7 @@ public class MusicianMaster extends Shopper {
             this.triangleAct.setOpacity(0);
         }
         if (this.instrument != null) {
-            this.instrument.update(x, y);
+            this.instrument.update(this.xChord, this.yChord);
         }
 
     }
