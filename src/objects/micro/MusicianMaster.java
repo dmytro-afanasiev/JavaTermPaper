@@ -177,7 +177,7 @@ public class MusicianMaster extends Shopper {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarBad.wav");
+                musicPath = new String("src/assets/music/guitarGood.mp3");
                 break;
             case "Bayan":
                 break;

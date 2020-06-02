@@ -192,7 +192,7 @@ public class OrchestraConductor extends  MusicianMaster {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarBad.wav");
+                musicPath = "src/assets/music/guitarBest.mp3";
                 break;
             case "Bayan":
                 break;
@@ -201,9 +201,10 @@ public class OrchestraConductor extends  MusicianMaster {
             case "Piano":
                 break;
             case "Trembita":
-                musicPath = new String("src/assets/music/trembitaBad.mp3");
+                musicPath = "src/assets/music/trembitaBad.mp3";
                 break;
             case "Violin":
+                musicPath = "src/assets/music/violinBest.mp3";
                 break;
         }
         Media hit = new Media(Paths.get(musicPath).toUri().toString());

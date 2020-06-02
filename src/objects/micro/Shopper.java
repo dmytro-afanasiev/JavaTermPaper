@@ -189,7 +189,6 @@ public class Shopper implements Cloneable {
         } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
             this.startDirection = (byte) Main.random.nextInt(2);
         }
-
     }
 
     public void mouseClick(double x, double y) {
@@ -303,7 +302,7 @@ public class Shopper implements Cloneable {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarBad.wav");
+                musicPath = new String("src/assets/music/guitarBad.mp3");
                 break;
             case "Bayan":
                 break;
@@ -311,7 +310,6 @@ public class Shopper implements Cloneable {
                 break;
             case "Piano":
                 musicPath = new String("src/assets/music/terorist.mp3");
-
                 break;
             case "Trembita":
                 musicPath = new String("src/assets/music/trembitaBad.mp3");
