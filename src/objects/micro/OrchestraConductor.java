@@ -186,7 +186,7 @@ public class OrchestraConductor extends  MusicianMaster {
         this.getShopperPicture().getChildren().add(4 ,orchestraPlaySprite);
         this.setStay(true);
 
-        Animation playAnimation = new Sprite(orchestraPlaySprite , Duration.millis(2000),4,4,0,0,561,683);
+        Animation playAnimation = new Sprite(orchestraPlaySprite , Duration.millis(2000),4,4,561,683);
         playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";

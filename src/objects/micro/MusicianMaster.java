@@ -171,7 +171,7 @@ public class MusicianMaster extends Shopper {
         this.getShopperPicture().getChildren().add(4 ,masterPlaySprite);
         this.setStay(true);
 
-        Animation playAnimation = new Sprite(masterPlaySprite , Duration.millis(2000),4,4,0,0,431,683);
+        Animation playAnimation = new Sprite(masterPlaySprite , Duration.millis(2000),4,4,431,683);
         playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";

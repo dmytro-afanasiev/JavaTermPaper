@@ -80,7 +80,7 @@ public class Underpass extends Building {
                 }
                 currentAnimation = underpassSprite;
                 this.buildingPicture.getChildren().add(underpassSprite);
-                Animation dance = new Sprite(underpassSprite, Duration.millis(700), 13, 13, 0, 0, 485, 326);
+                Animation dance = new Sprite(underpassSprite, Duration.millis(700), 13, 13,  485, 326);
                 dance.setCycleCount(40);
 
                 this.shoppersInside.add(shopper);

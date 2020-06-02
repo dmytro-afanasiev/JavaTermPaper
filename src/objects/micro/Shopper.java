@@ -297,7 +297,7 @@ public class Shopper implements Cloneable {
         this.getShopperPicture().getChildren().add(4 ,shopperPlaySprite);
         this.setStay(true);
 
-        Animation playAnimation = new Sprite(shopperPlaySprite , Duration.millis(2000),4,4,0,0,431,683);
+        Animation playAnimation = new Sprite(shopperPlaySprite , Duration.millis(2000),4,4,431,683);
         playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";

@@ -1,7 +1,5 @@
 package objects.secondMacro;
 
-
-import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;

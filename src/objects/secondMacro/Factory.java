@@ -54,7 +54,7 @@ public class Factory extends Building{
         this.smokeSprite.setViewport(new Rectangle2D(0,100,100,100)); // це погане рішення для того щоб зробити спрайт диму невидимий, але воно працює!
         this.smokeSprite.setPreserveRatio(true);
         this.smokeSprite.setFitHeight(60);
-        this.smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 0, 0,100,100 );
+        this.smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10,  100,100 );
         this.smokeAnimation.setCycleCount(Animation.INDEFINITE);
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
@@ -99,7 +99,7 @@ public class Factory extends Building{
                 if (shopper.getInstrument() != null) {
                     shopper.getInstrument().getInstrumentImage().setOpacity(0);
                 }
-                Animation workAnimation = new Sprite(shopperWorkSprite, Duration.millis(1500), 8, 8, 0, 0, 498, 684);
+                Animation workAnimation = new Sprite(shopperWorkSprite, Duration.millis(1500), 8, 8,  498, 684);
                 workAnimation.setCycleCount(20);//як довго буде працювати
 
 
