@@ -82,7 +82,10 @@ public class Main extends Application {
         world.addNewBuilding(new Factory());
         world.addNewBuilding(new Factory());
         world.addNewBuilding(new Shop());
+        world.addNewBuilding(new Shop());
         world.addNewBuilding(new School());
+        world.addNewBuilding(new School());
+        world.addNewBuilding(new Underpass());
         world.addNewBuilding(new Underpass());
 
         world.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
