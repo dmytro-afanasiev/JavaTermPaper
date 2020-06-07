@@ -12,13 +12,13 @@ import java.util.HashMap;
 public class Serialization {
 
     public static void serializeNow(File file) {
-        XMLEncoder encoder = null;
+        XMLEncoder encoder;
         try {
             encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)));
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("shoppers", Main.shoppers);
-            hashMap.put("buildings",Main.buildings);
+            hashMap.put("shoppers", Main.getWorld().getShoppers());
+            hashMap.put("buildings",Main.getWorld().getBuildings());
             encoder.writeObject(hashMap);
             encoder.close();
         } catch (FileNotFoundException e) {
@@ -26,25 +26,25 @@ public class Serialization {
         }
     }
     public static void deserializeNow(File file){
-        XMLDecoder decoder=null;
+        XMLDecoder decoder;
         try {
             decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(file)));
 
-            for (int i = 0 ; i<Main.shoppers.size();i++){
-                Shopper shopper = Main.shoppers.get(i--);
-                Main.deleteAShopper(shopper);
+            for (int i = 0 ; i<Main.getWorld().getShoppers().size();i++){
+                Shopper shopper = Main.getWorld().getShoppers().get(i--);
+                Main.getWorld().deleteAShopper(shopper);
             }
-            for (int i = 0 ; i<Main.buildings.size();i++){
-                Building building = Main.buildings.get(i--);
-                Main.deleteABuilding(building);
+            for (int i = 0 ; i<Main.getWorld().getBuildings().size();i++){
+                Building building = Main.getWorld().getBuildings().get(i--);
+                Main.getWorld().deleteABuilding(building);
             }
             HashMap<String, Object> hashMap = (HashMap<String, Object>)decoder.readObject();
 
             for (Building building: (ArrayList<Building>)hashMap.get("buildings")){
-                Main.addNewBuilding(building);
+                Main.getWorld().addNewBuilding(building);
             }
             for (Shopper shopper:(ArrayList<Shopper>)hashMap.get("shoppers")){
-                Main.addNewShopper(shopper, false);
+                Main.getWorld().addNewShopper(shopper, false);
             }
             decoder.close();
         } catch (FileNotFoundException e) {

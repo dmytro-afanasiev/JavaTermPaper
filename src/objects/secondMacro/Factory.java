@@ -36,9 +36,9 @@ public class Factory extends Building{
     private ImageView smokeSprite = new ImageView(new Image("assets/smokeSprite.png"));
     private Animation smokeAnimation;
 
-    public Factory(double xChord, double yChord){
-        this.xChord = xChord;
-        this.yChord = yChord;
+    public Factory(){
+        this.xChord = Main.random.nextInt(4000);
+        this.yChord = Main.random.nextInt(2000);
         Building.numberOfBuildings++;
         this.buildingType = "Factory";
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
@@ -59,9 +59,6 @@ public class Factory extends Building{
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
         smokeAnimation.play();
-    }
-    public Factory(){
-        this(0,0);
     }
     @Override
     public void setBuildingInChords() {

@@ -13,94 +13,64 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.firstMacro.Tremb;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
-import objects.secondMacro.*;
+import objects.secondMacro.Factory;
+import objects.secondMacro.School;
+import objects.secondMacro.Shop;
+import objects.secondMacro.Underpass;
+import objects.thirdMacro.World;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 public class Main extends Application {
 
-    public static ArrayList<Shopper> shoppers = new ArrayList<>(5);
-    public static ArrayList<Building> buildings = new ArrayList<>(5);
+
+    final private static int SCENE_WIDTH = 1920;
+    final private static int SCENE_HEIGHT = 1080;
+
     public static Random random = new Random(new Date().getTime());
 
-    private static Pane root = new Pane();
-    private static ScrollPane scrollPane = new ScrollPane(root);
-    private static Scene scene = new Scene(scrollPane, 1920, 1080);
-    private static MiniMap miniMap;
+    private static World world = new World();
+    private static ScrollPane scrollPane = new ScrollPane(world.getRoot());
+    private static Scene scene = new Scene(scrollPane, Main.SCENE_WIDTH, Main.SCENE_HEIGHT);
+
 
     private static double scrollX;
     private static double scrollY;
 
+    public static int getSceneWidth() {
+        return SCENE_WIDTH;
+    }
+    public static int getSceneHeight() {
+        return SCENE_HEIGHT;
+    }
+
+
+    public static World getWorld() {
+        return world;
+    }
+    public static ScrollPane getScrollPane() {
+        return scrollPane;
+    }
     public static Scene getScene() {
         return scene;
     }
 
-    public static Pane getRoot() {
-        return root;
-    }
-
-    public static ScrollPane getScrollPane() {
-        return scrollPane;
-    }
-
-    public static MiniMap getMiniMap() {
-        return miniMap;
-    }
 
     public static double getScrollX() {
         return scrollX;
     }
-
     public static double getScrollY() {
         return scrollY;
-    }
-
-
-    public static void addNewShopper(Shopper shopper, boolean rand) {
-        Main.shoppers.add(shopper);
-        if (rand) {
-            shopper.setXChord(random.nextInt((int) (scene.getWidth() + scrollX)));
-            shopper.setYChord(random.nextInt((int) (scene.getHeight() + scrollY)));
-        }
-        shopper.updateShopperChords();
-        root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
-        Main.miniMap.addShopper(shopper);
-    }
-
-    public static void deleteAShopper(Shopper shopper) {
-        Main.miniMap.deleteAShopper(shopper);
-        root.getChildren().remove(shopper.getShopperPicture());
-        shoppers.remove(shopper);
-        Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
-    }
-
-    public static void addNewBuilding(Building building) {
-        Main.buildings.add(building);
-        building.setBuildingInChords();
-        root.getChildren().add(0,building.getBuildingPicture());
-        Main.miniMap.addBuilding(building);
-    }
-
-    public static void deleteABuilding(Building building) {
-        Main.miniMap.deleteABuilding(building);
-        root.getChildren().remove(building.getBuildingPicture());
-        buildings.remove(building);
-        Building.setNumberOfBuildings(Building.getNumberOfBuildings() - 1);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        root.setMinWidth(4800);
-        root.setMinHeight(2700);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
@@ -109,23 +79,19 @@ public class Main extends Application {
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
 
-        miniMap = new MiniMap();
+        world.addNewBuilding(new Factory());
+        world.addNewBuilding(new Factory());
+        world.addNewBuilding(new Shop());
+        world.addNewBuilding(new School());
+        world.addNewBuilding(new Underpass());
 
-
-        Main.addNewBuilding(new Factory(Main.random.nextInt(4000), Main.random.nextInt(2000)));
-        Main.addNewBuilding(new Factory(Main.random.nextInt(4000), Main.random.nextInt(2000)));
-        Main.addNewBuilding(new Shop(Main.random.nextInt(4000), Main.random.nextInt(2000)));
-        Main.addNewBuilding(new School(Main.random.nextInt(4000), Main.random.nextInt(2000)));
-        Main.addNewBuilding(new Underpass(Main.random.nextInt(4000), Main.random.nextInt(2000)));
-
-        Main.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
-        Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        Main.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        Main.addNewShopper(new OrchestraConductor(new Tremb(), false, "Вася", 1000),true);
+        world.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
+        world.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        world.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        world.addNewShopper(new OrchestraConductor(new Tremb(), false, "Вася", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        root.getChildren().add(parent);
-        root.getChildren().add(miniMap.getPane());
+        world.getRoot().getChildren().add(parent);
 
 
         scrollPane.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
@@ -145,10 +111,10 @@ public class Main extends Application {
                 parent.setLayoutY(scrollY);
 
                 // постійни здвиг карти при прокручуванні
-                miniMap.getPane().setLayoutX(scrollX + 10);
-                miniMap.getPane().setLayoutY(scrollY + scene.getHeight() - miniMap.getPane().getHeight() - 25);
-                miniMap.getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
-                miniMap.getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
+                world.getMiniMap().getPane().setLayoutX(scrollX + 10);
+                world.getMiniMap().getPane().setLayoutY(scrollY + scene.getHeight() - world.getMiniMap().getPane().getHeight() - 25);
+                world.getMiniMap().getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
+                world.getMiniMap().getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
 
                 //просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
@@ -164,27 +130,16 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
-        root.setOnMousePressed(event -> {
-            for (Shopper shopper : shoppers) {
-                if (event.getButton().equals(MouseButton.PRIMARY)) {
-                    shopper.mouseClick(event.getX(), event.getY());
-                } else if (event.getButton().equals(MouseButton.SECONDARY)) {
-                    if (shopper instanceof OrchestraConductor) {
-                        ((OrchestraConductor) shopper).chooseAnInstrument(event.getX(), event.getY());
-                    }
-                }
-            }
-        });
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
 
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.freeRun();
                     shopper.updateShopperChords();
                 }
-                miniMap.updateMap();
+                world.getMiniMap().updateMap();
             }
         };
         timer.start();
@@ -242,35 +197,35 @@ public class Main extends Application {
                 }
             }*/
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.up(1);
                 }
             } else if (event.getCode().equals(KeyCode.S) && !event.isShiftDown()) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.down(1);
                 }
             } else if (event.getCode().equals(KeyCode.D) && !event.isShiftDown()) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.right(1);
                 }
             } else if (event.getCode().equals(KeyCode.A) && !event.isShiftDown()) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.left(1);
                 }
             } else if (event.getCode().equals(KeyCode.W)) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.up(2);
                 }
             } else if (event.getCode().equals(KeyCode.S)) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.down(2);
                 }
             } else if (event.getCode().equals(KeyCode.D)) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.right(2);
                 }
             } else if (event.getCode().equals(KeyCode.A)) {
-                for (Shopper shopper : shoppers) {
+                for (Shopper shopper : world.getShoppers()) {
                     shopper.left(2);
                 }
             }

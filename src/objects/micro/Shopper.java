@@ -205,7 +205,7 @@ public class Shopper implements Cloneable {
     }
 
     public void right(double boost) {
-        if (isActive && xChord <= Main.getRoot().getWidth() - 100) {
+        if (isActive && xChord <= Main.getWorld().getRoot().getWidth() - 100) {
             xChord += Preferences.getSPEED() * boost;
         }
     }
@@ -217,7 +217,7 @@ public class Shopper implements Cloneable {
     }
 
     public void down(double boost) {
-        if (isActive && yChord <= Main.getRoot().getHeight() - 200) {
+        if (isActive && yChord <= Main.getWorld().getRoot().getHeight() - 200) {
             yChord += Preferences.getSPEED() * boost;
         }
     }

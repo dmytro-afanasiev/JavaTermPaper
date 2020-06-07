@@ -12,14 +12,15 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
+import sample.Main;
 import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
 
 import java.io.IOException;
 
 public class Shop extends Building {
-    public Shop(double x, double y) {
-        this.xChord = x;
-        this.yChord = y;
+    public Shop() {
+        this.xChord = Main.random.nextInt(4000);
+        this.yChord = Main.random.nextInt(2000);
         this.buildingType = "Shop";
         Building.numberOfBuildings++;
         this.buildingImage = new ImageView(new Image("assets/shop.png"));
@@ -35,9 +36,6 @@ public class Shop extends Building {
 
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
-    }
-    public Shop(){
-        this(0,0);
     }
     @Override
     public void interact(Shopper shopper, boolean isShiftDown) {

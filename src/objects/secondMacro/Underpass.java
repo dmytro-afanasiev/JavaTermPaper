@@ -29,10 +29,10 @@ public class Underpass extends Building {
     private ImageView currentAnimation;
 
 
-    public Underpass(double x, double y) {
+    public Underpass() {
         this.shoppersInside = new ArrayList<>(5);
-        this.xChord = x;
-        this.yChord = y;
+        this.xChord = Main.random.nextInt(4000);
+        this.yChord = Main.random.nextInt(2000);
         this.buildingType = "Underpass";
         Building.numberOfBuildings++;
         this.buildingImage = new ImageView(new Image("assets/underpass.png"));
@@ -48,9 +48,6 @@ public class Underpass extends Building {
 
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
-    }
-    public Underpass(){
-        this(0,0);
     }
     @Override
     public void setBuildingInChords() {

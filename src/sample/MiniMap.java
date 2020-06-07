@@ -1,41 +1,30 @@
 package sample;
 
-import javafx.geometry.Bounds;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
+import objects.thirdMacro.World;
 import sample.windows.preferencesWindow.Preferences;
 
-
 import java.util.HashMap;
-import java.util.Objects;
 
 public class MiniMap {
     final static private double SCALE = 0.1;
     private Pane pane;
-    private double xChord;
-    private double yChord;
     private HashMap<Shopper, ImageView> shoppersMap;
     private HashMap<Building, ImageView> buildingsMap;
     private Rectangle mainArea;
 
     public MiniMap() {
         this.pane = new Pane();
-        this.pane.setMinWidth(Main.getRoot().getMinWidth() * MiniMap.SCALE);
-        this.pane.setMinHeight(Main.getRoot().getMinHeight() * MiniMap.SCALE);
+        this.pane.setMinWidth(World.getRootWidth() * MiniMap.SCALE);
+        this.pane.setMinHeight(World.getRootHeight() * MiniMap.SCALE);
         shoppersMap = new HashMap<>();
         buildingsMap = new HashMap<>();
 
@@ -50,7 +39,7 @@ public class MiniMap {
         label.setFont(new Font("Segoe UI Black Italic", 16));
         label.setLayoutX(pane.getMinWidth() / 2.1);
 
-        mainArea = new Rectangle(0, 0, Main.getScene().getWidth() * MiniMap.SCALE, Main.getScene().getHeight() * MiniMap.SCALE - 10);//Цієї "10" не повинно бути, вона виправляє якийсь баг в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
+        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE, Main.getSceneHeight() * MiniMap.SCALE - 10);//Цієї "10" не повинно бути, вона виправляє якийсь баг в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
         mainArea.setFill(Color.TRANSPARENT);
         mainArea.setStrokeWidth(2);
         mainArea.setStroke(Color.YELLOW);
@@ -81,14 +70,6 @@ public class MiniMap {
 
     public Rectangle getMainArea() {
         return mainArea;
-    }
-
-    public void setXChord(double xChord) {
-        this.xChord = xChord;
-    }
-
-    public void setYChord(double yChord) {
-        this.yChord = yChord;
     }
 
     public static double getSCALE() {
@@ -162,7 +143,7 @@ public class MiniMap {
         if (Preferences.isMAP()) {
             pane.setOpacity(1);
         } else pane.setOpacity(0);
-        for (Shopper shopper : Main.shoppers) {
+        for (Shopper shopper : Main.getWorld().getShoppers()) {
             ImageView imageView = shoppersMap.get(shopper);
             imageView.setLayoutX(shopper.getXChord() * MiniMap.SCALE);
             imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);

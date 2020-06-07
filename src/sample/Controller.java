@@ -99,23 +99,23 @@ public class Controller {
                 else if (buttonName.equals("Вийти")){
                     Platform.exit();
                 } else if (buttonName.equals("Взаємодіяти з будівлею")){
-                    for (Shopper shopper : Main.shoppers) {
+                    for (Shopper shopper : Main.getWorld().getShoppers()) {
                         if (shopper.isActive()) {
-                            for (Building b : Main.buildings) {
+                            for (Building b : Main.getWorld().getBuildings()) {
                                 b.interact(shopper, false);
                             }
                         }
                     }
                 } else if (buttonName.equals("Продати (тільки магазин)")) {
-                    for (Shopper shopper : Main.shoppers) {
+                    for (Shopper shopper : Main.getWorld().getShoppers()) {
                         if (shopper.isActive()) {
-                            for (Building b : Main.buildings) {
+                            for (Building b : Main.getWorld().getBuildings()) {
                                 b.interact(shopper, true);
                             }
                         }
                     }
                 } else if (buttonName.equals("Грати на інструменті")){
-                    for (Shopper shopper : Main.shoppers) {
+                    for (Shopper shopper : Main.getWorld().getShoppers()) {
                         if (shopper.isActive()) {
                             if (shopper.getInstrument() != null) {
                                 shopper.playAnInstrument();
@@ -136,18 +136,18 @@ public class Controller {
                         e.printStackTrace();
                     }
                 } else if (buttonName.equals("Видалити персонажей")){
-                    for (int i = 0; i < Main.shoppers.size(); i++) {
-                        Shopper shopper = Main.shoppers.get(i);
+                    for (int i = 0; i < Main.getWorld().getShoppers().size(); i++) {
+                        Shopper shopper = Main.getWorld().getShoppers().get(i);
                         if (shopper.isActive()) {
-                            Main.deleteAShopper(shopper);
+                            Main.getWorld().deleteAShopper(shopper);
                             i--;
                         }
 
                     }
                     System.out.println(Shopper.getNumberOfShoppers()+"----");
-                    System.out.println(Main.shoppers.size());
+                    System.out.println(Main.getWorld().getShoppers().size());
                 } else if (buttonName.equals("Відмінити вибір")){
-                    for(Shopper s: Main.shoppers){
+                    for(Shopper s: Main.getWorld().getShoppers()){
                         if (s.isActive()) {
                             s.setActive(false);
                         }
