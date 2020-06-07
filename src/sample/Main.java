@@ -1,36 +1,27 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.Transition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import objects.firstMacro.*;
-import objects.micro.MusicianMaster;
+import objects.firstMacro.Tremb;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.*;
-import sample.windows.buyAnInstrumentWindow.BuyAnInstrumentWindow;
-import sample.windows.createShopperWindow.CreateShopperWindow;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -44,6 +35,9 @@ public class Main extends Application {
     private static ScrollPane scrollPane = new ScrollPane(root);
     private static Scene scene = new Scene(scrollPane, 1920, 1080);
     private static MiniMap miniMap;
+
+    private static double scrollX;
+    private static double scrollY;
 
     public static Scene getScene() {
         return scene;
@@ -60,9 +54,6 @@ public class Main extends Application {
     public static MiniMap getMiniMap() {
         return miniMap;
     }
-
-    private static double scrollX;
-    private static double scrollY;
 
     public static double getScrollX() {
         return scrollX;
@@ -165,6 +156,7 @@ public class Main extends Application {
                         scrollHeight);
             }
         });
+
 
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
