@@ -346,19 +346,22 @@ public class Shopper implements Cloneable {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarGood.mp3");
+                musicPath = "src/assets/music/witcher.mp3";
                 break;
             case "Bayan":
+                musicPath = "src/assets/music/bayanBad.mp3";
                 break;
             case "Drums":
+                musicPath = "src/assets/music/drumsBad.mp3";
                 break;
             case "Piano":
-                musicPath = new String("src/assets/music/terorist.mp3");
+                musicPath = "src/assets/music/dogWaltz.mp3";
                 break;
             case "Trembita":
-                musicPath = new String("src/assets/music/trembitaBad.mp3");
+                musicPath = "src/assets/music/trembitaBad.mp3";
                 break;
             case "Violin":
+                musicPath = "src/assets/music/violinBad.mp3";
                 break;
         }
 

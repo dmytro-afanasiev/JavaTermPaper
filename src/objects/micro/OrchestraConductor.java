@@ -114,7 +114,7 @@ public class OrchestraConductor extends  MusicianMaster {
 
     public void chooseAnInstrument(double x, double y){
         Point2D point2D = new Point2D(x, y);
-        if (this.shopperImage.getBoundsInParent().contains(point2D)) {
+        if (this.shopperImage.getBoundsInParent().contains(point2D) && !this.stay) {
             try {
 
                 new ChooseAnInstrumentWindow().display("Виберіть", this);
@@ -195,13 +195,16 @@ public class OrchestraConductor extends  MusicianMaster {
                 musicPath = "src/assets/music/guitarBest.mp3";
                 break;
             case "Bayan":
+                musicPath = "src/assets/music/bayanBest.mp3";
                 break;
             case "Drums":
+                musicPath = "src/assets/music/drumsBest.mp3";
                 break;
             case "Piano":
+                musicPath = "src/assets/music/experience.mp3";
                 break;
             case "Trembita":
-                musicPath = "src/assets/music/trembitaBad.mp3";
+                musicPath = "src/assets/music/trembitaBest.mp3";
                 break;
             case "Violin":
                 musicPath = "src/assets/music/violinBest.mp3";

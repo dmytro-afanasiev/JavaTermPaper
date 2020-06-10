@@ -39,7 +39,7 @@ public class MiniMap {
         label.setFont(new Font("Segoe UI Black Italic", 16));
         label.setLayoutX(pane.getMinWidth() / 2.1);
 
-        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE, Main.getSceneHeight() * MiniMap.SCALE - 10);//Цієї "10" не повинно бути, вона виправляє якийсь баг в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
+        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE-2, Main.getSceneHeight() * MiniMap.SCALE - 10);//Цієї "2" і "10" не повинно бути, вони виправляють якийсь баг з координатами в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
         mainArea.setFill(Color.TRANSPARENT);
         mainArea.setStrokeWidth(2);
         mainArea.setStroke(Color.YELLOW);

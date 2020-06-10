@@ -177,18 +177,22 @@ public class MusicianMaster extends Shopper {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarGood.mp3");
+                musicPath = "src/assets/music/guitarGood.mp3";
                 break;
             case "Bayan":
+                musicPath = "src/assets/music/bayanGood.mp3";
                 break;
             case "Drums":
+                musicPath = "src/assets/music/drumsGood.mp3";
                 break;
             case "Piano":
+                musicPath = "src/assets/music/pianoGood.mp3";
                 break;
             case "Trembita":
-                musicPath = new String("src/assets/music/trembitaBad.mp3");
+                musicPath = "src/assets/music/trembitaGood.mp3";
                 break;
             case "Violin":
+                musicPath = "src/assets/music/despasito.mp3";
                 break;
         }
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
