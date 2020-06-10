@@ -17,8 +17,8 @@ public class Serialization {
             encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)));
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("shoppers", Main.getWorld().getShoppers());
-            hashMap.put("buildings",Main.getWorld().getBuildings());
+            hashMap.put("shoppers", Main.getCity().getShoppers());
+            hashMap.put("buildings",Main.getCity().getBuildings());
             encoder.writeObject(hashMap);
             encoder.close();
         } catch (FileNotFoundException e) {
@@ -30,21 +30,21 @@ public class Serialization {
         try {
             decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(file)));
 
-            for (int i = 0 ; i<Main.getWorld().getShoppers().size();i++){
-                Shopper shopper = Main.getWorld().getShoppers().get(i--);
-                Main.getWorld().deleteAShopper(shopper);
+            for (int i = 0; i<Main.getCity().getShoppers().size(); i++){
+                Shopper shopper = Main.getCity().getShoppers().get(i--);
+                Main.getCity().deleteAShopper(shopper);
             }
-            for (int i = 0 ; i<Main.getWorld().getBuildings().size();i++){
-                Building building = Main.getWorld().getBuildings().get(i--);
-                Main.getWorld().deleteABuilding(building);
+            for (int i = 0; i<Main.getCity().getBuildings().size(); i++){
+                Building building = Main.getCity().getBuildings().get(i--);
+                Main.getCity().deleteABuilding(building);
             }
             HashMap<String, Object> hashMap = (HashMap<String, Object>)decoder.readObject();
 
             for (Building building: (ArrayList<Building>)hashMap.get("buildings")){
-                Main.getWorld().addNewBuilding(building);
+                Main.getCity().addNewBuilding(building);
             }
             for (Shopper shopper:(ArrayList<Shopper>)hashMap.get("shoppers")){
-                Main.getWorld().addNewShopper(shopper, false);
+                Main.getCity().addNewShopper(shopper, false);
             }
             decoder.close();
         } catch (FileNotFoundException e) {

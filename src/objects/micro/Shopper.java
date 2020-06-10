@@ -149,45 +149,89 @@ public class Shopper implements Cloneable {
 
     public void freeRun() {
         if (!this.isActive() && !this.stay) {
-            switch (this.startDirection) {
-                case 0:
-                    this.yChord -= Preferences.getSPEED() / 5;
-                    break;
-                case 1:
-                    this.yChord -= Preferences.getSPEED() / 5;
-                    this.xChord += Preferences.getSPEED() / 5;
-                    break;
-                case 2:
-                    this.xChord += Preferences.getSPEED() / 5;
-                    break;
-                case 3:
-                    this.xChord += Preferences.getSPEED() / 5;
-                    this.yChord += Preferences.getSPEED() / 5;
-                    break;
-                case 4:
-                    this.yChord += Preferences.getSPEED() / 5;
-                    break;
-                case 5:
-                    this.yChord += Preferences.getSPEED() / 5;
-                    this.xChord -= Preferences.getSPEED() / 5;
-                    break;
-                case 6:
-                    this.xChord -= Preferences.getSPEED() / 5;
-                    break;
-                case 7:
-                    this.xChord -= Preferences.getSPEED() / 5;
-                    this.yChord -= Preferences.getSPEED() / 5;
-                    break;
+            if (Main.getCity().isInteractWithPlayerMode()) {
+                switch (this.startDirection) {
+                    case 0:
+                        this.yChord -= Preferences.getSPEED() / 5;
+                        break;
+                    case 1:
+                        this.yChord -= Preferences.getSPEED() / 5;
+                        this.xChord += Preferences.getSPEED() / 5;
+                        break;
+                    case 2:
+                        this.xChord += Preferences.getSPEED() / 5;
+                        break;
+                    case 3:
+                        this.xChord += Preferences.getSPEED() / 5;
+                        this.yChord += Preferences.getSPEED() / 5;
+                        break;
+                    case 4:
+                        this.yChord += Preferences.getSPEED() / 5;
+                        break;
+                    case 5:
+                        this.yChord += Preferences.getSPEED() / 5;
+                        this.xChord -= Preferences.getSPEED() / 5;
+                        break;
+                    case 6:
+                        this.xChord -= Preferences.getSPEED() / 5;
+                        break;
+                    case 7:
+                        this.xChord -= Preferences.getSPEED() / 5;
+                        this.yChord -= Preferences.getSPEED() / 5;
+                        break;
+                }
+
+                if (this.shopperImage.getX() + 100 >= Main.getScene().getWidth() + Main.getScrollX()) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 5);
+                } else if (this.shopperImage.getX() <= 0 + Main.getScrollX()) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 1);
+                } else if (this.shopperImage.getY() <= 0 + Main.getScrollY()) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 3);
+                } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
+                    this.startDirection = (byte) Main.random.nextInt(2);
+                }
+            } else {
+                switch (this.startDirection) {
+                    case 0:
+                        this.yChord -= Preferences.getSPEED() / 2;
+                        break;
+                    case 1:
+                        this.yChord -= Preferences.getSPEED() / 2;
+                        this.xChord += Preferences.getSPEED() / 2;
+                        break;
+                    case 2:
+                        this.xChord += Preferences.getSPEED() / 2;
+                        break;
+                    case 3:
+                        this.xChord += Preferences.getSPEED() / 2;
+                        this.yChord += Preferences.getSPEED() / 2;
+                        break;
+                    case 4:
+                        this.yChord += Preferences.getSPEED() / 2;
+                        break;
+                    case 5:
+                        this.yChord += Preferences.getSPEED() / 2;
+                        this.xChord -= Preferences.getSPEED() / 2;
+                        break;
+                    case 6:
+                        this.xChord -= Preferences.getSPEED() / 2;
+                        break;
+                    case 7:
+                        this.xChord -= Preferences.getSPEED() / 2;
+                        this.yChord -= Preferences.getSPEED() / 2;
+                        break;
+                }
+
+                if (this.shopperImage.getX() + 100 >= Main.getCity().getRoot().getWidth()) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 5);
+                } else if (this.shopperImage.getX() <= 0) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 1);
+                } else if (this.shopperImage.getY() <= 0) {
+                    this.startDirection = (byte) (Main.random.nextInt(3) + 3);
+                } else if (this.shopperImage.getY() + 170 >= Main.getCity().getRoot().getHeight()) {
+                    this.startDirection = (byte) Main.random.nextInt(2);
+                }
             }
-        }
-        if (this.shopperImage.getX() + 100 >= Main.getScene().getWidth() + Main.getScrollX()) {
-            this.startDirection = (byte) (Main.random.nextInt(3) + 5);
-        } else if (this.shopperImage.getX() <= 0 + Main.getScrollX()) {
-            this.startDirection = (byte) (Main.random.nextInt(3) + 1);
-        } else if (this.shopperImage.getY() <= 0 + Main.getScrollY()) {
-            this.startDirection = (byte) (Main.random.nextInt(3) + 3);
-        } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
-            this.startDirection = (byte) Main.random.nextInt(2);
         }
     }
 
@@ -205,7 +249,7 @@ public class Shopper implements Cloneable {
     }
 
     public void right(double boost) {
-        if (isActive && xChord <= Main.getWorld().getRoot().getWidth() - 100) {
+        if (isActive && xChord <= Main.getCity().getRoot().getWidth() - 100) {
             xChord += Preferences.getSPEED() * boost;
         }
     }
@@ -217,7 +261,7 @@ public class Shopper implements Cloneable {
     }
 
     public void down(double boost) {
-        if (isActive && yChord <= Main.getWorld().getRoot().getHeight() - 200) {
+        if (isActive && yChord <= Main.getCity().getRoot().getHeight() - 200) {
             yChord += Preferences.getSPEED() * boost;
         }
     }
@@ -302,7 +346,7 @@ public class Shopper implements Cloneable {
         String musicPath = "";
         switch (this.instrument.getType()){
             case "Guitar":
-                musicPath = new String("src/assets/music/guitarBad.mp3");
+                musicPath = new String("src/assets/music/guitarGood.mp3");
                 break;
             case "Bayan":
                 break;

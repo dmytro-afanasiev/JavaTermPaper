@@ -8,12 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.input.KeyCombination;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
-import objects.secondMacro.Underpass;
 import sample.windows.aboutWindow.AboutWindow;
 import sample.windows.createShopperWindow.CreateShopperWindow;
 import sample.windows.preferencesWindow.PreferencesWindow;
@@ -31,6 +30,9 @@ public class Controller {
 
     @FXML
     private MenuItem menuFileExit;
+
+    @FXML
+    private RadioMenuItem menuEditRadioFastRun;
 
     @FXML
     private MenuItem menuEditInteract;
@@ -99,23 +101,23 @@ public class Controller {
                 else if (buttonName.equals("Вийти")){
                     Platform.exit();
                 } else if (buttonName.equals("Взаємодіяти з будівлею")){
-                    for (Shopper shopper : Main.getWorld().getShoppers()) {
+                    for (Shopper shopper : Main.getCity().getShoppers()) {
                         if (shopper.isActive()) {
-                            for (Building b : Main.getWorld().getBuildings()) {
+                            for (Building b : Main.getCity().getBuildings()) {
                                 b.interact(shopper, false);
                             }
                         }
                     }
                 } else if (buttonName.equals("Продати (тільки магазин)")) {
-                    for (Shopper shopper : Main.getWorld().getShoppers()) {
+                    for (Shopper shopper : Main.getCity().getShoppers()) {
                         if (shopper.isActive()) {
-                            for (Building b : Main.getWorld().getBuildings()) {
+                            for (Building b : Main.getCity().getBuildings()) {
                                 b.interact(shopper, true);
                             }
                         }
                     }
                 } else if (buttonName.equals("Грати на інструменті")){
-                    for (Shopper shopper : Main.getWorld().getShoppers()) {
+                    for (Shopper shopper : Main.getCity().getShoppers()) {
                         if (shopper.isActive()) {
                             if (shopper.getInstrument() != null) {
                                 shopper.playAnInstrument();
@@ -136,18 +138,18 @@ public class Controller {
                         e.printStackTrace();
                     }
                 } else if (buttonName.equals("Видалити персонажей")){
-                    for (int i = 0; i < Main.getWorld().getShoppers().size(); i++) {
-                        Shopper shopper = Main.getWorld().getShoppers().get(i);
+                    for (int i = 0; i < Main.getCity().getShoppers().size(); i++) {
+                        Shopper shopper = Main.getCity().getShoppers().get(i);
                         if (shopper.isActive()) {
-                            Main.getWorld().deleteAShopper(shopper);
+                            Main.getCity().deleteAShopper(shopper);
                             i--;
                         }
 
                     }
                     System.out.println(Shopper.getNumberOfShoppers()+"----");
-                    System.out.println(Main.getWorld().getShoppers().size());
+                    System.out.println(Main.getCity().getShoppers().size());
                 } else if (buttonName.equals("Відмінити вибір")){
-                    for(Shopper s: Main.getWorld().getShoppers()){
+                    for(Shopper s: Main.getCity().getShoppers()){
                         if (s.isActive()) {
                             s.setActive(false);
                         }
@@ -179,7 +181,20 @@ public class Controller {
                 }
             }
         };
+        menuEditRadioFastRun.setOnAction(event -> {
+            if (menuEditRadioFastRun.isSelected()){
+                System.out.println("selected");
+                Main.getCity().setInteractWithPlayerMode(true);
+                Main.getCity().getInteractWithPlayerModeLabel().setText("Режим взаємодії з користувачем.");
+            } else {
+                System.out.println("no selected");
+                Main.getCity().setInteractWithPlayerMode(false);
+                Main.getCity().getInteractWithPlayerModeLabel().setText("Режим простого руху");
+            }
+        });
+        menuEditRadioFastRun.setSelected(true);
 
+        menuEditRadioFastRun.setAccelerator(KeyCombination.keyCombination("N"));
         menuFileOpen.setOnAction(menuHandler);
         menuFileOpen.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
         menuFileSave.setOnAction(menuHandler);

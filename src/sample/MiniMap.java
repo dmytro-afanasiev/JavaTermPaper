@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
-import objects.thirdMacro.World;
+import objects.thirdMacro.City;
 import sample.windows.preferencesWindow.Preferences;
 
 import java.util.HashMap;
@@ -23,8 +23,8 @@ public class MiniMap {
 
     public MiniMap() {
         this.pane = new Pane();
-        this.pane.setMinWidth(World.getRootWidth() * MiniMap.SCALE);
-        this.pane.setMinHeight(World.getRootHeight() * MiniMap.SCALE);
+        this.pane.setMinWidth(City.getRootWidth() * MiniMap.SCALE);
+        this.pane.setMinHeight(City.getRootHeight() * MiniMap.SCALE);
         shoppersMap = new HashMap<>();
         buildingsMap = new HashMap<>();
 
@@ -143,7 +143,7 @@ public class MiniMap {
         if (Preferences.isMAP()) {
             pane.setOpacity(1);
         } else pane.setOpacity(0);
-        for (Shopper shopper : Main.getWorld().getShoppers()) {
+        for (Shopper shopper : Main.getCity().getShoppers()) {
             ImageView imageView = shoppersMap.get(shopper);
             imageView.setLayoutX(shopper.getXChord() * MiniMap.SCALE);
             imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);

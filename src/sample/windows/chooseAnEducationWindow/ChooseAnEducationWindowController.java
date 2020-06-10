@@ -62,8 +62,8 @@ public class ChooseAnEducationWindowController {
                 if (old != temp){
                     temp.setYChord(old.getYChord());
                     temp.setXChord(old.getXChord());
-                    Main.getWorld().deleteAShopper(old);
-                    Main.getWorld().addNewShopper(temp,false);
+                    Main.getCity().deleteAShopper(old);
+                    Main.getCity().addNewShopper(temp,false);
                 }
 
                 ChooseAnEducationWindow.getWindow().close();

@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import objects.firstMacro.Guitar;
 import objects.firstMacro.Tremb;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
@@ -21,7 +22,7 @@ import objects.secondMacro.Factory;
 import objects.secondMacro.School;
 import objects.secondMacro.Shop;
 import objects.secondMacro.Underpass;
-import objects.thirdMacro.World;
+import objects.thirdMacro.City;
 
 import java.util.Date;
 import java.util.Random;
@@ -34,8 +35,8 @@ public class Main extends Application {
 
     public static Random random = new Random(new Date().getTime());
 
-    private static World world = new World();
-    private static ScrollPane scrollPane = new ScrollPane(world.getRoot());
+    private static City city = new City();
+    private static ScrollPane scrollPane = new ScrollPane(city.getRoot());
     private static Scene scene = new Scene(scrollPane, Main.SCENE_WIDTH, Main.SCENE_HEIGHT);
 
 
@@ -50,8 +51,8 @@ public class Main extends Application {
     }
 
 
-    public static World getWorld() {
-        return world;
+    public static City getCity() {
+        return city;
     }
     public static ScrollPane getScrollPane() {
         return scrollPane;
@@ -79,22 +80,22 @@ public class Main extends Application {
         //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
 
-        world.addNewBuilding(new Factory());
-        world.addNewBuilding(new Factory());
-        world.addNewBuilding(new Shop());
-        world.addNewBuilding(new Shop());
-        world.addNewBuilding(new School());
-        world.addNewBuilding(new School());
-        world.addNewBuilding(new Underpass());
-        world.addNewBuilding(new Underpass());
+        city.addNewBuilding(new Factory());
+        city.addNewBuilding(new Factory());
+        city.addNewBuilding(new Shop());
+        city.addNewBuilding(new Shop());
+        city.addNewBuilding(new School());
+        city.addNewBuilding(new School());
+        city.addNewBuilding(new Underpass());
+        city.addNewBuilding(new Underpass());
 
-        world.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
-        world.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        world.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        world.addNewShopper(new OrchestraConductor(new Tremb(), false, "Вася", 1000),true);
+        city.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
+        city.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        city.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Вася", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        world.getRoot().getChildren().add(parent);
+        city.getRoot().getChildren().add(parent);
 
 
         scrollPane.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
@@ -114,11 +115,13 @@ public class Main extends Application {
                 parent.setLayoutY(scrollY);
 
                 // постійни здвиг карти при прокручуванні
-                world.getMiniMap().getPane().setLayoutX(scrollX + 10);
-                world.getMiniMap().getPane().setLayoutY(scrollY + scene.getHeight() - world.getMiniMap().getPane().getHeight() - 25);
-                world.getMiniMap().getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
-                world.getMiniMap().getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
+                city.getMiniMap().getPane().setLayoutX(scrollX + 10);
+                city.getMiniMap().getPane().setLayoutY(scrollY + scene.getHeight() - city.getMiniMap().getPane().getHeight() - 25);
+                city.getMiniMap().getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
+                city.getMiniMap().getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
 
+                city.getInteractWithPlayerModeLabel().setLayoutX(scrollX+10);
+                city.getInteractWithPlayerModeLabel().setLayoutY(scrollY+scene.getHeight()-city.getMiniMap().getPane().getHeight() - 50);
                 //просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
                         scrollWidth + "; Y from " + Main.scrollY + " to " +
@@ -138,11 +141,11 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
 
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.freeRun();
                     shopper.updateShopperChords();
                 }
-                world.getMiniMap().updateMap();
+                city.getMiniMap().updateMap();
             }
         };
         timer.start();
@@ -200,35 +203,35 @@ public class Main extends Application {
                 }
             }*/
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.up(1);
                 }
             } else if (event.getCode().equals(KeyCode.S) && !event.isShiftDown()) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.down(1);
                 }
             } else if (event.getCode().equals(KeyCode.D) && !event.isShiftDown()) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.right(1);
                 }
             } else if (event.getCode().equals(KeyCode.A) && !event.isShiftDown()) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.left(1);
                 }
             } else if (event.getCode().equals(KeyCode.W)) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.up(2);
                 }
             } else if (event.getCode().equals(KeyCode.S)) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.down(2);
                 }
             } else if (event.getCode().equals(KeyCode.D)) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.right(2);
                 }
             } else if (event.getCode().equals(KeyCode.A)) {
-                for (Shopper shopper : world.getShoppers()) {
+                for (Shopper shopper : city.getShoppers()) {
                     shopper.left(2);
                 }
             }

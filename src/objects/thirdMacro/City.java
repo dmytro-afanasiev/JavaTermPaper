@@ -1,7 +1,9 @@
 package objects.thirdMacro;
 
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
@@ -10,19 +12,21 @@ import sample.MiniMap;
 
 import java.util.ArrayList;
 
-public class World {
+public class City {
     final private static int ROOT_WIDTH = 4800;
     final private static int ROOT_HEIGHT = 2700;
+    private boolean interactWithPlayerMode; //характер руху
+    private Label interactWithPlayerModeLabel;
     private Pane root;
     private ArrayList<Shopper> shoppers;
     private ArrayList<Building> buildings;
     private MiniMap miniMap;
 
 
-    public World(){
+    public City(){
         this.root = new Pane();
-        this.root.setMinWidth(World.ROOT_WIDTH);
-        this.root.setMinHeight(World.ROOT_HEIGHT);
+        this.root.setMinWidth(City.ROOT_WIDTH);
+        this.root.setMinHeight(City.ROOT_HEIGHT);
         root.setOnMousePressed(event -> {
             for (Shopper shopper : this.shoppers) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -35,10 +39,14 @@ public class World {
             }
         });
 
+        this.interactWithPlayerMode = true;
+        this.interactWithPlayerModeLabel = new Label("Режим взаємодії з користувачем.");
+        this.interactWithPlayerModeLabel.setFont(new Font("Segoe UI Black Italic", 15));
+
         this.shoppers = new ArrayList<>(5);
         this.buildings = new ArrayList<>(5);
         this.miniMap = new MiniMap();
-        this.root.getChildren().add(miniMap.getPane());
+        this.root.getChildren().addAll(miniMap.getPane(),interactWithPlayerModeLabel);
     }
 
 
@@ -97,5 +105,21 @@ public class World {
 
     public static int getRootHeight() {
         return ROOT_HEIGHT;
+    }
+
+    public boolean isInteractWithPlayerMode() {
+        return interactWithPlayerMode;
+    }
+
+    public void setInteractWithPlayerMode(boolean interactWithPlayerMode) {
+        this.interactWithPlayerMode = interactWithPlayerMode;
+    }
+
+    public Label getInteractWithPlayerModeLabel() {
+        return interactWithPlayerModeLabel;
+    }
+
+    public void setInteractWithPlayerModeLabel(Label interactWithPlayerModeLabel) {
+        this.interactWithPlayerModeLabel = interactWithPlayerModeLabel;
     }
 }
