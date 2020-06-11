@@ -59,5 +59,5 @@ public abstract class Building {
     }
 
     public abstract void setBuildingInChords();
-    public abstract void interact(Shopper shopper, boolean isShiftDown);
+    public abstract boolean interact(Shopper shopper, boolean isShiftDown);
 }

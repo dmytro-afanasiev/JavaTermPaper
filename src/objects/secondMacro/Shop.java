@@ -38,7 +38,7 @@ public class Shop extends Building {
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
     }
     @Override
-    public void interact(Shopper shopper, boolean isShiftDown) {
+    public boolean interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
             if (!isShiftDown) {
                 if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
@@ -59,7 +59,9 @@ public class Shop extends Building {
             } else {
                 shopper.sellAnInstrument();
             }
+            return true;
         }
+        return false;
     }
 
     @Override

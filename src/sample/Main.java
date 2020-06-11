@@ -89,9 +89,9 @@ public class Main extends Application {
         city.addNewBuilding(new Underpass());
         city.addNewBuilding(new Underpass());
 
-        city.addNewShopper(new Shopper(false, "Dima", 5000, true),true);
-        city.addNewShopper(new Shopper(false, "Dima", 500, true),true);
-        city.addNewShopper(new Shopper(false, "Dima", 500, true),true);
+        city.addNewShopper(new Shopper(false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(false, "Dima", 149, true),true);
         city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Вася", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));

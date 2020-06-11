@@ -63,7 +63,7 @@ public class Underpass extends Building {
     }
 
     @Override
-    public void interact(Shopper shopper, boolean isShiftDown) {
+    public boolean interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent()) ) {
             if (shopper.getInstrument() != null) {
                 this.buildingImage.setOpacity(0);
@@ -103,8 +103,11 @@ public class Underpass extends Building {
                 alert.setContentText("Візьміть в руки інструмент");
                 alert.showAndWait();
             }
+            return true;
         }
+        return false;
     }
+
 
     public int getShoppersInsideSize() {
         return shoppersInside.size();

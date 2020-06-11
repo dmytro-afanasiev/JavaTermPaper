@@ -14,12 +14,12 @@ public class Sprite extends Transition {
 
     public Sprite(ImageView imageView, Duration duration, int count, int columns,  int width, int height) {
         this.imageView = imageView;
+        this.imageView.setOpacity(0);
         this.count = count;
         this.columns = columns;
         this.width = width;
         this.height = height;
         setCycleDuration(duration);
-
     }
 
     //Виглядає складно)))))
@@ -29,5 +29,6 @@ public class Sprite extends Transition {
         int x = (index % columns) *width ;
         int y = (index / columns) * height ;
         imageView.setViewport(new Rectangle2D(x, y, width, height));
+        this.imageView.setOpacity(1); //це для того, щоб не було багу з повною картынкою спрайту
     }
 }

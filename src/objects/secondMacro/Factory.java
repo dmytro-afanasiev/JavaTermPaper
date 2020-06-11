@@ -1,11 +1,6 @@
 package objects.secondMacro;
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
-import javafx.animation.Transition;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -16,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
@@ -28,7 +22,6 @@ import sample.Sprite;
 import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
-import java.util.EventListener;
 
 
 public class Factory extends Building{
@@ -77,7 +70,7 @@ public class Factory extends Building{
 
 
     @Override
-    public void interact(Shopper shopper, boolean isShiftDown) {
+    public boolean interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
             if (shopper.isMan()) {
 
@@ -89,9 +82,9 @@ public class Factory extends Building{
                 shopperWorkSprite.setY(shopper.getShopperImage().getY());
                 shopperWorkSprite.setPreserveRatio(true);
                 shopperWorkSprite.setFitHeight(shopper.getShopperImage().getFitHeight());
-
-
                 shopper.getShopperPicture().getChildren().add(shopperWorkSprite);
+
+
                 shopper.setStay(true);
                 if (shopper.getInstrument() != null) {
                     shopper.getInstrument().getInstrumentImage().setOpacity(0);
@@ -102,9 +95,9 @@ public class Factory extends Building{
 
                 AudioClip mediaPlayer = null;
                 try {
-                    Media hit = new Media(Paths.get("src/assets/music/dyHast.mp3").toUri().toString());
+                    Media hit = new Media(Paths.get("src/assets/music/factory.mp3").toUri().toString());
                     mediaPlayer = new AudioClip(hit.getSource());
-                    mediaPlayer.setVolume(Preferences.getVOLUME()*0.05);
+                    mediaPlayer.setVolume(Preferences.getVOLUME()*0.5);
                     mediaPlayer.play();
                 } catch (MediaException m){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -132,7 +125,9 @@ public class Factory extends Building{
                 alert.setContentText("Жінки не можуть працювати на тяжкій роботі");
                 alert.showAndWait();
             }
+            return true;
         }
+        return false;
     }
 
 }

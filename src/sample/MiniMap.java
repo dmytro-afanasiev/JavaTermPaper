@@ -77,19 +77,7 @@ public class MiniMap {
     }
 
     public void addShopper(Shopper shopper) {
-        ImageView imageView;
-        switch (shopper.getType()) {
-            case "Orchestra":
-                imageView = new ImageView(new Image("assets/orchestra.png"));
-                break;
-            case "Master":
-                imageView = new ImageView(new Image("assets/master.png"));
-                break;
-            default:
-                imageView = new ImageView(new Image("assets/shopper.png"));
-                break;
-        }
-
+        ImageView imageView = new ImageView(shopper.getShopperImage().getImage());
         imageView.setLayoutX(shopper.getXChord() * MiniMap.SCALE);
         imageView.setLayoutY(shopper.getYChord() * MiniMap.SCALE);
         imageView.setPreserveRatio(true);
@@ -104,29 +92,9 @@ public class MiniMap {
     }
 
     public void addBuilding(Building building) {
-        ImageView imageView;
-        switch (building.getType()) {
-            case "Factory":
-                imageView = new ImageView(new Image("assets/factory.png"));
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
-                break;
-            case "Shop":
-                imageView = new ImageView(new Image("assets/shop.png"));
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
-                break;
-            case "Underpass":
-                imageView = new ImageView(new Image("assets/underpass.png"));
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
-                break;
-            default:
-                imageView = new ImageView(new Image("assets/school.png"));
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
-                break;
-        }
+        ImageView imageView = new ImageView(building.getBuildingImage().getImage());
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(building.getBuildingImage().getFitHeight() * MiniMap.SCALE);
         imageView.setLayoutX(building.getXChord() * MiniMap.SCALE);
         imageView.setLayoutY(building.getYChord() * MiniMap.SCALE);
 

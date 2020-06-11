@@ -113,12 +113,9 @@ public class OrchestraConductor extends  MusicianMaster {
     }
 
     public void chooseAnInstrument(double x, double y){
-        Point2D point2D = new Point2D(x, y);
-        if (this.shopperImage.getBoundsInParent().contains(point2D) && !this.stay) {
+        if (this.shopperImage.getBoundsInParent().contains(new Point2D(x, y)) && !this.stay) {
             try {
-
                 new ChooseAnInstrumentWindow().display("Виберіть", this);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

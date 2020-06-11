@@ -43,7 +43,7 @@ public class School extends Building {
 
 
     @Override
-    public void interact(Shopper shopper, boolean isShiftDown) {
+    public boolean interact(Shopper shopper, boolean isShiftDown) {
         if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
             if (!(shopper instanceof OrchestraConductor) && shopper.getInstrument() != null) {
                 try {
@@ -57,7 +57,9 @@ public class School extends Building {
                 alert.setContentText("Ви уже максимально навчені, якщо ж ні - перевірте наявність інструменту");
                 alert.showAndWait();
             }
+            return true;
         }
+        return false;
     }
 
     @Override

@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
@@ -11,6 +12,7 @@ import sample.Main;
 import sample.MiniMap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class City {
     final private static int ROOT_WIDTH = 4800;
@@ -20,6 +22,7 @@ public class City {
     private Pane root;
     private ArrayList<Shopper> shoppers;
     private ArrayList<Building> buildings;
+    private HashMap<String,ArrayList> objectsHashMap = new HashMap<>();
     private MiniMap miniMap;
 
 
@@ -47,6 +50,15 @@ public class City {
         this.buildings = new ArrayList<>(5);
         this.miniMap = new MiniMap();
         this.root.getChildren().addAll(miniMap.getPane(),interactWithPlayerModeLabel);
+
+        //опасно так робити))))
+        objectsHashMap.put("Factory", new ArrayList<Building>());
+        objectsHashMap.put("Shop", new ArrayList<Building>());
+        objectsHashMap.put("School", new ArrayList<Building>());
+        objectsHashMap.put("Underpass", new ArrayList<Building>());
+        objectsHashMap.put("Shopper", new ArrayList<Shopper>());
+        objectsHashMap.put("Master", new ArrayList<MusicianMaster>());
+        objectsHashMap.put("Orchestra", new ArrayList<OrchestraConductor>());
     }
 
 
@@ -59,6 +71,8 @@ public class City {
         shopper.updateShopperChords();
         this.root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
         this.miniMap.addShopper(shopper);
+
+        this.objectsHashMap.get(shopper.getType()).add(shopper);
     }
 
     public void deleteAShopper(Shopper shopper) {
@@ -66,6 +80,9 @@ public class City {
         this.root.getChildren().remove(shopper.getShopperPicture());
         this.shoppers.remove(shopper);
         Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
+
+        this.objectsHashMap.get(shopper.getType()).remove(shopper);
+
     }
 
     public void addNewBuilding(Building building) {
@@ -73,6 +90,9 @@ public class City {
         building.setBuildingInChords();
         this.root.getChildren().add(0,building.getBuildingPicture());
         this.miniMap.addBuilding(building);
+
+        this.objectsHashMap.get(building.getType()).add(building);
+
     }
 
     public void deleteABuilding(Building building) {
@@ -80,6 +100,8 @@ public class City {
         this.root.getChildren().remove(building.getBuildingPicture());
         this.buildings.remove(building);
         Building.setNumberOfBuildings(Building.getNumberOfBuildings() - 1);
+
+        this.objectsHashMap.get(building.getType()).remove(building);
     }
 
 
@@ -121,5 +143,9 @@ public class City {
 
     public void setInteractWithPlayerModeLabel(Label interactWithPlayerModeLabel) {
         this.interactWithPlayerModeLabel = interactWithPlayerModeLabel;
+    }
+
+    public HashMap<String, ArrayList> getObjectsHashMap() {
+        return objectsHashMap;
     }
 }
