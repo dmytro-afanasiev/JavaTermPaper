@@ -206,14 +206,7 @@ public class Shopper implements Cloneable {
                 } else if (this.shopperImage.getY() + 170 >= Main.getCity().getRoot().getHeight()) {
                     this.startDirection = (byte) Main.random.nextInt(2);
                 }
-                //вільна взаємодія
-                if (this.isMan && this.money>200 && this.money<500) {
-                    for (Building b : (ArrayList<Building>) Main.getCity().getObjectsHashMap().get("Factory")) {
-                        if (b.interact(this, false))
-                            break;
-                    }
-                }
-                
+                this.freeInteract();
             }
         }
     }
@@ -373,6 +366,24 @@ public class Shopper implements Cloneable {
             }
         });
 
+    }
+    public void freeInteract(){
+        if (this.instrument != null && this.money<300){
+            for (Building b : (ArrayList<Building>) Main.getCity().getObjectsHashMap().get("Underpass")) {
+                if (b.interact(this, false))
+                    break;
+            }
+        } else if (this.isMan && this.money<500) {
+            for (Building b : (ArrayList<Building>) Main.getCity().getObjectsHashMap().get("Factory")) {
+                if (b.interact(this, false))
+                    break;
+            }
+        }
+        if (this.instrument != null){
+            if (Main.random.nextDouble()>0.99995){
+                this.playAnInstrument();
+            }
+        }
     }
 
     public double getPlayVariable() {

@@ -39,7 +39,7 @@ public class Shop extends Building {
     }
     @Override
     public boolean interact(Shopper shopper, boolean isShiftDown) {
-        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
+        if (this.getBuildingImage().getLayoutBounds().contains(shopper.getShopperImage().getLayoutBounds())) {
             if (!isShiftDown) {
                 if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
                     try {

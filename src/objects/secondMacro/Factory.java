@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 public class Factory extends Building{
 
     private ImageView smokeSprite = new ImageView(new Image("assets/smokeSprite.png"));
-    private Animation smokeAnimation;
 
     public Factory(){
         this.xChord = Main.random.nextInt(4000);
@@ -47,8 +46,8 @@ public class Factory extends Building{
         this.smokeSprite.setViewport(new Rectangle2D(0,100,100,100)); // це погане рішення для того щоб зробити спрайт диму невидимий, але воно працює!
         this.smokeSprite.setPreserveRatio(true);
         this.smokeSprite.setFitHeight(60);
-        this.smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10,  100,100 );
-        this.smokeAnimation.setCycleCount(Animation.INDEFINITE);
+        Animation smokeAnimation = new Sprite(smokeSprite, Duration.millis(1000), 10, 10, 100, 100);
+        smokeAnimation.setCycleCount(Animation.INDEFINITE);
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText, smokeSprite);
         smokeAnimation.play();
@@ -71,7 +70,7 @@ public class Factory extends Building{
 
     @Override
     public boolean interact(Shopper shopper, boolean isShiftDown) {
-        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent())) {
+        if (this.getBuildingImage().getLayoutBounds().contains(shopper.getShopperImage().getLayoutBounds())) {
             if (shopper.isMan()) {
 
 

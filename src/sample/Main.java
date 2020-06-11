@@ -15,7 +15,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.firstMacro.Guitar;
+import objects.firstMacro.Piano;
 import objects.firstMacro.Tremb;
+import objects.firstMacro.Violin;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Factory;
@@ -75,11 +77,6 @@ public class Main extends Application {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        //scrollPane.pannableProperty().set(true);
-        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        //root.getChildren().add(new ImageView(new Image("assets/back.jpg")));
-
         city.addNewBuilding(new Factory());
         city.addNewBuilding(new Factory());
         city.addNewBuilding(new Shop());
@@ -89,10 +86,10 @@ public class Main extends Application {
         city.addNewBuilding(new Underpass());
         city.addNewBuilding(new Underpass());
 
-        city.addNewShopper(new Shopper(false, "Dima", 0, true),true);
-        city.addNewShopper(new Shopper(false, "Dima", 0, true),true);
-        city.addNewShopper(new Shopper(false, "Dima", 149, true),true);
-        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Вася", 1000),true);
+        city.addNewShopper(new Shopper(new Violin(),false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(new Tremb(),false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(new Guitar(),false, "Dima", 149, true),true);
+        city.addNewShopper(new OrchestraConductor(new Piano(), false, "Вася", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         city.getRoot().getChildren().add(parent);
@@ -122,13 +119,13 @@ public class Main extends Application {
 
                 city.getInteractWithPlayerModeLabel().setLayoutX(scrollX+10);
                 city.getInteractWithPlayerModeLabel().setLayoutY(scrollY+scene.getHeight()-city.getMiniMap().getPane().getHeight() - 50);
-                //просто показує координати в даний момент
+
+                /*//просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
                         scrollWidth + "; Y from " + Main.scrollY + " to " +
-                        scrollHeight);
+                        scrollHeight);*/
             }
         });
-
 
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
@@ -136,11 +133,9 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("assets/icon.png"));
         scene.setOnKeyPressed(new KeyPressedHandler());
 
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-
                 for (Shopper shopper : city.getShoppers()) {
                     shopper.freeRun();
                     shopper.updateShopperChords();
@@ -149,14 +144,12 @@ public class Main extends Application {
             }
         };
         timer.start();
-
         primaryStage.show();
     }
 
     private class KeyPressedHandler implements EventHandler<KeyEvent> {
 
         //З ПИТАННЯМИ, ЧОМУ ТУТ ПОЛОВИНА КОДУ ВИКЛЮЧЕНА, ЗВЕРТАТИСЯ ДО МЕНЕ!!!
-
         @Override
         public void handle(KeyEvent event) {
             /*if (event.getCode().equals(KeyCode.M)) {

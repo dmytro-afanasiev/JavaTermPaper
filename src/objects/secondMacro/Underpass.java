@@ -64,7 +64,7 @@ public class Underpass extends Building {
 
     @Override
     public boolean interact(Shopper shopper, boolean isShiftDown) {
-        if (shopper.getShopperImage().getBoundsInParent().intersects(this.getBuildingImage().getBoundsInParent()) ) {
+        if (this.getBuildingImage().getLayoutBounds().contains(shopper.getShopperImage().getLayoutBounds())) {
             if (shopper.getInstrument() != null) {
                 this.buildingImage.setOpacity(0);
                 ImageView underpassSprite = new ImageView(new Image("assets/underpassSprite.png"));
