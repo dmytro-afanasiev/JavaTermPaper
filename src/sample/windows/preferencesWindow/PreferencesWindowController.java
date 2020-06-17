@@ -6,11 +6,15 @@ import javafx.scene.control.*;
 public class PreferencesWindowController {
 
     private boolean isMap = Preferences.isMAP();
+    private boolean isInformation = Preferences.isINFORMATION();
     private double speed = Preferences.getSPEED();
     private double volume = Preferences.getVOLUME();
     private Complexity complexity = Preferences.getCOMPLEXITY();
     @FXML
     private CheckBox checkMiniMap;
+
+    @FXML
+    private CheckBox checkInformation;
 
     @FXML
     private RadioButton radioLight;
@@ -40,6 +44,11 @@ public class PreferencesWindowController {
             isMap = checkMiniMap.isSelected();
         });
         checkMiniMap.setSelected(Preferences.isMAP());
+
+        checkInformation.setOnAction(event -> {
+            isInformation = checkInformation.isSelected();
+        });
+        checkInformation.setSelected(Preferences.isINFORMATION());
 
         scrollSpeed.setMin(1);
         scrollSpeed.setMax(80);
@@ -82,6 +91,7 @@ public class PreferencesWindowController {
 
         chooseButton.setOnAction(event -> {
             Preferences.setMAP(isMap);
+            Preferences.setINFORMATION(isInformation);
             Preferences.setSPEED(speed);
             Preferences.setVOLUME(volume);
             Preferences.setCOMPLEXITY(complexity);

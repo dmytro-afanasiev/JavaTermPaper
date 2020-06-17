@@ -183,14 +183,9 @@ public class Controller {
         };
         menuEditRadioFastRun.setOnAction(event -> {
             if (menuEditRadioFastRun.isSelected()){
-                System.out.println("selected");
                 Main.getCity().setInteractWithPlayerMode(true);
-                Main.getCity().getInteractWithPlayerModeLabel().setText("Режим взаємодії з користувачем.");
-                System.out.println(Main.getCity().getObjectsHashMap());
             } else {
-                System.out.println("no selected");
                 Main.getCity().setInteractWithPlayerMode(false);
-                Main.getCity().getInteractWithPlayerModeLabel().setText("Режим простого руху");
             }
         });
         menuEditRadioFastRun.setSelected(true);

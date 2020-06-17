@@ -117,9 +117,11 @@ public class Main extends Application {
                 city.getMiniMap().getMainArea().setLayoutX(scrollX*MiniMap.getSCALE());
                 city.getMiniMap().getMainArea().setLayoutY(scrollY*MiniMap.getSCALE());
 
-                city.getInteractWithPlayerModeLabel().setLayoutX(scrollX+10);
+                city.getInformationGroup().setLayoutX(scrollX);
+                city.getInformationGroup().setLayoutY(scrollY);
+               /* city.getInteractWithPlayerModeLabel().setLayoutX(scrollX+10);
                 city.getInteractWithPlayerModeLabel().setLayoutY(scrollY+scene.getHeight()-city.getMiniMap().getPane().getHeight() - 50);
-
+*/
                 /*//просто показує координати в даний момент
                 System.out.println(" X from " + Main.scrollX + " to " +
                         scrollWidth + "; Y from " + Main.scrollY + " to " +
@@ -141,6 +143,7 @@ public class Main extends Application {
                     shopper.updateShopperChords();
                 }
                 city.getMiniMap().updateMap();
+                city.updateInformationLabel();
             }
         };
         timer.start();

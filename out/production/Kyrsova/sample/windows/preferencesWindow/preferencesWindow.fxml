@@ -50,5 +50,10 @@
             <Font name="Segoe UI Black" size="12.0" />
          </font>
       </Button>
+      <CheckBox fx:id="checkInformation" layoutX="27.0" layoutY="204.0" mnemonicParsing="false" text="Відображати інформацію">
+         <font>
+            <Font name="Segoe UI Black" size="12.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

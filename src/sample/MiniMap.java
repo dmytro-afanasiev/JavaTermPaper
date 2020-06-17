@@ -15,7 +15,7 @@ import sample.windows.preferencesWindow.Preferences;
 import java.util.HashMap;
 
 public class MiniMap {
-    final static private double SCALE = 0.1;
+    final static private double SCALE = 0.09;
     private Pane pane;
     private HashMap<Shopper, ImageView> shoppersMap;
     private HashMap<Building, ImageView> buildingsMap;
@@ -31,19 +31,17 @@ public class MiniMap {
 
         Rectangle rectangle = new Rectangle(0, 0, pane.getMinWidth(), pane.getMinHeight());
         rectangle.setFill(Color.LIGHTGREY);
-        Rectangle border = new Rectangle(0, 0, pane.getMinWidth(), pane.getMinHeight());
-        border.setFill(Color.TRANSPARENT);
-        border.setStrokeWidth(2);
-        border.setStroke(Color.BLACK);
+        rectangle.setStroke(Color.BLACK);
+        rectangle.setStrokeWidth(2);
         Label label = new Label("Map");
         label.setFont(new Font("Segoe UI Black Italic", 16));
         label.setLayoutX(pane.getMinWidth() / 2.1);
 
-        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE-2, Main.getSceneHeight() * MiniMap.SCALE - 10);//Цієї "2" і "10" не повинно бути, вони виправляють якийсь баг з координатами в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
+        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE, Main.getSceneHeight() * MiniMap.SCALE);//Цієї "2" і "10" не повинно бути, вони виправляють якийсь баг з координатами в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
         mainArea.setFill(Color.TRANSPARENT);
         mainArea.setStrokeWidth(2);
         mainArea.setStroke(Color.YELLOW);
-        this.pane.getChildren().addAll(rectangle, border, label, mainArea);
+        this.pane.getChildren().addAll(rectangle, label, mainArea);
 
         this.pane.setOnMousePressed(event -> {
             this.moveTo(event.getX(), event.getY());
@@ -110,6 +108,8 @@ public class MiniMap {
     public void updateMap() {
         if (Preferences.isMAP()) {
             pane.setOpacity(1);
+            mainArea.setWidth(Main.getScene().getWidth()* MiniMap.SCALE);
+            mainArea.setHeight(Main.getScene().getHeight()*MiniMap.SCALE);
         } else pane.setOpacity(0);
         for (Shopper shopper : Main.getCity().getShoppers()) {
             ImageView imageView = shoppersMap.get(shopper);

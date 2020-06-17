@@ -4,6 +4,7 @@ import sample.Main;
 
 public class Preferences {
     private static boolean MAP = true;
+    private static boolean INFORMATION = true;
     private static double VOLUME = 0.4;
     private static double SPEED = 10;
     private static Complexity COMPLEXITY = Complexity.LIGHT;
@@ -11,6 +12,10 @@ public class Preferences {
 
     public static boolean isMAP() {
         return MAP;
+    }
+
+    public static boolean isINFORMATION() {
+        return INFORMATION;
     }
 
     public static double getVOLUME() {
@@ -23,6 +28,10 @@ public class Preferences {
 
     public static void setMAP(boolean MAP) {
         Preferences.MAP = MAP;
+    }
+
+    public static void setINFORMATION(boolean INFORMATION) {
+        Preferences.INFORMATION = INFORMATION;
     }
 
     public static void setVOLUME(double VOLUME) {
