@@ -26,6 +26,7 @@ import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 
@@ -518,7 +519,22 @@ public class Shopper implements Cloneable{
         }
         return temp;
     }
-
+    public static Comparator<Shopper> moneyComparator = new Comparator<Shopper>() {
+        @Override
+        public int compare(Shopper o1, Shopper o2) {
+            if (o1.money<o2.money)
+                return -1;
+            else if (o1.money>o2.money)
+                return 1;
+            return 0;
+        }
+    };
+    public static Comparator<Shopper> nameComparator = new Comparator<Shopper>() {
+        @Override
+        public int compare(Shopper o1, Shopper o2) {
+            return o1.name.compareTo(o2.name);
+        }
+    };
 }
 
 

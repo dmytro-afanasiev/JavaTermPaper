@@ -27,6 +27,7 @@ import objects.secondMacro.Shop;
 import objects.secondMacro.Underpass;
 import objects.thirdMacro.City;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -78,10 +79,10 @@ public class Main extends Application {
         city.addNewBuilding(new Underpass());
         city.addNewBuilding(new Underpass());
 
-        city.addNewShopper(new Shopper(new Violin(),false, "Dima", 0, true),true);
-        city.addNewShopper(new Shopper(new Trembita(),false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(new Violin(),false, "Maks", 678, true),true);
+        city.addNewShopper(new Shopper(new Trembita(),false, "Pasha", 50, true),true);
         city.addNewShopper(new Shopper(new Guitar(),false, "Dima", 149, true),true);
-        city.addNewShopper(new OrchestraConductor(new Piano(), false, "Вася", 1000),true);
+        city.addNewShopper(new OrchestraConductor(new Piano(), false, "Sanya", 1000),true);
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         city.getRoot().getChildren().add(parent);
@@ -190,6 +191,19 @@ public class Main extends Application {
                     }
                 }
             }*/
+            if (event.getCode().equals(KeyCode.X)){
+                Shopper[] shoppersArray = Main.getCity().getShoppers().toArray(new Shopper[0]);
+                System.out.println("Відсортовані за кількістю грошей:");
+                Arrays.sort(shoppersArray, Shopper.moneyComparator);
+                for (Shopper shopper: shoppersArray){
+                    System.out.println(shopper.getName());
+                }
+                System.out.println("\nВідсортовані за ім'ям:");
+                Arrays.sort(shoppersArray, Shopper.nameComparator);
+                for (Shopper shopper: shoppersArray){
+                    System.out.println(shopper.getName());
+                }
+            }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper shopper : city.getShoppers()) {
                     shopper.up(1);
