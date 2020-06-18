@@ -16,4 +16,13 @@ public class Violin extends Instrument{
         this.instrumentImage.setX(x-40);
         this.instrumentImage.setY(y+20);
     }
+    @Override
+    public Violin clone() throws CloneNotSupportedException {
+        Violin temp = (Violin) super.clone();
+        temp.instrumentImage = new ImageView();
+        temp.instrumentImage.setImage(this.instrumentImage.getImage());
+        temp.instrumentImage.setPreserveRatio(this.instrumentImage.isPreserveRatio());
+        temp.instrumentImage.setFitHeight(this.instrumentImage.getFitHeight());
+        return temp;
+    }
 }

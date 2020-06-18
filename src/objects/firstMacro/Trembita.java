@@ -3,24 +3,23 @@ package objects.firstMacro;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
-public class Guitar extends Instrument {
-
-    public Guitar(){
-        this.instrumentImage= new ImageView(new Image("assets/guitar.png"));
+public class Trembita extends Instrument {
+    public Trembita(){
+        this.instrumentImage= new ImageView(new Image("assets/tremb.png"));
         this.instrumentImage.setPreserveRatio(true);
         this.instrumentImage.setFitHeight(80);
-        this.type = "Guitar";
-        this.price = 100;
+        this.type = "Trembita";
+        this.price = 17;
+
     }
     @Override
     public void update(double x, double y) {
-        this.instrumentImage.setX(x+10);
-        this.instrumentImage.setY(y+70);
+        this.instrumentImage.setX(x+35);
+        this.instrumentImage.setY(y-20);
     }
     @Override
-    public Guitar clone() throws CloneNotSupportedException {
-        Guitar temp = (Guitar) super.clone();
+    public Trembita clone() throws CloneNotSupportedException {
+        Trembita temp = (Trembita) super.clone();
         temp.instrumentImage = new ImageView();
         temp.instrumentImage.setImage(this.instrumentImage.getImage());
         temp.instrumentImage.setPreserveRatio(this.instrumentImage.isPreserveRatio());

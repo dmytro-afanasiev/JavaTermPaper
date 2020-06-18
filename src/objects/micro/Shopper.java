@@ -26,9 +26,10 @@ import sample.windows.preferencesWindow.Preferences;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class Shopper implements Cloneable {
+public class Shopper implements Cloneable{
 
     protected double playVariable;
     protected String type;
@@ -64,6 +65,7 @@ public class Shopper implements Cloneable {
         this.isMan = isMan;
         this.startDirection = (byte) Main.random.nextInt(8);
 
+
         if (isMan) {
             this.shopperImage = new ImageView(new Image("assets/shopper.png"));
         } else this.shopperImage = new ImageView(new Image("assets/girlShopper.png"));
@@ -76,7 +78,7 @@ public class Shopper implements Cloneable {
 
         this.instrument = instrument;
 
-        this.shopperText = new Label(this.name + ", money: " + this.money);
+        this.shopperText = new Label(/*this.name + ", money: " + this.money*/);
         this.shopperText.setFont(new Font("Segoe UI Black Italic", 13));
 
         this.shadow = new Ellipse(75, 20);
@@ -90,7 +92,6 @@ public class Shopper implements Cloneable {
                 30.0, 0.0,
                 15.0, 25.0);
         this.triangleAct.setFill(Color.BLACK);
-
 
         if (this.instrument != null) {
             this.shopperPicture = new Group(shopperImage, shopperText, shadow, triangleAct, this.instrument.getInstrumentImage());
@@ -124,7 +125,7 @@ public class Shopper implements Cloneable {
     }
 
 
-    public void updateShopperChords() {
+    public void setShopperInChords() {
         this.shopperImage.setX(this.xChord);
         this.shopperImage.setY(this.yChord);
 
@@ -481,9 +482,43 @@ public class Shopper implements Cloneable {
     @Override
     public Shopper clone() throws CloneNotSupportedException {
         Shopper temp = (Shopper) super.clone();
-        temp.instrument = instrument.clone();
+        if (this.instrument !=null)
+            temp.instrument = this.instrument.clone();
+        temp.shadow = new Ellipse(75,20);
+        temp.shadow.setFill(this.shadow.getFill());
+        temp.shadow.setOpacity(this.shadow.getOpacity());
+        temp.shadow.getTransforms().addAll(this.shadow.getTransforms());
+        temp.shadow.setEffect(this.shadow.getEffect());
+        temp.triangleAct = new Polygon();
+        temp.triangleAct.getPoints().addAll(this.triangleAct.getPoints());
+        temp.triangleAct.setFill(this.triangleAct.getFill());
+        temp.shopperImage = new ImageView();
+        temp.shopperImage.setPreserveRatio(this.shopperImage.isPreserveRatio());
+        temp.shopperImage.setFitHeight(this.shopperImage.getFitHeight());
+        temp.shopperImage.setEffect(this.shopperImage.getEffect());
+        temp.shopperImage.setImage(this.shopperImage.getImage());
+        temp.shopperText = new Label();
+        temp.shopperText.setFont(this.shopperText.getFont());
+        if (temp instanceof OrchestraConductor && this instanceof OrchestraConductor){
+            ((OrchestraConductor) temp).setInstruments(new HashMap<>());
+            ((OrchestraConductor) this).getInstruments().forEach((k,v)->{
+                try {
+                    ((OrchestraConductor) temp).getInstruments().put(k,v.clone());
+                } catch (CloneNotSupportedException e) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Помилка клонування в інструментах диригента");
+                    alert.showAndWait();
+                }
+            });
+        }
+        if (temp.instrument != null) {
+            temp.shopperPicture = new Group(temp.shopperImage, temp.shopperText, temp.shadow, temp.triangleAct, temp.instrument.getInstrumentImage());
+        } else {
+            temp.shopperPicture = new Group(temp.shopperImage, temp.shopperText, temp.shadow, temp.triangleAct);
+        }
         return temp;
     }
+
 }
 
 

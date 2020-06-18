@@ -15,7 +15,7 @@ import sample.windows.preferencesWindow.Preferences;
 import java.util.HashMap;
 
 public class MiniMap {
-    final static private double SCALE = 0.09;
+    final static private double SCALE = 0.1;
     private Pane pane;
     private HashMap<Shopper, ImageView> shoppersMap;
     private HashMap<Building, ImageView> buildingsMap;
@@ -23,8 +23,8 @@ public class MiniMap {
 
     public MiniMap() {
         this.pane = new Pane();
-        this.pane.setMinWidth(City.getRootWidth() * MiniMap.SCALE);
-        this.pane.setMinHeight(City.getRootHeight() * MiniMap.SCALE);
+        this.pane.setMinWidth(City.ROOT_WIDTH * MiniMap.SCALE);
+        this.pane.setMinHeight(City.ROOT_HEIGHT * MiniMap.SCALE);
         shoppersMap = new HashMap<>();
         buildingsMap = new HashMap<>();
 
@@ -37,7 +37,7 @@ public class MiniMap {
         label.setFont(new Font("Segoe UI Black Italic", 16));
         label.setLayoutX(pane.getMinWidth() / 2.1);
 
-        mainArea = new Rectangle(0, 0, Main.getSceneWidth() * MiniMap.SCALE, Main.getSceneHeight() * MiniMap.SCALE);//Цієї "2" і "10" не повинно бути, вони виправляють якийсь баг з координатами в коді, бо я не знаю, де його найти, щоб виправити по-справжньому
+        mainArea = new Rectangle(0, 0, Main.SCENE_WIDTH * MiniMap.SCALE, Main.SCENE_HEIGHT * MiniMap.SCALE);
         mainArea.setFill(Color.TRANSPARENT);
         mainArea.setStrokeWidth(2);
         mainArea.setStroke(Color.YELLOW);

@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class City {
-    final private static int ROOT_WIDTH = 4800;
-    final private static int ROOT_HEIGHT = 2700;
+    final public static int ROOT_WIDTH = 4800;
+    final public static int ROOT_HEIGHT = 2700;
     private boolean interactWithPlayerMode; //характер руху
 
     private Label informationLabel;
@@ -106,9 +106,9 @@ public class City {
         this.shoppers.add(shopper);
         if (rand) {
             shopper.setXChord(Main.random.nextInt((int) (Main.getScene().getWidth() + Main.getScrollX())));
-            shopper.setYChord(Main.random.nextInt((int) (Main.getScene().getHeight() + Main.getScrollX())));
+            shopper.setYChord(Main.random.nextInt((int) (Main.getScene().getHeight() + Main.getScrollY())));
         }
-        shopper.updateShopperChords();
+        shopper.setShopperInChords();
         this.root.getChildren().add(Building.getNumberOfBuildings(),shopper.getShopperPicture());
         this.miniMap.addShopper(shopper);
 
@@ -120,7 +120,6 @@ public class City {
         this.root.getChildren().remove(shopper.getShopperPicture());
         this.shoppers.remove(shopper);
         Shopper.setNumberOfShoppers(Shopper.getNumberOfShoppers() - 1);
-
         this.objectsHashMap.get(shopper.getType()).remove(shopper);
 
     }
@@ -185,14 +184,6 @@ public class City {
 
     public MiniMap getMiniMap() {
         return miniMap;
-    }
-
-    public static int getRootWidth() {
-        return ROOT_WIDTH;
-    }
-
-    public static int getRootHeight() {
-        return ROOT_HEIGHT;
     }
 
     public boolean isInteractWithPlayerMode() {

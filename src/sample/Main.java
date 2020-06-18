@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -16,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.firstMacro.Guitar;
 import objects.firstMacro.Piano;
-import objects.firstMacro.Tremb;
+import objects.firstMacro.Trembita;
 import objects.firstMacro.Violin;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
@@ -32,8 +33,8 @@ import java.util.Random;
 public class Main extends Application {
 
 
-    final private static int SCENE_WIDTH = 1920;
-    final private static int SCENE_HEIGHT = 1080;
+    final public static int SCENE_WIDTH = 1920;
+    final public static int SCENE_HEIGHT = 1080;
 
     public static Random random = new Random(new Date().getTime());
 
@@ -41,17 +42,8 @@ public class Main extends Application {
     private static ScrollPane scrollPane = new ScrollPane(city.getRoot());
     private static Scene scene = new Scene(scrollPane, Main.SCENE_WIDTH, Main.SCENE_HEIGHT);
 
-
     private static double scrollX;
     private static double scrollY;
-
-    public static int getSceneWidth() {
-        return SCENE_WIDTH;
-    }
-    public static int getSceneHeight() {
-        return SCENE_HEIGHT;
-    }
-
 
     public static City getCity() {
         return city;
@@ -87,7 +79,7 @@ public class Main extends Application {
         city.addNewBuilding(new Underpass());
 
         city.addNewShopper(new Shopper(new Violin(),false, "Dima", 0, true),true);
-        city.addNewShopper(new Shopper(new Tremb(),false, "Dima", 0, true),true);
+        city.addNewShopper(new Shopper(new Trembita(),false, "Dima", 0, true),true);
         city.addNewShopper(new Shopper(new Guitar(),false, "Dima", 149, true),true);
         city.addNewShopper(new OrchestraConductor(new Piano(), false, "Вася", 1000),true);
 
@@ -140,7 +132,7 @@ public class Main extends Application {
             public void handle(long now) {
                 for (Shopper shopper : city.getShoppers()) {
                     shopper.freeRun();
-                    shopper.updateShopperChords();
+                    shopper.setShopperInChords();
                 }
                 city.getMiniMap().updateMap();
                 city.updateInformationLabel();

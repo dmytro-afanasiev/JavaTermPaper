@@ -24,6 +24,7 @@
                   <MenuItem fx:id="menuEditSell" mnemonicParsing="false" text="Продати (тільки магазин)" />
                   <MenuItem fx:id="menuEditPlay" mnemonicParsing="false" text="Грати на інструменті" />
                   <MenuItem fx:id="menuEditCreate" mnemonicParsing="false" text="Створити персонажа" />
+                  <MenuItem fx:id="menuEditClone" mnemonicParsing="false" text="Клонувати одного з вибраних" />
                   <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Видалити персонажей" />
               <MenuItem fx:id="menuEditCancel" mnemonicParsing="false" text="Відмінити вибір" />
                   <MenuItem fx:id="menuEditProperties" mnemonicParsing="false" text="Налаштування" />

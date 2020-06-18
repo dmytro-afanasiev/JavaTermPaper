@@ -87,7 +87,7 @@ public class OrchestraConductor extends  MusicianMaster {
     }
 
     @Override
-    public void updateShopperChords() {
+    public void setShopperInChords() {
         this.shopperImage.setX(this.xChord-40);
         this.shopperImage.setY(this.yChord);
 
@@ -230,5 +230,6 @@ public class OrchestraConductor extends  MusicianMaster {
     public void setInstruments(Map<String, Instrument> instruments) {
         this.instruments = instruments;
     }
-    
+
+
 }

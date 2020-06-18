@@ -83,7 +83,7 @@ public class MusicianMaster extends Shopper {
     }
 
     @Override
-    public void updateShopperChords() {
+    public void setShopperInChords() {
 
         this.shopperImage.setX(this.xChord);
         this.shopperImage.setY(this.yChord);

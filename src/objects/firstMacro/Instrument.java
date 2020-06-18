@@ -16,11 +16,11 @@ public abstract class Instrument implements Cloneable{
             case "Drums":
                 return new Drums();
             case "Bayan":
-                return new Bayan();
+                return new Accordion();
             case "Piano":
                 return new Piano();
             case "Trembita":
-                return new Tremb();
+                return new Trembita();
             case "Violin":
                 return new Violin();
             case "Nothing":
@@ -55,12 +55,16 @@ public abstract class Instrument implements Cloneable{
     }
 
     @Override
-    public String toString() {
-        return this.getType();
+    public Instrument clone() throws CloneNotSupportedException {
+        return (Instrument) super.clone();
     }
 
     @Override
-    public Instrument clone() throws CloneNotSupportedException {
-        return (Instrument)super.clone();
+    public String toString() {
+        return "Instrument{" +
+                "price=" + price +
+                ", instrumentImage=" + instrumentImage +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

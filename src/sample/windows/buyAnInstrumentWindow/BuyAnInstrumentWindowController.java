@@ -3,6 +3,7 @@ package sample.windows.buyAnInstrumentWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.firstMacro.*;
+import objects.firstMacro.Accordion;
 
 public class BuyAnInstrumentWindowController {
 
@@ -80,10 +81,10 @@ public class BuyAnInstrumentWindowController {
         radioGuitar.fire();
         guitarLabel.setText(new Guitar().getType() + " --" + new Guitar().getPrice());
         pianoLabel.setText(new Piano().getType() + " --" + new Piano().getPrice());
-        bayanLabel.setText(new Bayan().getType() + " --" + new Bayan().getPrice());
+        bayanLabel.setText(new Accordion().getType() + " --" + new Accordion().getPrice());
         violinLabel.setText(new Violin().getType() + " --" + new Violin().getPrice());
         drumsLabel.setText(new Drums().getType() + " --" + new Drums().getPrice());
-        trembLabel.setText(new Tremb().getType() + " --" + new Tremb().getPrice());
+        trembLabel.setText(new Trembita().getType() + " --" + new Trembita().getPrice());
 
 
         chooseButton.setOnAction(event -> {

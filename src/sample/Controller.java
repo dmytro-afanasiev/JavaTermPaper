@@ -47,6 +47,9 @@ public class Controller {
     private MenuItem menuEditCreate;
 
     @FXML
+    private MenuItem menuEditClone;
+
+    @FXML
     private MenuItem menuEditDelete;
 
     @FXML
@@ -137,6 +140,21 @@ public class Controller {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                } else if (buttonName.equals("Клонувати одного з вибраних")){
+                    for (Shopper shopper : Main.getCity().getShoppers()) {
+                        if (shopper.isActive()) {
+                            try {
+                                Shopper clone = shopper.clone();
+                                clone.setXChord(shopper.getXChord()+200);
+                                Main.getCity().addNewShopper(clone, false);
+                            } catch (CloneNotSupportedException e) {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setContentText("Помилка кронування");
+                                alert.showAndWait();
+                            }
+                            break;
+                        }
+                    }
                 } else if (buttonName.equals("Видалити персонажей")){
                     for (int i = 0; i < Main.getCity().getShoppers().size(); i++) {
                         Shopper shopper = Main.getCity().getShoppers().get(i);
@@ -190,13 +208,14 @@ public class Controller {
         });
         menuEditRadioFastRun.setSelected(true);
 
-        menuEditRadioFastRun.setAccelerator(KeyCombination.keyCombination("N"));
         menuFileOpen.setOnAction(menuHandler);
         menuFileOpen.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
         menuFileSave.setOnAction(menuHandler);
         menuFileSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         menuFileExit.setOnAction(menuHandler);
         menuFileExit.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+        menuEditRadioFastRun.setAccelerator(KeyCombination.keyCombination("N"));
+
         menuEditInteract.setOnAction(menuHandler);
         menuEditInteract.setAccelerator(KeyCombination.keyCombination("J"));
         menuEditSell.setOnAction(menuHandler);
@@ -205,6 +224,8 @@ public class Controller {
         menuEditPlay.setAccelerator(KeyCombination.keyCombination("K"));
         menuEditCreate.setOnAction(menuHandler);
         menuEditCreate.setAccelerator(KeyCombination.keyCombination("M"));
+        menuEditClone.setOnAction(menuHandler);
+        menuEditClone.setAccelerator(KeyCombination.keyCombination("C"));
         menuEditDelete.setOnAction(menuHandler);
         menuEditDelete.setAccelerator(KeyCombination.keyCombination("Delete"));
         menuEditCancel.setOnAction(menuHandler);
