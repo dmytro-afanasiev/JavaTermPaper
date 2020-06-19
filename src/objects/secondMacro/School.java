@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
@@ -29,14 +30,16 @@ public class School extends Building {
         this.buildingImage = new ImageView(new Image("assets/school.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(360);
-        this.buildingText = new Label("Музична школа");
-        this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
+
+        this.buildingText = new Label("Музична школа, де вас навчать!!!");
+        this.buildingText.setFont(new Font("Segoe UI Black Italic", 17));
+        this.buildingText.setBorder(new Border(new BorderStroke(Color.valueOf("#C64706"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(3))));
+
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);
         this.shadow.setOpacity(0.8);
         this.shadow.getTransforms().add(new Rotate(10));
         this.shadow.setEffect(new GaussianBlur(40));
-
 
         this.buildingPicture = new Group(shadow, buildingImage, buildingText);
     }
@@ -47,7 +50,7 @@ public class School extends Building {
         if (this.getBuildingImage().getLayoutBounds().contains(shopper.getShopperImage().getLayoutBounds())) {
             if (!(shopper instanceof OrchestraConductor) && shopper.getInstrument() != null) {
                 try {
-                    new ChooseAnEducationWindow().display("Choose an education", shopper);
+                    new ChooseAnEducationWindow().display(shopper);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -68,8 +71,8 @@ public class School extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x + 140);
-        this.buildingText.setLayoutY(y + 330);
+        this.buildingText.setLayoutX(x+33 );
+        this.buildingText.setLayoutY(y + 323);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 270);
     }

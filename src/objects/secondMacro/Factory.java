@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
@@ -36,8 +37,12 @@ public class Factory extends Building{
         this.buildingImage = new ImageView(new Image("assets/factory.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
-        this.buildingText = new Label("Фабрика");
-        this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
+
+        this.buildingText = new Label("Фабрика для заробітку,\nсурове місце, не для жінок!");
+        this.buildingText.setFont(new Font("Segoe UI Black Italic", 18));
+        this.buildingText.setBorder(new Border(new BorderStroke(Color.YELLOW, BorderStrokeStyle.DASHED, new CornerRadii(10), new BorderWidths(3))));
+
+
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);
         this.shadow.setOpacity(0.8);
@@ -58,7 +63,7 @@ public class Factory extends Building{
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x+179);
+        this.buildingText.setLayoutX(x+115);
         this.buildingText.setLayoutY(y+280);
         this.shadow.setLayoutX(x+90);
         this.shadow.setLayoutY(y+230);

@@ -29,10 +29,10 @@ public class ChooseAnEducationWindow {
     }
 
 
-    public boolean display(String title, Shopper shopper) throws IOException {
+    public boolean display(Shopper shopper) throws IOException {
 
         ChooseAnEducationWindow.shopper = shopper;
-        window.setTitle(title);
+        window.setTitle("Музична школа");
         Parent alert = FXMLLoader.load(ChooseAnEducationWindow.class.getResource("chooseAnEducationWindow.fxml"));
         Scene scene = new Scene(alert);
         window.setScene(scene);

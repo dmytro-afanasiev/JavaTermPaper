@@ -50,7 +50,8 @@ public class CreateShopperWindowController {
     @FXML
     private Label labelUnderInstruments;
 
-
+    @FXML
+    private CheckBox checkIsActive;
 
     @FXML
     void initialize() {
@@ -109,11 +110,11 @@ public class CreateShopperWindowController {
             if (!fieldName.getText().isEmpty() && !fieldMoney.getText().isEmpty()){
                 Shopper temp = null;
                 if (tempChange.equals("shopper")){
-                    temp = new Shopper(null,true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
+                    temp = new Shopper(null,checkIsActive.isSelected(), fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
                 } else if (tempChange.equals("master")){
-                    temp = new MusicianMaster(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
+                    temp = new MusicianMaster(Instrument.getInstrument(typeOfInstrument),checkIsActive.isSelected(), fieldName.getText(), Integer.parseInt(fieldMoney.getText()),isMan);
                 } else if (tempChange.equals("orchestra")){
-                    temp = new OrchestraConductor(Instrument.getInstrument(typeOfInstrument),true, fieldName.getText(), Integer.parseInt(fieldMoney.getText()));
+                    temp = new OrchestraConductor(Instrument.getInstrument(typeOfInstrument),checkIsActive.isSelected(), fieldName.getText(), Integer.parseInt(fieldMoney.getText()));
 
                 }
                 Main.getCity().addNewShopper(temp, true);

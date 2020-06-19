@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="430.0" style="-fx-background-color: e5dcb8; -fx-border-color: #611d1d; -fx-border-width: 8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.windows.preferencesWindow.PreferencesWindowController">
    <children>
-      <CheckBox fx:id="checkMiniMap" layoutX="27.0" layoutY="178.0" mnemonicParsing="false" text="Відображати міні-карут">
+      <CheckBox fx:id="checkMiniMap" layoutX="27.0" layoutY="178.0" mnemonicParsing="false" text="Відображати міні-карту">
          <font>
             <Font name="Segoe UI Black" size="12.0" />
          </font></CheckBox>

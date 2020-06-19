@@ -27,9 +27,10 @@ import objects.secondMacro.Shop;
 import objects.secondMacro.Underpass;
 import objects.thirdMacro.City;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Random;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -55,7 +56,6 @@ public class Main extends Application {
     public static Scene getScene() {
         return scene;
     }
-
 
     public static double getScrollX() {
         return scrollX;
@@ -194,15 +194,17 @@ public class Main extends Application {
             if (event.getCode().equals(KeyCode.X)){
                 Shopper[] shoppersArray = Main.getCity().getShoppers().toArray(new Shopper[0]);
                 System.out.println("Відсортовані за кількістю грошей:");
-                Arrays.sort(shoppersArray, Shopper.moneyComparator);
+                Arrays.sort(shoppersArray, (o1,o2) -> (int) (o1.getMoney()-o2.getMoney()));
+
                 for (Shopper shopper: shoppersArray){
                     System.out.println(shopper.getName());
                 }
                 System.out.println("\nВідсортовані за ім'ям:");
-                Arrays.sort(shoppersArray, Shopper.nameComparator);
+                Arrays.sort(shoppersArray, (o1, o2) -> o1.getName().compareTo(o2.getName()));
                 for (Shopper shopper: shoppersArray){
                     System.out.println(shopper.getName());
                 }
+                System.out.println(Arrays.toString(shoppersArray));
             }
             if (event.getCode().equals(KeyCode.W) && !event.isShiftDown()) {
                 for (Shopper shopper : city.getShoppers()) {

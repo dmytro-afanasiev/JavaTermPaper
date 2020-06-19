@@ -27,10 +27,10 @@ public class ChooseAnInstrumentWindow {
     }
 
 
-    public boolean display(String title, OrchestraConductor orchestraConductor) throws IOException {
+    public boolean display( OrchestraConductor orchestraConductor) throws IOException {
 
         orchestra = orchestraConductor;
-        window.setTitle(title);
+        window.setTitle("Виберіть інструмент");
         Parent alert = FXMLLoader.load(ChooseAnInstrumentWindow.class.getResource("chooseAnInstrumentWindow.fxml"));
         Scene scene = new Scene(alert);
         window.setScene(scene);

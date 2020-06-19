@@ -519,14 +519,10 @@ public class Shopper implements Cloneable{
         }
         return temp;
     }
-    public static Comparator<Shopper> moneyComparator = new Comparator<Shopper>() {
+    /*public static Comparator<Shopper> moneyComparator = new Comparator<Shopper>() {
         @Override
         public int compare(Shopper o1, Shopper o2) {
-            if (o1.money<o2.money)
-                return -1;
-            else if (o1.money>o2.money)
-                return 1;
-            return 0;
+            return (int) (o1.money-o2.money);
         }
     };
     public static Comparator<Shopper> nameComparator = new Comparator<Shopper>() {
@@ -534,7 +530,7 @@ public class Shopper implements Cloneable{
         public int compare(Shopper o1, Shopper o2) {
             return o1.name.compareTo(o2.name);
         }
-    };
+    };*/
 }
 
 

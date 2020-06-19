@@ -115,7 +115,7 @@ public class OrchestraConductor extends  MusicianMaster {
     public void chooseAnInstrument(double x, double y){
         if (this.shopperImage.getBoundsInParent().contains(new Point2D(x, y)) && !this.stay) {
             try {
-                new ChooseAnInstrumentWindow().display("Виберіть", this);
+                new ChooseAnInstrumentWindow().display( this);
             } catch (IOException e) {
                 e.printStackTrace();
             }

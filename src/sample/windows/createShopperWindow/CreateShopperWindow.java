@@ -20,9 +20,9 @@ public class CreateShopperWindow {
     }
 
 
-    public boolean display(String title) throws IOException {
+    public boolean display() throws IOException {
 
-        window.setTitle(title);
+        window.setTitle("Створення нового персонажа");
         Parent alert = FXMLLoader.load(CreateShopperWindow.class.getResource("createShopperWindow.fxml"));
         Scene scene = new Scene(alert);
         window.setScene(scene);

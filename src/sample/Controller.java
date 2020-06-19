@@ -136,7 +136,7 @@ public class Controller {
                 }
                 else if (buttonName.equals("Створити персонажа")) {
                     try {
-                        new CreateShopperWindow().display("Let's create new Shopper!");
+                        new CreateShopperWindow().display();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -180,7 +180,7 @@ public class Controller {
                     }
                 } else if (buttonName.equals("Створення нового персонажа")){
                     try {
-                        new CreateShopperWindow().display("Let's create new Shopper!");
+                        new CreateShopperWindow().display();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

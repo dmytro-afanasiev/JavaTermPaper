@@ -59,12 +59,4 @@ public abstract class Instrument implements Cloneable{
         return (Instrument) super.clone();
     }
 
-    @Override
-    public String toString() {
-        return "Instrument{" +
-                "price=" + price +
-                ", instrumentImage=" + instrumentImage +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

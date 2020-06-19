@@ -29,10 +29,10 @@ public class BuyAnInstrumentWindow {
     }
 
 
-    public boolean display(String title, Shopper shopper) throws IOException {
+    public boolean display(Shopper shopper) throws IOException {
 
         BuyAnInstrumentWindow.shopper = shopper;
-        window.setTitle(title);
+        window.setTitle("Магазин інструментів");
         Parent alert = FXMLLoader.load(BuyAnInstrumentWindow.class.getResource("buyAnInstrumentWindow.fxml"));
         Scene scene = new Scene(alert);
         window.setScene(scene);

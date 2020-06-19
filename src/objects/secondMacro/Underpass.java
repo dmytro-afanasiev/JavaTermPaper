@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
@@ -38,8 +39,9 @@ public class Underpass extends Building {
         this.buildingImage = new ImageView(new Image("assets/underpass.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
-        this.buildingText = new Label("Піздемний перехід\nВсередині грають: "+shoppersInside.size());
-        this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
+        this.buildingText = new Label("Піздемний перехід. Всередині грають: "+shoppersInside.size());
+        this.buildingText.setFont(new Font("Segoe UI Black Italic", 19));
+        this.buildingText.setBorder(new Border(new BorderStroke(Color.valueOf("#B69D90"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(3))));
         this.shadow = new Ellipse(175, 25);
         this.shadow.setFill(Color.BLACK);
         this.shadow.setOpacity(0.8);
@@ -55,9 +57,9 @@ public class Underpass extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setText("Піздемний перехід\nВсередині грають: "+shoppersInside.size());
-        this.buildingText.setLayoutX(x + 130);
-        this.buildingText.setLayoutY(y + 290);
+        this.buildingText.setText("Піздемний перехід. Всередині грають: "+shoppersInside.size());
+        this.buildingText.setLayoutX(x );
+        this.buildingText.setLayoutY(y + 270);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 250);
     }

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Font;
@@ -26,8 +27,9 @@ public class Shop extends Building {
         this.buildingImage = new ImageView(new Image("assets/shop.png"));
         this.buildingImage.setPreserveRatio(true);
         this.buildingImage.setFitHeight(270);
-        this.buildingText = new Label("Магазин ");
-        this.buildingText.setFont(new Font("Segoe UI Black Italic", 13));
+        this.buildingText = new Label("Магазин музичних інструментів");
+        this.buildingText.setFont(new Font("Segoe UI Black Italic", 18));
+        this.buildingText.setBorder(new Border(new BorderStroke(Color.valueOf("#462311"), BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(5))));
         this.shadow = new Ellipse(175, 40);
         this.shadow.setFill(Color.BLACK);
         this.shadow.setOpacity(0.8);
@@ -43,7 +45,7 @@ public class Shop extends Building {
             if (!isShiftDown) {
                 if (shopper instanceof OrchestraConductor || shopper.getInstrument() == null) {
                     try {
-                        new BuyAnInstrumentWindow().display("Choose an instrument", shopper);
+                        new BuyAnInstrumentWindow().display( shopper);
                     } catch (IOException e) {
                         e.printStackTrace();
 
@@ -70,7 +72,7 @@ public class Shop extends Building {
         double y = this.yChord;
         this.buildingImage.setX(x);
         this.buildingImage.setY(y);
-        this.buildingText.setLayoutX(x + 140);
+        this.buildingText.setLayoutX(x +10);
         this.buildingText.setLayoutY(y + 280);
         this.shadow.setLayoutX(x + 90);
         this.shadow.setLayoutY(y + 230);
