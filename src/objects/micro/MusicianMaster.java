@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -196,7 +197,7 @@ public class MusicianMaster extends Shopper {
                 break;
         }
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
-        AudioClip mediaPlayer = new AudioClip(hit.getSource());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
         mediaPlayer.setVolume(Preferences.getVOLUME());
         playAnimation.play();
         mediaPlayer.play();

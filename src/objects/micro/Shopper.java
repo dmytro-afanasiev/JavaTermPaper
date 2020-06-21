@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -345,10 +346,11 @@ public class Shopper implements Cloneable{
                 break;
         }
 
-        AudioClip mediaPlayer = null;
+        MediaPlayer mediaPlayer = null;
         try {
+            //System.out.println(Paths.get(musicPath).toUri().toString());
             Media hit = new Media(Paths.get(musicPath).toUri().toString());
-            mediaPlayer = new AudioClip(hit.getSource());
+            mediaPlayer = new MediaPlayer(hit);
             mediaPlayer.setVolume(Preferences.getVOLUME());
             mediaPlayer.play();
         } catch (MediaException m) {
@@ -357,7 +359,7 @@ public class Shopper implements Cloneable{
             alert.setContentText(m.toString());
             alert.show();
         }
-        AudioClip finalMediaPlayer = mediaPlayer;
+        MediaPlayer finalMediaPlayer = mediaPlayer;
 
         playAnimation.play();
 

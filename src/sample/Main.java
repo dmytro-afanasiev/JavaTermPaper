@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -27,10 +26,9 @@ import objects.secondMacro.Shop;
 import objects.secondMacro.Underpass;
 import objects.thirdMacro.City;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Random;
 
 public class Main extends Application {
 

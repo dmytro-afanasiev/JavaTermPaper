@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -211,7 +212,7 @@ public class OrchestraConductor extends  MusicianMaster {
         } else musicPath = "src/assets/music/guitarBest.mp3"; //чути все одно не буде
 
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
-        AudioClip mediaPlayer = new AudioClip(hit.getSource());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
         if (this.instrument != null)
             mediaPlayer.setVolume(Preferences.getVOLUME());
         else mediaPlayer.setVolume(0);
