@@ -153,11 +153,9 @@ public class Shopper implements Cloneable{
     public void freeRun() {
         if (!this.isActive() && !this.stay) {
 
-            double speed = Preferences.getSPEED();
-
-            if (Main.getCity().isInteractWithPlayerMode()) {
-                speed = Preferences.getSPEED() / 5;
-            }
+            double speed = Main.getCity().isInteractWithPlayerMode() ? Preferences.getSPEED()/3 : Preferences.getSPEED();
+            if ((this instanceof OrchestraConductor) && !Main.getCity().isInteractWithPlayerMode() && Main.getCity().getShoppers().size()>=2)
+                speed=0;
             switch (this.startDirection) {
                 case 0:
                     this.yChord -= speed;
@@ -246,6 +244,10 @@ public class Shopper implements Cloneable{
     public void setStay(boolean stay) {
         this.isActive = false;
         this.stay = stay;
+    }
+
+    public boolean isStay() {
+        return stay;
     }
 
     public void buyAnInstrument(String typeOfInstrument) {
@@ -370,12 +372,13 @@ public class Shopper implements Cloneable{
 
     }
     public void freeInteract(){
-        if (this.instrument != null && this.money<300){
+        if (this.instrument != null && this.money<200){
             for (Building b : (ArrayList<Building>) Main.getCity().getObjectsHashMap().get("Underpass")) {
                 if (b.interact(this, false))
                     break;
             }
-        } else if (this.isMan && this.money<500) {
+        }
+        if (this.isMan && this.money<500) {
             for (Building b : (ArrayList<Building>) Main.getCity().getObjectsHashMap().get("Factory")) {
                 if (b.interact(this, false))
                     break;

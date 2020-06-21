@@ -20,9 +20,10 @@ public class ChooseAnInstrumentWindowController {
     @FXML
     void initialize() {
 
-        ObservableList<String> instruments = FXCollections.observableArrayList(ChooseAnInstrumentWindow.getOrchestraConductor().getInstruments().keySet());
         instrumentsListShopper.getItems().add("Nothing");
-        instrumentsListShopper.getItems().addAll(instruments);
+        ChooseAnInstrumentWindow.getOrchestraConductor().getInstruments().keySet().forEach((key)->{
+            instrumentsListShopper.getItems().add(key);
+        });
         instrumentsListShopper.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -33,7 +34,6 @@ public class ChooseAnInstrumentWindowController {
         chooseButton.setOnAction(event -> {
             ChooseAnInstrumentWindow.getOrchestraConductor().changeAnInstrument(typeOfInstrument);
             ChooseAnInstrumentWindow.getWindow().close();
-
         });
     }
 }

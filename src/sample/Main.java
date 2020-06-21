@@ -79,7 +79,7 @@ public class Main extends Application {
         city.addNewBuilding(new Underpass());
         city.addNewBuilding(new Underpass());
 
-        city.addNewShopper(new Shopper(new Violin(),false, "Maks", 678, true),true);
+        city.addNewShopper(new Shopper(new Violin(),false, "Maks", 100, true),true);
         city.addNewShopper(new Shopper(new Trembita(),false, "Pasha", 50, true),true);
         city.addNewShopper(new Shopper(new Guitar(),false, "Dima", 149, true),true);
         city.addNewShopper(new OrchestraConductor(new Piano(), false, "Sanya", 1000),true);

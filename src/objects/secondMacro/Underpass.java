@@ -80,7 +80,7 @@ public class Underpass extends Building {
                 currentAnimation = underpassSprite;
                 this.buildingPicture.getChildren().add(underpassSprite);
                 Animation dance = new Sprite(underpassSprite, Duration.millis(700), 13, 13,  485, 326);
-                dance.setCycleCount(40);
+                dance.setCycleCount(10);
 
                 this.shoppersInside.add(shopper);
                 shopper.getShopperPicture().setOpacity(0);
@@ -92,7 +92,8 @@ public class Underpass extends Building {
                     shopper.getShopperPicture().setOpacity(1);
                     shopper.setStay(false);
                     shopper.setMoney(shopper.getMoney() + Preferences.getCOMPLEXITY().getUnderpassSalary() / shoppersInside.size()*shopper.getPlayVariable());
-
+                    shopper.setStartDirection((byte)6);
+                    shopper.setXChord(this.xChord-200);
                     this.shoppersInside.remove(shopper);
                     this.buildingPicture.getChildren().remove(underpassSprite);
                     if (this.shoppersInside.size() == 0)

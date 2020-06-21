@@ -6,7 +6,7 @@ public class Preferences {
     private static boolean MAP = true;
     private static boolean INFORMATION = true;
     private static double VOLUME = 0.4;
-    private static double SPEED = 10;
+    private static double SPEED = 7;
     private static Complexity COMPLEXITY = Complexity.LIGHT;
 
 

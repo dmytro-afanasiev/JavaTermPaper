@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import objects.firstMacro.Instrument;
+import sample.Main;
 import sample.Sprite;
 import sample.windows.chooseAnInstrumentWindow.ChooseAnInstrumentWindow;
 import sample.windows.preferencesWindow.Preferences;
@@ -172,7 +173,6 @@ public class OrchestraConductor extends  MusicianMaster {
     @Override
     public void playAnInstrument() {
         this.shopperImage.setOpacity(0);
-
         ImageView orchestraPlaySprite = new ImageView(new Image("assets/orchestraPlaySprite.png"));
         orchestraPlaySprite.setX(this.shopperImage.getX());
         orchestraPlaySprite.setY(this.shopperImage.getY());
@@ -187,33 +187,36 @@ public class OrchestraConductor extends  MusicianMaster {
         playAnimation.setCycleCount(10);//як довго буде грати
 
         String musicPath = "";
-        switch (this.instrument.getType()){
-            case "Guitar":
-                musicPath = "src/assets/music/guitarBest.mp3";
-                break;
-            case "Bayan":
-                musicPath = "src/assets/music/bayanBest.mp3";
-                break;
-            case "Drums":
-                musicPath = "src/assets/music/drumsBest.mp3";
-                break;
-            case "Piano":
-                musicPath = "src/assets/music/experience.mp3";
-                break;
-            case "Trembita":
-                musicPath = "src/assets/music/trembitaBest.mp3";
-                break;
-            case "Violin":
-                musicPath = "src/assets/music/violinBest.mp3";
-                break;
-        }
+        if (this.instrument!= null) {
+            switch (this.instrument.getType()) {
+                case "Guitar":
+                    musicPath = "src/assets/music/guitarBest.mp3";
+                    break;
+                case "Bayan":
+                    musicPath = "src/assets/music/bayanBest.mp3";
+                    break;
+                case "Drums":
+                    musicPath = "src/assets/music/drumsBest.mp3";
+                    break;
+                case "Piano":
+                    musicPath = "src/assets/music/experience.mp3";
+                    break;
+                case "Trembita":
+                    musicPath = "src/assets/music/trembitaBest.mp3";
+                    break;
+                case "Violin":
+                    musicPath = "src/assets/music/violinBest.mp3";
+                    break;
+            }
+        } else musicPath = "src/assets/music/guitarBest.mp3"; //чути все одно не буде
+
         Media hit = new Media(Paths.get(musicPath).toUri().toString());
         AudioClip mediaPlayer = new AudioClip(hit.getSource());
-        mediaPlayer.setVolume(Preferences.getVOLUME());
+        if (this.instrument != null)
+            mediaPlayer.setVolume(Preferences.getVOLUME());
+        else mediaPlayer.setVolume(0);
         playAnimation.play();
         mediaPlayer.play();
-
-
 
         playAnimation.setOnFinished(event -> {
             this.shopperImage.setOpacity(1);
@@ -221,6 +224,44 @@ public class OrchestraConductor extends  MusicianMaster {
             this.setStay(false);
             mediaPlayer.stop();
         });
+    }
+
+    @Override
+    public void freeInteract() {
+        if (Main.getCity().getShoppers().size()>=2) {
+            Shopper closerShopper = Main.getCity().getShoppers().get(0);
+            double closerDistance = Double.POSITIVE_INFINITY;
+            for (Shopper shopper : Main.getCity().getShoppers()) {
+                if (!(shopper instanceof OrchestraConductor) && !shopper.isStay() && shopper.getInstrument() != null) {
+                    double distance = Math.sqrt(Math.pow(this.getXChord() - shopper.getXChord(), 2) + Math.pow(this.getYChord() - shopper.getYChord(), 2));
+                    if (distance < closerDistance) {
+                        closerShopper = shopper;
+                        closerDistance = distance;
+                    }
+                    if (this.shopperImage.getBoundsInParent().intersects(shopper.getShopperImage().getBoundsInParent())) {
+                        this.changeAnInstrument("Nothing");
+                        shopper.setXChord(this.getXChord() - 300);
+                        shopper.setYChord(this.getYChord());
+                        shopper.setShopperInChords();
+                        shopper.setStartDirection((byte) 6);
+                        this.playAnInstrument();
+                        shopper.playAnInstrument();
+                    }
+                }
+            }
+            if (closerShopper.getXChord() < this.getXChord()) {
+                this.xChord -= Preferences.getSPEED() / 5;
+            } else {
+                this.xChord += Preferences.getSPEED() / 5;
+            }
+            if (closerShopper.getYChord() < this.getYChord()) {
+                this.yChord -= Preferences.getSPEED() / 5;
+            } else {
+                this.yChord += Preferences.getSPEED() / 5;
+            }
+        } else {
+            super.freeInteract();
+        }
     }
 
     public Map<String, Instrument> getInstruments() {

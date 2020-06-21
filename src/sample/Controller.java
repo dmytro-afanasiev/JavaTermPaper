@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
+import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Building;
 import sample.windows.aboutWindow.AboutWindow;
@@ -122,7 +123,7 @@ public class Controller {
                 } else if (buttonName.equals("Грати на інструменті")){
                     for (Shopper shopper : Main.getCity().getShoppers()) {
                         if (shopper.isActive()) {
-                            if (shopper.getInstrument() != null) {
+                            if (shopper.getInstrument() != null || (shopper instanceof OrchestraConductor)) {
                                 shopper.playAnInstrument();
                                 break;
                             } else {
