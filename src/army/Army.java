@@ -21,29 +21,23 @@ public class Army {
                 if (!shopper.isInArmy()){
                     if (shopper instanceof OrchestraConductor && N3Ready+ N3ActiveReady< N3){
                         if (shopper.isActive()) {
-                            N3ActiveReady++;
-                            shopper.setNumberInRank(N3ActiveReady);
+                            shopper.setNumberInRank(++N3ActiveReady);
                         } else {
-                            N3Ready++;
-                            shopper.setNumberInRank(N3Ready);
+                            shopper.setNumberInRank(++N3Ready);
                         }
                         shopper.setInArmy(true);
                     } else if (shopper instanceof MusicianMaster && N2Ready+N2ActiveReady<N2){
                         if (shopper.isActive()) {
-                            N2ActiveReady++;
-                            shopper.setNumberInRank(N2ActiveReady);
+                            shopper.setNumberInRank(++N2ActiveReady);
                         } else {
-                            N2Ready++;
-                            shopper.setNumberInRank(N2Ready);
+                            shopper.setNumberInRank(++N2Ready);
                         }
                         shopper.setInArmy(true);
                     } else if (N1Ready+ N1ActiveReady < N1) {
                         if (shopper.isActive()) {
-                            N1ActiveReady++;
-                            shopper.setNumberInRank(N1ActiveReady);
+                            shopper.setNumberInRank(++N1ActiveReady);
                         } else {
-                            N1Ready++;
-                            shopper.setNumberInRank(N1Ready);
+                            shopper.setNumberInRank(++N1Ready);
                         }
                         shopper.setInArmy(true);
                     }

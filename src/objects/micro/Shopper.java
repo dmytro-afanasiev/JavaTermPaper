@@ -564,28 +564,35 @@ public class Shopper implements Cloneable{
         }
     };*/
     public void moveToArmy(){
-
         if (this.isActive) {
-            if (this.xChord<Army.START_X*this.numberInRank){
-                this.xChord+=1;
+            if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
+                //це для того, щоб не тряслись
+            } else if (this.xChord<Army.START_X*this.numberInRank){
+                this.xChord+=3;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=1;
+                this.xChord-=3;
             }
-            if (this.yChord < 100) {
-                this.yChord += 1;
+            if (Math.abs(this.yChord-100)<5){
+                //це для того, щоб не тряслись
+            } else if (this.yChord < 100) {
+                this.yChord += 3;
             } else if (this.yChord > 100) {
-                this.yChord -= 1;
+                this.yChord -= 3;
             }
         } else {
-            if (this.xChord<Army.START_X*this.numberInRank){
-                this.xChord+=1;
+            if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
+                //це для того, щоб не тряслись
+            } else if (this.xChord<Army.START_X*this.numberInRank){
+                this.xChord+=3;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=1;
+                this.xChord-=3;
             }
-            if (this.yChord < 300) {
-                this.yChord += 1;
+            if (Math.abs(this.yChord-100)<5){
+                //це для того, щоб не тряслись
+            } else if (this.yChord < 300) {
+                this.yChord += 3;
             } else if (this.yChord > 300) {
-                this.yChord -= 1;
+                this.yChord -= 3;
             }
         }
     }

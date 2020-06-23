@@ -226,26 +226,37 @@ public class MusicianMaster extends Shopper {
     public void moveToArmy(){
 
         if (this.isActive) {
+            if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
+                //це для того, щоб не тряслись
+            } else
             if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=1;
+                this.xChord+=3;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=1;
+                this.xChord-=3;
             }
+            if (Math.abs(this.yChord-500)<5){
+                //це для того, щоб не тряслись
+            } else
             if (this.yChord < 500) {
-                this.yChord += 1;
+                this.yChord += 3;
             } else if (this.yChord > 500) {
-                this.yChord -= 1;
+                this.yChord -= 3;
             }
         } else {
+            if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
+                //це для того, щоб не тряслись
+            } else
             if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=1;
+                this.xChord+=3;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=1;
+                this.xChord-=3;
             }
-            if (this.yChord < 700) {
-                this.yChord += 1;
+            if (Math.abs(this.yChord-700)<5){
+                //це для того, щоб не тряслись
+            } else if (this.yChord < 700) {
+                this.yChord += 3;
             } else if (this.yChord > 700) {
-                this.yChord -= 1;
+                this.yChord -= 3;
             }
         }
     }
