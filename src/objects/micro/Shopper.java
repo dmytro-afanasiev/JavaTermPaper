@@ -1,7 +1,9 @@
 package objects.micro;
 
 
+import army.Army;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -57,6 +59,9 @@ public class Shopper implements Cloneable{
     protected String name;
     protected static int numberOfShoppers = 0;
 
+
+    protected boolean inArmy = false;
+    protected int numberInRank;
 
     public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
         Shopper.numberOfShoppers++;
@@ -152,62 +157,66 @@ public class Shopper implements Cloneable{
     }
 
     public void freeRun() {
-        if (!this.isActive() && !this.stay) {
+        if (this.isInArmy()){
+            this.moveToArmy();
+        } else {
+            if (!this.isActive() && !this.stay) {
 
-            double speed = Main.getCity().isInteractWithPlayerMode() ? Preferences.getSPEED()/3 : Preferences.getSPEED();
-            if ((this instanceof OrchestraConductor) && !Main.getCity().isInteractWithPlayerMode() && Main.getCity().getShoppers().size()>=2)
-                speed=0;
-            switch (this.startDirection) {
-                case 0:
-                    this.yChord -= speed;
-                    break;
-                case 1:
-                    this.yChord -= speed;
-                    this.xChord += speed;
-                    break;
-                case 2:
-                    this.xChord += speed;
-                    break;
-                case 3:
-                    this.xChord += speed;
-                    this.yChord += speed;
-                    break;
-                case 4:
-                    this.yChord += speed;
-                    break;
-                case 5:
-                    this.yChord += speed;
-                    this.xChord -= speed;
-                    break;
-                case 6:
-                    this.xChord -= speed;
-                    break;
-                case 7:
-                    this.xChord -= speed;
-                    this.yChord -= speed;
-                    break;
-            }
-            if (Main.getCity().isInteractWithPlayerMode()) {
-                if (this.shopperImage.getX() + 100 >= Main.getScene().getWidth() + Main.getScrollX()) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 5);
-                } else if (this.shopperImage.getX() <= 0 + Main.getScrollX()) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 1);
-                } else if (this.shopperImage.getY() <= 0 + Main.getScrollY()) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 3);
-                } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
-                    this.startDirection = (byte) Main.random.nextInt(2);
+                double speed = Main.getCity().isInteractWithPlayerMode() ? Preferences.getSPEED() / 3 : Preferences.getSPEED();
+                if ((this instanceof OrchestraConductor) && !Main.getCity().isInteractWithPlayerMode() && Main.getCity().getShoppers().size() >= 2)
+                    speed = 0;
+                switch (this.startDirection) {
+                    case 0:
+                        this.yChord -= speed;
+                        break;
+                    case 1:
+                        this.yChord -= speed;
+                        this.xChord += speed;
+                        break;
+                    case 2:
+                        this.xChord += speed;
+                        break;
+                    case 3:
+                        this.xChord += speed;
+                        this.yChord += speed;
+                        break;
+                    case 4:
+                        this.yChord += speed;
+                        break;
+                    case 5:
+                        this.yChord += speed;
+                        this.xChord -= speed;
+                        break;
+                    case 6:
+                        this.xChord -= speed;
+                        break;
+                    case 7:
+                        this.xChord -= speed;
+                        this.yChord -= speed;
+                        break;
                 }
-            } else {
-                if (this.shopperImage.getX() + 100 >= Main.getCity().getRoot().getWidth()) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 5);
-                } else if (this.shopperImage.getX() <= 0) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 1);
-                } else if (this.shopperImage.getY() <= 0) {
-                    this.startDirection = (byte) (Main.random.nextInt(3) + 3);
-                } else if (this.shopperImage.getY() + 170 >= Main.getCity().getRoot().getHeight()) {
-                    this.startDirection = (byte) Main.random.nextInt(2);
+                if (Main.getCity().isInteractWithPlayerMode()) {
+                    if (this.shopperImage.getX() + 100 >= Main.getScene().getWidth() + Main.getScrollX()) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 5);
+                    } else if (this.shopperImage.getX() <= 0 + Main.getScrollX()) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 1);
+                    } else if (this.shopperImage.getY() <= 0 + Main.getScrollY()) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 3);
+                    } else if (this.shopperImage.getY() + 170 >= Main.getScene().getHeight() + Main.getScrollY()) {
+                        this.startDirection = (byte) Main.random.nextInt(2);
+                    }
+                } else {
+                    if (this.shopperImage.getX() + 100 >= Main.getCity().getRoot().getWidth()) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 5);
+                    } else if (this.shopperImage.getX() <= 0) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 1);
+                    } else if (this.shopperImage.getY() <= 0) {
+                        this.startDirection = (byte) (Main.random.nextInt(3) + 3);
+                    } else if (this.shopperImage.getY() + 170 >= Main.getCity().getRoot().getHeight()) {
+                        this.startDirection = (byte) Main.random.nextInt(2);
+                    }
+                    this.freeInteract();
                 }
-                this.freeInteract();
             }
         }
     }
@@ -485,6 +494,24 @@ public class Shopper implements Cloneable{
         Shopper.numberOfShoppers = numberOfShoppers;
     }
 
+
+
+    public boolean isInArmy() {
+        return inArmy;
+    }
+
+    public void setInArmy(boolean inArmy) {
+        this.inArmy = inArmy;
+    }
+
+    public int getNumberInRank() {
+        return numberInRank;
+    }
+
+    public void setNumberInRank(int numberInRank) {
+        this.numberInRank = numberInRank;
+    }
+
     @Override
     public Shopper clone() throws CloneNotSupportedException {
         Shopper temp = (Shopper) super.clone();
@@ -536,6 +563,32 @@ public class Shopper implements Cloneable{
             return o1.name.compareTo(o2.name);
         }
     };*/
+    public void moveToArmy(){
+
+        if (this.isActive) {
+            if (this.xChord<Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 100) {
+                this.yChord += 1;
+            } else if (this.yChord > 100) {
+                this.yChord -= 1;
+            }
+        } else {
+            if (this.xChord<Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 300) {
+                this.yChord += 1;
+            } else if (this.yChord > 300) {
+                this.yChord -= 1;
+            }
+        }
+    }
 }
 
 

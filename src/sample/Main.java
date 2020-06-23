@@ -1,5 +1,6 @@
 package sample;
 
+import army.window.EnterNumbersWindow;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +19,7 @@ import objects.firstMacro.Guitar;
 import objects.firstMacro.Piano;
 import objects.firstMacro.Trembita;
 import objects.firstMacro.Violin;
+import objects.micro.MusicianMaster;
 import objects.micro.OrchestraConductor;
 import objects.micro.Shopper;
 import objects.secondMacro.Factory;
@@ -26,6 +28,7 @@ import objects.secondMacro.Shop;
 import objects.secondMacro.Underpass;
 import objects.thirdMacro.City;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
@@ -62,6 +65,8 @@ public class Main extends Application {
         return scrollY;
     }
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -80,7 +85,18 @@ public class Main extends Application {
         city.addNewShopper(new Shopper(new Violin(),false, "Maks", 100, true),true);
         city.addNewShopper(new Shopper(new Trembita(),false, "Pasha", 50, true),true);
         city.addNewShopper(new Shopper(new Guitar(),false, "Dima", 149, true),true);
-        city.addNewShopper(new OrchestraConductor(new Piano(), false, "Sanya", 1000),true);
+        city.addNewShopper(new Shopper(new Guitar(), false, "Sanya", 1000, true),true);
+        city.addNewShopper(new Shopper(new Guitar(), false, "Sanya", 1000, true),true);
+        city.addNewShopper(new MusicianMaster(new Guitar(), false, "Sanya", 1000, true),true);
+        city.addNewShopper(new MusicianMaster(new Guitar(), false, "Sanya", 1000, true),true);
+        city.addNewShopper(new MusicianMaster(new Guitar(), false, "Sanya", 1000, true),true);
+        city.addNewShopper(new MusicianMaster(new Guitar(), false, "Sanya", 1000, true),true);
+
+        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Sanya", 1000),true);
+        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Sanya", 1000),true);
+        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Sanya", 1000),true);
+        city.addNewShopper(new OrchestraConductor(new Guitar(), false, "Sanya", 1000),true);
+
 
         Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         city.getRoot().getChildren().add(parent);
@@ -146,6 +162,15 @@ public class Main extends Application {
         //З ПИТАННЯМИ, ЧОМУ ТУТ ПОЛОВИНА КОДУ ВИКЛЮЧЕНА, ЗВЕРТАТИСЯ ДО МЕНЕ!!!
         @Override
         public void handle(KeyEvent event) {
+
+            //ПРИЗОВ
+            if (event.getCode().equals(KeyCode.P)){
+                try {
+                    new EnterNumbersWindow().display();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             /*if (event.getCode().equals(KeyCode.M)) {
                 try {
                     new CreateShopperWindow().display("Let's create new Shopper!");

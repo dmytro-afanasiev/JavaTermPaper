@@ -1,6 +1,7 @@
 package objects.micro;
 
 
+import army.Army;
 import javafx.animation.Animation;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
@@ -220,5 +221,34 @@ public class MusicianMaster extends Shopper {
             this.shopperImage.setImage(new Image("assets/master.png"));
         else this.shopperImage.setImage(new Image("assets/girlMaster.png"));
     }
+
+    @Override
+    public void moveToArmy(){
+
+        if (this.isActive) {
+            if (this.xChord< Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 500) {
+                this.yChord += 1;
+            } else if (this.yChord > 500) {
+                this.yChord -= 1;
+            }
+        } else {
+            if (this.xChord< Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 700) {
+                this.yChord += 1;
+            } else if (this.yChord > 700) {
+                this.yChord -= 1;
+            }
+        }
+    }
+
 }
 

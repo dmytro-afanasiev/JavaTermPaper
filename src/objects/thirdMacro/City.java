@@ -1,5 +1,6 @@
 package objects.thirdMacro;
 
+import army.Army;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,12 +45,16 @@ public class City {
         this.shoppers = new ArrayList<>(5);
         this.buildings = new ArrayList<>(5);
         root.setOnMousePressed(event -> {
-            for (Shopper shopper : this.shoppers) {
-                if (event.getButton().equals(MouseButton.PRIMARY)) {
-                    shopper.mouseClick(event.getX(), event.getY());
-                } else if (event.getButton().equals(MouseButton.SECONDARY)) {
-                    if (shopper instanceof OrchestraConductor) {
-                        ((OrchestraConductor) shopper).chooseAnInstrument(event.getX(), event.getY());
+            if (Army.isArmy()){
+                Army.toArmy(event.getX(),event.getY());
+            } else {
+                for (Shopper shopper : this.shoppers) {
+                    if (event.getButton().equals(MouseButton.PRIMARY)) {
+                        shopper.mouseClick(event.getX(), event.getY());
+                    } else if (event.getButton().equals(MouseButton.SECONDARY)) {
+                        if (shopper instanceof OrchestraConductor) {
+                            ((OrchestraConductor) shopper).chooseAnInstrument(event.getX(), event.getY());
+                        }
                     }
                 }
             }

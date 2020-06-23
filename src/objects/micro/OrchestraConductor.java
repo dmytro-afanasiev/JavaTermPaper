@@ -1,5 +1,6 @@
 package objects.micro;
 
+import army.Army;
 import javafx.animation.Animation;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -273,5 +274,31 @@ public class OrchestraConductor extends  MusicianMaster {
         this.instruments = instruments;
     }
 
+    @Override
+    public void moveToArmy(){
 
+        if (this.isActive) {
+            if (this.xChord< Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 900) {
+                this.yChord += 1;
+            } else if (this.yChord > 900) {
+                this.yChord -= 1;
+            }
+        } else {
+            if (this.xChord< Army.START_X*this.numberInRank){
+                this.xChord+=1;
+            }else if (this.xChord>Army.START_X*this.numberInRank){
+                this.xChord-=1;
+            }
+            if (this.yChord < 1100) {
+                this.yChord += 1;
+            } else if (this.yChord > 1100) {
+                this.yChord -= 1;
+            }
+        }
+    }
 }
