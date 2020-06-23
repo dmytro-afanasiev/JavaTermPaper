@@ -1,5 +1,6 @@
 package sample;
 
+import army.Army;
 import army.window.EnterNumbersWindow;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -64,7 +66,6 @@ public class Main extends Application {
     public static double getScrollY() {
         return scrollY;
     }
-
 
 
     @Override
@@ -151,6 +152,24 @@ public class Main extends Application {
                 }
                 city.getMiniMap().updateMap();
                 city.updateInformationLabel();
+                if (Army.checkArmyFinish()){
+                    Army.setArmy(false);
+                    for(Shopper shopper: Main.getCity().getShoppers()){
+                        Army.N3ActiveReady=0;
+                        Army.N3Ready=0;
+                        Army.N2ActiveReady=0;
+                        Army.N2Ready = 0;
+                        Army.N1ActiveReady=0;
+                        Army.N1Ready=0;
+                        shopper.setInArmy(false);
+                        shopper.setxStay(false);
+                        shopper.setyStay(false);
+                        shopper.setNumberInRank(0);
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Призив завершився на 100%\nМожете грати далі");
+                    alert.show();
+                }
             }
         };
         timer.start();

@@ -46,6 +46,21 @@ public class Army {
         }
     }
 
+    public static boolean checkArmyFinish(){
+        if (Army.isArmy() && N1Ready+N1ActiveReady+N2Ready+N2ActiveReady+N3Ready+N3ActiveReady!=0) {
+            for (Shopper shopper : Main.getCity().getShoppers()) {
+                if (shopper.isInArmy()) {
+                    if (!shopper.isxStay() || !shopper.isyStay()) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isArmy() {
         return isArmy;
     }

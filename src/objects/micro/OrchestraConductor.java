@@ -280,36 +280,43 @@ public class OrchestraConductor extends  MusicianMaster {
         if (this.isActive) {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
+                this.xStay = true;
+
             } else
             if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
-            if (Math.abs(this.yChord-900)<5){
+            if (Math.abs(this.yChord-1300)<5){
                 //це для того, щоб не тряслись
+                this.yStay =true;
+
             } else
-            if (this.yChord < 900) {
-                this.yChord += 3;
-            } else if (this.yChord > 900) {
-                this.yChord -= 3;
+            if (this.yChord < 1300) {
+                this.yChord += 4;
+            } else if (this.yChord > 1300) {
+                this.yChord -= 4;
             }
         } else {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
+                this.xStay = true;
+
             } else
             if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
-            if (Math.abs(this.yChord-1100)<5){
+            if (Math.abs(this.yChord-1600)<5){
                 //це для того, щоб не тряслись
+                this.yStay =true;
             } else
-            if (this.yChord < 1100) {
-                this.yChord += 3;
-            } else if (this.yChord > 1100) {
-                this.yChord -= 3;
+            if (this.yChord < 1600) {
+                this.yChord += 4;
+            } else if (this.yChord > 1600) {
+                this.yChord -= 4;
             }
         }
     }

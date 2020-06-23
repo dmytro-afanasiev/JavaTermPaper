@@ -228,35 +228,41 @@ public class MusicianMaster extends Shopper {
         if (this.isActive) {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
-            } else
-            if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xStay = true;
+
+            } else if (this.xChord< Army.START_X*this.numberInRank){
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
-            if (Math.abs(this.yChord-500)<5){
+            if (Math.abs(this.yChord-700)<5){
                 //це для того, щоб не тряслись
-            } else
-            if (this.yChord < 500) {
-                this.yChord += 3;
-            } else if (this.yChord > 500) {
-                this.yChord -= 3;
+                this.yStay =true;
+
+            } else if (this.yChord < 700) {
+                this.yChord += 4;
+            } else if (this.yChord > 700) {
+                this.yChord -= 4;
             }
         } else {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
+                this.xStay = true;
+
             } else
             if (this.xChord< Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
-            if (Math.abs(this.yChord-700)<5){
+            if (Math.abs(this.yChord-1000)<5){
                 //це для того, щоб не тряслись
-            } else if (this.yChord < 700) {
-                this.yChord += 3;
-            } else if (this.yChord > 700) {
-                this.yChord -= 3;
+                this.yStay =true;
+
+            } else if (this.yChord < 1000) {
+                this.yChord += 4;
+            } else if (this.yChord > 1000) {
+                this.yChord -= 4;
             }
         }
     }

@@ -62,6 +62,7 @@ public class Shopper implements Cloneable{
 
     protected boolean inArmy = false;
     protected int numberInRank;
+    protected boolean xStay= false, yStay =false;
 
     public Shopper(Instrument instrument, boolean isActive, String name, double money, boolean isMan) {
         Shopper.numberOfShoppers++;
@@ -495,7 +496,7 @@ public class Shopper implements Cloneable{
     }
 
 
-
+///
     public boolean isInArmy() {
         return inArmy;
     }
@@ -504,14 +505,26 @@ public class Shopper implements Cloneable{
         this.inArmy = inArmy;
     }
 
-    public int getNumberInRank() {
-        return numberInRank;
-    }
-
     public void setNumberInRank(int numberInRank) {
         this.numberInRank = numberInRank;
     }
 
+    public boolean isxStay() {
+        return xStay;
+    }
+
+    public void setxStay(boolean xStay) {
+        this.xStay = xStay;
+    }
+
+    public boolean isyStay() {
+        return yStay;
+    }
+
+    public void setyStay(boolean yStay) {
+        this.yStay = yStay;
+    }
+//
     @Override
     public Shopper clone() throws CloneNotSupportedException {
         Shopper temp = (Shopper) super.clone();
@@ -567,32 +580,38 @@ public class Shopper implements Cloneable{
         if (this.isActive) {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
+                this.xStay = true;
             } else if (this.xChord<Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
             if (Math.abs(this.yChord-100)<5){
                 //це для того, щоб не тряслись
+                this.yStay =true;
             } else if (this.yChord < 100) {
-                this.yChord += 3;
+                this.yChord += 4;
             } else if (this.yChord > 100) {
-                this.yChord -= 3;
+                this.yChord -= 4;
             }
         } else {
             if (Math.abs(this.xChord-Army.START_X*this.numberInRank)<5){
                 //це для того, щоб не тряслись
+                this.xStay = true;
+
             } else if (this.xChord<Army.START_X*this.numberInRank){
-                this.xChord+=3;
+                this.xChord+=4;
             }else if (this.xChord>Army.START_X*this.numberInRank){
-                this.xChord-=3;
+                this.xChord-=4;
             }
-            if (Math.abs(this.yChord-100)<5){
+            if (Math.abs(this.yChord-400)<5){
                 //це для того, щоб не тряслись
-            } else if (this.yChord < 300) {
-                this.yChord += 3;
-            } else if (this.yChord > 300) {
-                this.yChord -= 3;
+                this.yStay =true;
+
+            } else if (this.yChord < 400) {
+                this.yChord += 4;
+            } else if (this.yChord > 400) {
+                this.yChord -= 4;
             }
         }
     }
