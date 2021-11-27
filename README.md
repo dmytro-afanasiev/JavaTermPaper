@@ -1,2 +1,2 @@
-# Java_Term_Paper
-Term Paper about musicians. Course aboute OOP
+# Java term paper
+Term Paper about musicians.
